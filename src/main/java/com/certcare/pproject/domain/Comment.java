@@ -16,7 +16,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "memberId")
     private Article article;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "memberId")
-    private Member member;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name= "memberId")
+//    private Member member;
 }

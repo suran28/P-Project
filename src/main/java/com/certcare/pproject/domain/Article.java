@@ -13,9 +13,11 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String body;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name= "memberId")
-    private Member member;
+
+    // REG DATE
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name= "memberId")
+//    private Member member;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "boardId")
     private Board board;
