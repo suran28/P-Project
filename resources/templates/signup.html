@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>SignUp</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/login.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+
+<body>
+<div class="container">
+  <form action="/signup" method="post">
+    <div class="form">
+      <div class="title">
+        <h1>회원가입</h1>
+        <p>회원가입이 필요한 서비스입니다</p>
+      </div>
+
+      <div class="pinfo_input_form">
+        <label for="id">이름</label>
+        <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+      </div>
+      <div class="pinfo_input_form">
+        <label for="id">아이디</label>
+        <input type="text" id="id" name="id" placeholder="아이디를 입력하세요">
+      </div>
+      <div class="pinfo_input_form">
+        <label for="pw">비밀번호</label>
+        <input type="password" id="pw" name="pw" placeholder="비밀번호를 입력하세요">
+      </div>
+      <div class="pinfo_input_form">
+        <label for="position">직무분야</label>
+        <input type="text" id="position" name="position" placeholder="직무분야를 입력하세요">
+      </div>
+      <div class="pinfo_input_form">
+        <label for="email">이메일</label>
+        <input type="text" id="email" name="email" placeholder="이메일을 입력하세요">
+      </div>
+      <div class="pinfo_input_form">
+        <label for="phonenum">전화번호</label>
+        <input type="text" id="phonenum" name="phonenum" placeholder="전화번호를 입력하세요">
+      </div>
+
+      <button type="submit">회원가입</button>
+    </div>
+  </form>
+</div> <!-- /container -->
+</body>
+
+<footer>
+  <div class="footer">
+    <p>© CopyRight 2023.</p>
+    <p>All Rights Reserved.Powered by Certcare</p>
+  </div>
+</footer>
+
+</html>
