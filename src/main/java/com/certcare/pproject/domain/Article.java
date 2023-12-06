@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,10 +33,22 @@ public class Article {
     @JoinColumn(name= "boardId")
     private Board board;
 
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
+
     public Article(String title, String body, Member member, Board board) {
         this.title = title;
         this.body = body;
         this.member = member;
         this.board = board;
+    }
+
+    public void update(String title, String body){
+        if (title != null) {
+            this.title = title;
+        }
+        if (body != null) {
+            this.body = body;
+        }
     }
 }

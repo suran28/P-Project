@@ -12,9 +12,10 @@ public class MyCert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String cert_name;
-    private LocalDateTime acq_date;
+    private String certName;
     private String host;
+    private LocalDateTime acqDate;
+
     // 회원과 일대다 연관관계
     @ManyToOne
     @JoinColumn(name="MEMBER_ID")
@@ -23,10 +24,30 @@ public class MyCert {
     public CertInfoDto toCertInfoDto() {
         CertInfoDto certInfoDto = new CertInfoDto();
 
-        certInfoDto.setCert_name(this.cert_name);
+        certInfoDto.setId(this.id);
+        certInfoDto.setCert_name(this.certName);
         certInfoDto.setHost(this.host);
-        certInfoDto.setAcq_date(this.acq_date);
+        certInfoDto.setAcq_date(this.acqDate);
 
         return certInfoDto;
+    }
+
+    public MyCert(String certName, String host, LocalDateTime acqDate, Member member) {
+        this.certName = certName;
+        this.host = host;
+        this.acqDate = acqDate;
+        this.member = member;
+    }
+
+    public void update(String certName, String host, LocalDateTime acqDate) {
+        if (certName != null) {
+            this.certName = certName;
+        }
+        if (host != null) {
+            this.host = host;
+        }
+        if (acqDate != null) {
+            this.acqDate = acqDate;
+        }
     }
 }

@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public class CertInfoDto {
+    private Long id;
     private String cert_name;
     private LocalDateTime acq_date;
     private String host;

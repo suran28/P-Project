@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -45,7 +46,6 @@ public class MemberService {
         }
         Member newMember = new Member(memberRequestDto, passwordEncoder);
         memberRepository.save(newMember);
-        log.info("회원가입 완료");
     }
 
     // 로그인
@@ -60,10 +60,9 @@ public class MemberService {
             // 2. 실제로 검증 (사용자 비밀번호 체크) 이 이루어지는 부분
             //    authenticate 메서드가 실행이 될 때 CustomUserDetailsService 에서 만들었던 loadUserByUsername 메서드가 실행됨
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-            log.info("여기 2");
             // 3. 인증 정보를 기반으로 JWT 토큰 생성
             TokenDto tokenDto = tokenProvider.generateTokenDto(authentication);
-            log.info("여기 3");
+
             // 4. RefreshToken 저장
 //            RefreshToken refreshToken = RefreshToken.builder()
 //                    .key(authentication.getName())
@@ -90,18 +89,15 @@ public class MemberService {
         if (optionalMember.isPresent()) {
             Member member = optionalMember.get();
 
-            // Entity -> dto
+            dto.setUsername(member.getUsername());
+            dto.setUserId(member.getUserId());
         }
         return dto;
-
-
     }
-
-    // 회원 정보 수정
 
     // 회원 정보 삭제
 
-    // 마이페이지 나의 자격증 조회
+    // 마이페이지 나의 자격증 목록 조회
     public List<CertInfoDto> showMyCertInfo(Long id) {
         List<MyCert> myCerts = myCertRepository.findAllByMemberId(id);
 
@@ -114,5 +110,47 @@ public class MemberService {
 
         return dtos;
     }
+
+    // 마이페이지 나의 자격증 단일 조회
+    public CertInfoDto showOneMyCert(Long id) {
+        Optional<MyCert> optionalMyCert = myCertRepository.findById(id);
+
+        if (optionalMyCert.isPresent()) {
+            MyCert myCert = optionalMyCert.get();
+            CertInfoDto dto = myCert.toCertInfoDto();
+            return dto;
+        } else {
+            throw new RuntimeException("해당 나의 자격증 정보가 존재하지 않습니다.");
+        }
+    }
+
     // 마이페이지 나의 자격증 등록
+    public void createMyCert(String certName, String host, LocalDateTime acqDate, Long memberId) {
+        Optional<Member> optionalMember = memberRepository.findById(memberId);
+        if (optionalMember.isPresent()) {
+            Member member = optionalMember.get();
+
+            MyCert myCert = new MyCert(certName, host, acqDate, member);
+            myCertRepository.save(myCert);
+        }
+    }
+
+    // 마이페이지 나의 자격증 수정
+    public void updateMyCert(Long myCertId, String certName, String host, LocalDateTime acqDate) {
+        Optional<MyCert> optionalMyCert = myCertRepository.findById(myCertId);
+        if (optionalMyCert.isPresent()) {
+            MyCert updatedMyCert = optionalMyCert.get();
+            updatedMyCert.update(certName, host, acqDate);
+            myCertRepository.save(updatedMyCert);
+        }
+    }
+
+    // 마이페이지 나의 자격증 삭제
+    public void deleteMyCert(Long myCertId) {
+        Optional<MyCert> optionalMyCert = myCertRepository.findById(myCertId);
+        if (optionalMyCert.isPresent()) {
+            MyCert myCert = optionalMyCert.get();
+            myCertRepository.delete(myCert);
+        }
+    }
 }

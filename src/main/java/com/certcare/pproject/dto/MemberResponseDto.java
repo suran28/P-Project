@@ -7,10 +7,6 @@ import lombok.Setter;
 @Setter
 public class MemberResponseDto {
     private Long id;
-    private String memberId;
-    private String password;
-    private String name;
-    private String email;
-
-
+    private String userId;
+    private String username;
 }
