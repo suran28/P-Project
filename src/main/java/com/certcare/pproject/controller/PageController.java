@@ -32,4 +32,24 @@ public class PageController {
     public String showBoardPage() {
         return "board";
     }
+
+    @GetMapping("/community")
+    public String showCommunityPage() {
+        return "community";
+    }
+
+    @GetMapping("/certtype")
+    public String showCerttypePage() {
+        return "certtype";
+    }
+
+    @GetMapping("/certdetail")
+    public String showCertdetailPage() {
+        return "certdetail";
+    }
+
+    @GetMapping("/chatbot")
+    public String showChatbotPage() {
+        return "chatbot";
+    }
 }
