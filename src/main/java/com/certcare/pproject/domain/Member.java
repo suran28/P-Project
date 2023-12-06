@@ -18,10 +18,11 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String userId;
     private String password;
     @Enumerated(EnumType.STRING)
     private Authority authority;
-    private String email;
+
     // 관심 대직무분야
 //    @OneToMany(mappedBy = "member")
 //    private List<Article> articleList;
@@ -29,8 +30,9 @@ public class Member {
     public Member(MemberRequestDto dto, PasswordEncoder passwordEncoder) {
         String encodedPassword = passwordEncoder.encode(dto.getPassword());
         this.username = dto.getUsername();
+        this.userId = dto.getUserId();
         this.password = encodedPassword;
-        this.email = dto.getEmail();
+
 
         // Authority는 자동으로 ROLE_USER
         this.authority = Authority.ROLE_USER;
