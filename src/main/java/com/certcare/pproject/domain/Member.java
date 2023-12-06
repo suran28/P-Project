@@ -18,6 +18,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    @Column(unique = true)
     private String userId;
     private String password;
     @Enumerated(EnumType.STRING)

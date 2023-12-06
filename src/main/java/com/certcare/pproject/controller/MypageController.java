@@ -1,7 +1,6 @@
 package com.certcare.pproject.controller;
 
 import com.certcare.pproject.dto.CertInfoDto;
-import com.certcare.pproject.dto.MemberResponseDto;
 import com.certcare.pproject.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-public class MypageApiController {
+public class MypageController {
     private final MemberService memberService;
 
 //    마이페이지
