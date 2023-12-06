@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/head.css">
+    <link rel="stylesheet" type="text/css" href="/css/board.css">
+    <script src="/javascript/board.js"></script>
+</head>
+
+<body>
+<div th:replace="layout/head :: nav"></div>
+
+<div class="container">
+    <div class="empty"></div>
+    <form action="/login" method="post">
+        <div class="form">
+            <div class="boardTitle">
+                <h1>| 어느 게시판</h1>
+                <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
+                <input type="text" id="writer" name="writer" placeholder="작성자명" disabled>
+            </div>
+
+            <div class="boardContent">
+                <textarea id="content" name="content" placeholder="본문을 입력하세요"></textarea>
+            </div>
+
+            <div class="btnCon">
+                <button type="submit">수정</button>
+                <button type="submit">삭제</button>
+                <button type="button">목록</button>
+                <button type="button" class="commentBtn">댓글쓰기</button>
+            </div>
+
+            <div class="boardComment">
+                <p class="comment">댓글</p>
+                <div class="commentAdd">
+                    <input type="text" id="commentAdd" name="commentAdd" placeholder="댓글">
+                    <button class="commentAddBtn" type="submit">등록</button>
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+
+<div th:replace="layout/footer :: footer"></div>
+
+</html>

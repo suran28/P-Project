@@ -3,11 +3,13 @@
 <head>
     <title>Login</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/login.css">
-    <link rel="stylesheet" type="text/css" href="/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/head.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 
 <body>
+<div th:replace="layout/head :: nav"></div>
+
 <div class="container">
     <form action="/login" method="post">
         <div class="form">
@@ -33,11 +35,6 @@
 </div> <!-- /container -->
 </body>
 
-<footer>
-    <div class="footer">
-        <p>© CopyRight 2023.</p>
-        <p>All Rights Reserved.Powered by Certcare</p>
-    </div>
-</footer>
+<div th:replace="layout/footer :: footer"></div>
 
 </html>

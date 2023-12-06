@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 public class MypageApiController {
@@ -25,12 +27,12 @@ public class MypageApiController {
 //// 회원정보 조회
 //
 //    //    나의 자격증 조회
-//    @GetMapping
-//    public ResponseEntity<CertInfoDto> showMyCert(Authentication authentication) {
-//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-//        CertInfoDto dto = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
-//        return ResponseEntity.ok(dto);
-//    }
+    @GetMapping("/mypage/cert")
+    public ResponseEntity<List<CertInfoDto>> showMyCert(Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        List<CertInfoDto> dtos = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
+        return ResponseEntity.ok(dtos);
+    }
 //    나의 자격증 등록, 수정, 삭제
 
 // /mypage/cert,get/post/patch/delete

@@ -1,12 +1,14 @@
 package com.certcare.pproject.service;
 
 import com.certcare.pproject.domain.Member;
+import com.certcare.pproject.domain.MyCert;
 import com.certcare.pproject.dto.CertInfoDto;
 import com.certcare.pproject.dto.MemberRequestDto;
 import com.certcare.pproject.dto.MemberResponseDto;
 import com.certcare.pproject.dto.TokenDto;
 import com.certcare.pproject.jwt.TokenProvider;
 import com.certcare.pproject.repository.MemberRepository;
+import com.certcare.pproject.repository.MyCertRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 // 인증 관련 서비스 (회원가입, 로그인 ..)
@@ -24,6 +28,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final MyCertRepository myCertRepository;
     private final TokenProvider tokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final PasswordEncoder passwordEncoder;
@@ -93,10 +98,17 @@ public class MemberService {
     // 회원 정보 삭제
 
     // 마이페이지 나의 자격증 조회
-    public CertInfoDto showMyCertInfo(Long id) {
-        CertInfoDto certInfoDto = new CertInfoDto();
+    public List<CertInfoDto> showMyCertInfo(Long id) {
+        List<MyCert> myCerts = myCertRepository.findAllByMemberId(id);
 
-        // MyCert Entity 조회
-        return certInfoDto;
+        List<CertInfoDto> dtos = new ArrayList<>();
+
+        for (MyCert myCert : myCerts) {
+            CertInfoDto dto = myCert.toCertInfoDto();
+            dtos.add(dto);
+        }
+
+        return dtos;
     }
+    // 마이페이지 나의 자격증 등록
 }

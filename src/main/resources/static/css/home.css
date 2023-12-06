@@ -3,12 +3,12 @@ body {
 }
 
 .navbar_home{
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar_home h1{
-    padding: 20px 0px 20px 25px;
-    margin: 0px;
+    padding: 20px 0 20px 25px;
+    margin: 0;
     width: auto;
 }
 
@@ -86,7 +86,7 @@ body {
 }
 
 .description3 .feature svg{
-    margin: 0px 25px;
+    margin: 0 25px;
 }
 
 .description3 .feature .fd{

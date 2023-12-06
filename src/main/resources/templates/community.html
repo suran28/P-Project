@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Login</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/head.css">
+  <link rel="stylesheet" type="text/css" href="/css/community.css">
+</head>
+
+<body>
+<div th:replace="layout/head :: nav"></div>
+
+<div class="container">
+  <div class="empty"></div>
+
+  <h2>게시판 명</h2>
+  <div class="empty"></div>
+  <div class="boardCon">
+    <div class="boardBar">
+      <h4 class="title">제목</h4>
+      <h4 class="writer">작성자</h4>
+      <h4 class="date">작성일</h4>
+    </div>
+
+    <div class="board">
+      <a href="/" class="title"><p>뭐라고 해야 좋을까</p></a>
+      <p class="writer">작성자</p>
+      <p class="date">작성일</p>
+    </div>
+  </div>
+  <a href="/" class="wirte">글쓰기</a>
+  <div class="empty"></div>
+
+</body>
+
+<div th:replace="layout/footer :: footer"></div>
+</html>
