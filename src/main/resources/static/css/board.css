@@ -48,6 +48,10 @@ textarea:focus {
     margin: 5px;
 }
 
+.commentAdd{
+    display: none;
+}
+
 .boardComment input{
     width: 90%;
     margin: 0 0 10px 0;
@@ -55,7 +59,6 @@ textarea:focus {
     border: none;
     background-color: white;
     color: black;
-    display: none;
 }
 
 .boardComment button{
@@ -67,7 +70,6 @@ textarea:focus {
     border: none;
     font-size: 15px;
     margin: 5px;
-    display: none;
 }
 
 .btnCon{

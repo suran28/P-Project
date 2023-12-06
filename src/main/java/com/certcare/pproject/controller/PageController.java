@@ -38,5 +38,26 @@ public class PageController {
     }
 
     // 게시물 상세 조회
+
+    @GetMapping("/community")
+    public String showCommunityPage() {
+        return "community";
+    }
+
+    @GetMapping("/certtype")
+    public String showCerttypePage() {
+        return "certtype";
+    }
+
+    @GetMapping("/certdetail")
+    public String showCertdetailPage() {
+        return "certdetail";
+    }
+
+    @GetMapping("/chatbot")
+    public String showChatbotPage() {
+        return "chatbot";
+    }
+
 }
 
