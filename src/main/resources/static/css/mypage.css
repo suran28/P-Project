@@ -68,11 +68,16 @@
 }
 
 .certAddWindow{
-    width: 60%;
+    width: 750px;
     margin: auto;
     box-shadow: 0 0 20px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
 }
 
 .certWindow{
@@ -143,6 +148,8 @@
     height: 25px;
     padding: 5px;
     font-size: 15px;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
 .windowCertAdd button{

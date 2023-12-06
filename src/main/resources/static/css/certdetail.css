@@ -1,0 +1,78 @@
+.certTitle{
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    background-color: #F2F0FB;
+    border-radius: 5px;
+}
+
+.certTitle h2{
+    margin: 5px;
+    padding: 5px;
+}
+
+.contentCon{
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.contentCon h4{
+    margin: 0;
+    padding: 5px;
+}
+
+.contentCon p{
+    margin: 0;
+    padding: 5px;
+}
+
+.leftCon{
+    width: 27%;
+    padding: 8px;
+    margin: 15px 0;
+    border-radius: 5px;
+    background-color: #9EE2FF;
+}
+
+.date{
+    padding: 8px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.session{
+    border-bottom: 1px solid;
+}
+
+.rightCon{
+    width: 70%;
+}
+
+.rightCon div{
+    padding: 8px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.overview{
+    background-color: #EBF9FF;
+}
+
+.eligibility{
+    background-color: #F2F0FB;
+}
+
+.method{
+    background-color: #FFF9E9;
+}
+
+.certInfo{
+    margin: 10px;
+    padding: 8px;
+    background-color: white;
+}
+

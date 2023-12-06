@@ -1,0 +1,68 @@
+.chatBot{
+    margin: 0;
+    padding: 8px 0;
+    text-align: center;
+    width: 100%;
+    background-color: #F2F0FB;
+    border-radius: 5px;
+}
+
+.chatBot h2{
+    margin: 5px;
+    padding: 5px;
+}
+
+.chatting{
+    height: 500px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F2F0FB;
+    box-shadow: 0 0 5px 0;
+}
+
+.chatSave{
+    height: 430px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.ChatSave p{
+    margin: 0;
+}
+
+.aiChatSave{
+    padding: 10px;
+    margin: 5px;
+    width: 800px;
+    border-radius: 5px;
+    background-color: white;
+    align-self: flex-start;
+}
+
+.memChatSave{
+    padding: 10px;
+    margin: 5px;
+    width: 800px;
+    border-radius: 5px;
+    background-color: white;
+    align-self: flex-end;
+}
+
+.chatInput{
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatInput input{
+    width: 92%;
+    height: 20px;
+    font-size: 15px;
+    padding: 12px;
+}
+
+.chatInput button{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
