@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+}
+
+.navbar_home{
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar_home h1{
+    padding: 20px 0 20px 25px;
+    margin: 0;
+    width: auto;
+}
+
+.description1{
+    width: 650px;
+    display: flex;
+    align-items: center;
+    margin: 30px auto;
+}
+
+.description1 .txt{
+    margin: 0 0 0 50px;
+}
+
+.description1 button{
+    padding: 7px 25px;
+    margin: 0 auto;
+    display: flex;
+    border: 1px solid #000;
+    border-radius: 25px;
+    background-color: #ffffff;
+}
+
+.description1 img{
+    width: 200px;
+    height: 200px;
+}
+
+/*.img::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background: linear-gradient(#B367FF, #4478FF);*/
+/*    opacity: 0.8;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.img img {*/
+/*    position: relative;*/
+/*    z-index: 2;*/
+/*}*/
+
+.description2{
+    padding: 10px;
+    margin: 30px auto;
+    background-color: #D4CAFF;
+    align-items: center;
+}
+
+.description2 h2{
+    padding: 15px 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.bi{
+    margin: 10px auto;
+    display: flex;
+}
+
+.description3{
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.description3 .feature{
+    display: flex;
+    align-items: center;
+}
+
+.description3 .feature svg{
+    margin: 0 25px;
+}
+
+.description3 .feature .fd{
+    width: 350px;
+}
+

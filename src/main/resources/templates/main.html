@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/head.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+
+<body>
+<div th:replace="layout/head :: nav"></div>
+
+<div class="container">
+    <div class="chatCon">
+        <h3>챗봇을 이용하여 많이 응시하는 자격증을 검색하세요</h3>
+        <div class="chatButton">
+            <a href="/">자격증 검색 챗봇</a>
+        </div>
+    </div>
+
+    <div class="topCert">
+        <h2>TOP 50 자격증</h2>
+        <div class="certCon">
+            <h4>자격증 정보</h4>
+            <p>가장 많이 응시하는 자격증 Top 50</p>
+            <div class="certRow">
+                <div class="cert">
+                    <p>토익</p>
+                    <a class="certLink" href="/">더보기</a>
+                </div>
+                <div class="cert">
+                    <p>토익</p>
+                    <a class="certLink" href="/">더보기</a>
+                </div>
+                <div class="cert">
+                    <p>토익</p>
+                    <a class="certLink" href="/">더보기</a>
+                </div>
+                <div class="cert">
+                    <p>토익</p>
+                    <a class="certLink" href="/">더보기</a>
+                </div>
+                <div class="cert">
+                    <p>토익</p>
+                    <a class="certLink" href="/">더보기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<div th:replace="layout/footer :: footer"></div>
+
+</html>

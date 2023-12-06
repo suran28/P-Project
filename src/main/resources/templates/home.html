@@ -4,8 +4,8 @@
 <head>
   <title>Hello</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="/home.css">
-  <link rel="stylesheet" type="text/css" href="/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/head.css">
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
 </head>
 
 <body>
@@ -105,11 +105,6 @@
 
 </body>
 
-<footer>
-  <div class="footer">
-    <p>© CopyRight 2023.</p>
-    <p>All Rights Reserved.Powered by Certcare</p>
-  </div>
-</footer>
+<div th:replace="layout/footer :: footer"></div>
 
 </html>

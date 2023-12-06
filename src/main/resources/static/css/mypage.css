@@ -1,0 +1,169 @@
+.container h2{
+    margin: 4px 5px;
+    padding: 0 10px;
+}
+
+.container h4{
+    margin: 0;
+}
+
+.summary{
+    display: flex;
+}
+
+.certNum {
+    width: 30%;
+    margin: 5px;
+    padding: 18px;
+    background-color: #FFF9E9;
+    border-radius: 5px;
+}
+
+.memberInfo{
+    width: 60%;
+    margin: 5px;
+    padding: 18px;
+    background-color: #F2F0FB;
+    border-radius: 5px;
+}
+
+.certInfo{
+    width: 100%;
+    margin: 5px;
+    padding: 18px 8px 18px 18px;
+    background-color: #DEF8FF;
+    border-radius: 5px;
+}
+
+.conSum{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addBtn button{
+    height: 25px;
+    margin: 5px;
+    padding: 5px;
+    background: #1f80fb;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+}
+
+.certRow{
+    display: flex;
+}
+
+.cert{
+    width: 235px;
+    margin-right: 10px;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.cert p{
+    margin: 8px;
+}
+
+.certAddWindow{
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 20px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: none;
+}
+
+.certWindow{
+    padding: 10px;
+    min-height: 400px;
+}
+
+.windowTitle {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid #5FA6FF;
+}
+
+.windowTitle h3{
+    margin: 5px;
+    padding: 5px 0
+}
+
+.windowTitle button{
+    margin: 7px;
+    padding: 0px 8px;
+    background-color: #0275FF;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 18px;
+}
+
+.windowNav{
+    margin: 5px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #DEF8FF;
+    border-radius: 5px;
+}
+
+.windowCertInfo{
+    margin: 5px 0;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid;
+}
+
+.windowCertInfo p{
+    margin: 0;
+}
+
+.windowCertInfo button{
+    padding: 6px 11px;
+    margin: 5px;
+    font-size: 15px;
+    background-color: #F1F1F3;
+    border-radius: 5px;
+    border: none;
+}
+
+.windowCertAdd{
+    margin: 5px 0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.windowCertAdd input{
+    height: 25px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.windowCertAdd button{
+    padding: 6px 11px;
+    margin: 5px;
+    font-size: 15px;
+    background-color: #F1F1F3;
+    border-radius: 5px;
+    border: none;
+}
+
+.windowCertInfoSave{
+    margin: 5px 0
+}
+
+.windowCertInfoSave button{
+    width: 100%;
+    height: 35px;
+    font-size: 17px;
+    background-color: #0275FF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
