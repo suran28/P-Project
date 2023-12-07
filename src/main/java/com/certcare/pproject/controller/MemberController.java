@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @AllArgsConstructor
@@ -44,22 +46,19 @@ public class MemberController {
 //    }
     // 로그인
     @PostMapping("/login")
-    public String login(@RequestParam String userId,
-                        @RequestParam String password,
-                        Model model) {
-        // 서비스에 넘겨줄 memberRequestDto 객체 생성 및 초기화
-//        MemberRequestDto memberRequestDto = new MemberRequestDto();
-//        memberRequestDto.setUserId(userId);
-//        memberRequestDto.setPassword(password);
+    public ModelAndView login(@RequestParam String userId,
+                              @RequestParam String password) {
 
         // 로그인 로직
         TokenDto tokenDto = memberService.login(userId, password);
 
-        // 반환할 모델 세팅
-        model.addAttribute("grantType", tokenDto.getGrantType());
-        model.addAttribute("accessToken", tokenDto.getAccessToken());
+        // 반환할 modelAndView 세팅
+        ModelAndView modelAndView = new ModelAndView("main");
+        modelAndView.addObject("grantType", tokenDto.getGrantType());
+        modelAndView.addObject("accessToken", tokenDto.getAccessToken());
 
-        return"redirect:/main";
+
+        return modelAndView;
     }
 
     // 로그아웃
