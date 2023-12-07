@@ -4,19 +4,20 @@ body {
 
 .container{
     width: 1250px;
-    min-height: 600px;
-    margin: 20px auto;
+    min-height: 680px;
 }
 
 .empty{
-    margin: 50px;
+    padding: 20px;
 }
 
 /*head*/
 .navbar_home {
+    width: 100%;
+    min-width: 1000px;
     display: flex;
     align-items: center;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar_home h1{
@@ -93,6 +94,8 @@ body {
 
 /*footer*/
 footer{
+    width: 100%;
+    min-width: 1000px;
     box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
 }
 

@@ -21,7 +21,11 @@
 
 .contentCon h4{
     margin: 0;
-    padding: 5px;
+    padding: 8px;
+}
+
+.contentCon .session h4{
+    text-align: center;
 }
 
 .contentCon p{
@@ -46,6 +50,10 @@
 
 .session{
     border-bottom: 1px solid;
+}
+
+.sessionDate{
+    margin: 10px 0 0;
 }
 
 .rightCon{
