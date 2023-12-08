@@ -1,5 +1,6 @@
 package com.certcare.pproject.domain;
 
+import com.certcare.pproject.dto.ArticleDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -51,4 +52,7 @@ public class Article {
             this.body = body;
         }
     }
+
+//    public ArticleDto toArticleDto() {
+//    }
 }

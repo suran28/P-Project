@@ -4,6 +4,7 @@ import com.certcare.pproject.domain.Article;
 import com.certcare.pproject.domain.Board;
 import com.certcare.pproject.domain.Comment;
 import com.certcare.pproject.domain.Member;
+import com.certcare.pproject.dto.ArticleDto;
 import com.certcare.pproject.repository.ArticleRepository;
 import com.certcare.pproject.repository.BoardRepository;
 import com.certcare.pproject.repository.CommentRepository;
@@ -12,6 +13,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +31,14 @@ public class BoardService {
         Board board = boardRepository.findByCode(code);
         return board.getBoardName();
     }
+
+    // 게시판에 등록된 모든 글 가져오기
+//    @Transactional
+//    public List<ArticleDto> getArticleListsByBoardCode(int code) {
+//        List<Article> articles = articleRepository.findAllByBoardCode(code);
+//
+//        return articles;
+//    }
 
     // 게시물 등록
     @Transactional
