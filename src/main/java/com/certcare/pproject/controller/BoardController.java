@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class BoardController {
     private final BoardService boardService;
 
-    // 카테고리 별 게시판 목록 전체 조회
+    // 카테고리 별 게시판 목록 전체 조회 test
     @GetMapping("/board/{board_id}")
     public String showBoardPage(@PathVariable String board_id, Model model) {
         String boardName = boardService.getBoardName(Integer.parseInt(board_id));
