@@ -5,14 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/head.css">
     <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="/js/login.js"></script>
 </head>
 
 <body>
 <div th:replace="layout/head :: nav"></div>
 
 <div class="container">
-    <form action="/login" method="post">
-        <div class="form">
+    <form id="loginForm">
+        <div class="loginForm">
             <div class="title">
                 <h1>로그인</h1>
                 <p>로그인이 필요한 서비스입니다</p>
@@ -29,7 +30,7 @@
 
             <p><a href="/signup">회원가입</a></p>
 
-            <button type="submit">로그인</button>
+            <button type="button" onclick="submitForm()">로그인</button>
         </div>
     </form>
 </div> <!-- /container -->

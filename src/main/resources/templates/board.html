@@ -4,7 +4,7 @@
   <title>Certcare</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="/css/head.css">
-  <link rel="stylesheet" type="text/css" href="/css/community.css">
+  <link rel="stylesheet" type="text/css" href="/css/board.css">
 </head>
 
 <body>
@@ -13,7 +13,8 @@
 <div class="container">
   <div class="empty"></div>
 
-  <h2>게시판 명</h2>
+
+  <h1 th:text="${boardName} + '&nbsp' + 커뮤니티">게시판 명</h1>
   <div class="empty"></div>
   <div class="boardCon">
     <div class="boardBar">
