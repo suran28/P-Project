@@ -50,12 +50,12 @@ public class MemberService {
 
     // 로그인
     @Transactional
-    public TokenDto login(String userId, String password) {
-        Optional<Member> member = memberRepository.findByUserId(userId);
+    public TokenDto login(MemberRequestDto memberRequestDto) {
+        Optional<Member> member = memberRepository.findByUserId(memberRequestDto.getUserId());
         if (member.isPresent()) {
 
             // 1. Login ID/PW 를 기반으로 AuthenticationToken 생성
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userId, password);
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(memberRequestDto.getUserId(), memberRequestDto.getPassword());
 
             // 2. 실제로 검증 (사용자 비밀번호 체크) 이 이루어지는 부분
             //    authenticate 메서드가 실행이 될 때 CustomUserDetailsService 에서 만들었던 loadUserByUsername 메서드가 실행됨
