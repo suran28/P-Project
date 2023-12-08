@@ -22,6 +22,13 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
+    // 게시판 명 가져오기
+    @Transactional
+    public String getBoardName(int code) {
+        Board board = boardRepository.findByCode(code);
+        return board.getBoardName();
+    }
+
     // 게시물 등록
     @Transactional
     public void createArticle(String title, String body, Long memberId, int boardId) {

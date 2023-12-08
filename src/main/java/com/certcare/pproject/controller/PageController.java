@@ -1,7 +1,9 @@
 package com.certcare.pproject.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class PageController {
@@ -31,19 +33,9 @@ public class PageController {
         return "mypage";
     }
 
-    // 카테고리 별 게시판 목록 전체 조회 (수정 필요)
-    @GetMapping("/board/1")
-    public String showArticleList() {
-        return "board";
-    }
+
 
     // 게시물 상세 조회
-
-    @GetMapping("/community")
-    public String showCommunityPage() {
-        return "community";
-    }
-
     @GetMapping("/certtype")
     public String showCerttypePage() {
         return "certtype";

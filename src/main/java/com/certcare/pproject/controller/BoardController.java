@@ -5,12 +5,23 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+
+    // 카테고리 별 게시판 목록 전체 조회
+    @GetMapping("/board/{board_id}")
+    public String showBoardPage(@PathVariable String board_id, Model model) {
+        String boardName = boardService.getBoardName(Integer.parseInt(board_id));
+        model.addAttribute("boardName", boardName);
+
+        // 게시판에 등록된 전체 게시물 불러오기
+        return "board";
+    }
 
     // 게시물 등록 요청
     @PostMapping("/board/{board_id}/new")
