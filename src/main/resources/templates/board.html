@@ -1,52 +1,37 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Certcare</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" type="text/css" href="/css/head.css">
-    <link rel="stylesheet" type="text/css" href="/css/board.css">
-    <script src="/js/board.js"></script>
+  <title>Certcare</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/css/head.css">
+  <link rel="stylesheet" type="text/css" href="/css/community.css">
 </head>
 
 <body>
 <div th:replace="layout/head :: nav"></div>
 
 <div class="container">
-    <div class="empty"></div>
-    <form action="/login" method="post">
-        <div class="form">
-            <div class="boardTitle">
-                <h1>| 어느 게시판</h1>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
-                <input type="text" id="writer" name="writer" placeholder="작성자명" disabled>
-            </div>
+  <div class="empty"></div>
 
-            <div class="boardContent">
-                <textarea id="content" name="content" placeholder="본문을 입력하세요"></textarea>
-            </div>
+  <h2>게시판 명</h2>
+  <div class="empty"></div>
+  <div class="boardCon">
+    <div class="boardBar">
+      <h4 class="title">제목</h4>
+      <h4 class="writer">작성자</h4>
+      <h4 class="date">작성일</h4>
+    </div>
 
-            <div class="btnCon">
-                <button type="submit">수정</button>
-                <button type="submit">삭제</button>
-                <button type="button">목록</button>
-                <button type="button" class="commentBtn">댓글쓰기</button>
-            </div>
+    <div class="board">
+      <a href="/" class="title"><p>뭐라고 해야 좋을까</p></a>
+      <p class="writer">작성자</p>
+      <p class="date">작성일</p>
+    </div>
+  </div>
+  <a href="/" class="wirte">글쓰기</a>
+  <div class="empty"></div>
 
-            <div class="boardComment">
-                <p class="comment">댓글</p>
-                <div class="commentAdd">
-                    <input type="text" id="commentAdd" name="commentAdd" placeholder="댓글">
-                    <button class="commentAddBtn" type="submit">등록</button>
-                </div>
-            </div>
-
-
-
-        </div>
-    </form>
-</div> <!-- /container -->
 </body>
 
 <div th:replace="layout/footer :: footer"></div>
-
 </html>
