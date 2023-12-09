@@ -6,19 +6,20 @@ document.addEventListener("DOMContentLoaded", () =>  {
     const message = "안녕하세요 써트케어 서비스입니다 어떤 내용을 도와드릴까요?";
     const p = aiChat.querySelector("p");
 
-    function showText(index) {
+    function showInitText(index) {
         p.textContent = message.slice(0, index);
         p.classList.add("show");
+        aiChat.classList.add("show")
 
         if (index < message.length) {
             setTimeout(function () {
-                showText(index + 1);
+                showInitText(index + 1);
             }, 50);
         }
     }
 
     setTimeout(function () {
-        showText(0);
+        showInitText(0);
     }, 500);
 });
 
@@ -36,14 +37,79 @@ document.addEventListener("DOMContentLoaded", () =>  {
             alert("로그인이 필요한 서비스입니다.");
             return null;
         } else {
-            const userQuestion = chatInput.value;
-            addChatToMemory(userQuestion, "chatSave");
+            let userQuestion = chatInput.value;
+
+            if (userQuestion === "") {
+                userQuestion = "질문을 입력해주세요";
+                addAiChatToMemory(userQuestion, "chatSave");
+            } else {
+                addMemChatToMemory(userQuestion, "chatSave");
+                requestAi(userQuestion)
+            }
         }
         chatInput.value = "";
     });
 });
 
-function addChatToMemory(message, chatSaveClass) {
+function addAiChatToMemory(message, chatSaveClass) {
+    const chatSave = document.querySelector(`.${chatSaveClass}`);
+    const newChat = document.createElement("div");
+    newChat.classList.add("aiChat");
+    const reChat = document.createElement("div");
+    reChat.classList.add("aiChat");
+
+    const aiAnswer = document.createElement("p");
+    aiAnswer.textContent = message;
+
+    const askMessage = "답변 내용에 만족하셨나요? 또 어떤 내용을 도와드릴까요?";
+    const askUser = document.createElement("p");
+    askUser.textContent = askMessage;
+
+    function showAiText(index) {
+        return new Promise(resolve => {
+            aiAnswer.textContent = message.slice(0, index);
+            aiAnswer.classList.add("show");
+            newChat.classList.add("show")
+
+            if (index < message.length) {
+                setTimeout(function () {
+                    showAiText(index + 1).then(resolve);
+                }, 50);
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    function requestUserFeedback(idx) {
+        askUser.textContent = askMessage.slice(0, idx);
+        askUser.classList.add("show");
+        reChat.classList.add("show")
+
+        return new Promise(resolve => {
+            if (idx < askMessage.length) {
+                setTimeout(function () {
+                    requestUserFeedback(idx + 1).then(resolve);
+                }, 50);
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    showAiText(0).then(() => {
+        return requestUserFeedback(0);
+    })
+
+    newChat.appendChild(aiAnswer);
+    reChat.appendChild(askUser);
+    chatSave.insertBefore(newChat, chatSave.firstChild);
+    chatSave.insertBefore(reChat, chatSave.firstChild);
+}
+
+
+
+function addMemChatToMemory(message, chatSaveClass) {
     const chatSave = document.querySelector(`.${chatSaveClass}`);
     const newChat = document.createElement("div");
     newChat.classList.add("memChat");
@@ -53,4 +119,33 @@ function addChatToMemory(message, chatSaveClass) {
 
     newChat.appendChild(p);
     chatSave.insertBefore(newChat, chatSave.firstChild);
+}
+
+function requestAi(message) {
+    console.log(message)
+    fetch('/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                userRequest: message,
+            }
+        )
+    })
+        .then(res => res.text()) // .json() 대신 .text() 사용
+        .then(data => {
+            console.log(data);
+            addAiChatToMemory(data, "chatSave")
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        // .then(res => res.json())
+        // .then(res => {
+
+            // console.log(res)
+        // })
 }
