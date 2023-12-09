@@ -41,11 +41,11 @@ body {
 }
 
 .title h1{
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 .title p{
-    margin: 5px 0px;
+    margin: 5px 0;
     /*text-align: right;*/
 }
 

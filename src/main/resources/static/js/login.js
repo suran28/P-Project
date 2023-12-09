@@ -1,7 +1,5 @@
-function submitForm() {
-
-    const accessToken = sessionStorage.getItem("accessToken");
-
+function loginForm() {
+    // const accessToken = localStorage.getItem("accessToken");
     var formData = {
         userId: document.getElementById('userId').value,
         password: document.getElementById('password').value
@@ -34,7 +32,7 @@ function submitForm() {
                 localStorage.setItem('accessToken', accessToken);
 
                 console.log("로컬스토리지에 토큰 저장: ", accessToken);
-                localStorage.setItem("uid", res.uid);
+                localStorage.setItem("uname", res.uname);
                 window.location.href = '/main';
             }
         })

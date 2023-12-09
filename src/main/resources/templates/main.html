@@ -5,56 +5,87 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/head.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script src="/js/head.js"></script>
     <script src="/js/main.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
 <div th:replace="layout/head :: nav"></div>
 
+<div class="empty"></div>
+<!--<div class="container">-->
+<!--    <div class="empty"></div>-->
+<!--    <div class="chatCon">-->
+<!--        <h3> QA 챗봇을 이용하여 전공과 관련하여 자격증을 검색하세요</h3>-->
+<!--        <div class="chatButton">-->
+<!--            <a href="/chatbot">자격증 검색 챗봇</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="topCert">-->
+<!--    <h2>TOP 20 자격증</h2>-->
+<!--    <div class="certCon">-->
+<!--        <h4>자격증 정보</h4>-->
+<!--        <p>가장 많이 응시하는 자격증 Top 20입니다. 상세 정보를 원하신다면 더보기를 클릭하세요.</p>-->
+<!--        <div class="certRow">-->
+<!--            <div class="cert">-->
+<!--                <h4>토익</h4>-->
+<!--                <a class="certLink" href="/certinfo">더보기</a>-->
+<!--            </div>-->
+<!--            <div class="cert">-->
+<!--                <h4>토익</h4>-->
+<!--                <a class="certLink" href="/">더보기</a>-->
+<!--            </div>-->
+<!--            <div class="cert">-->
+<!--                <h4>토익</h4>-->
+<!--                <a class="certLink" href="/">더보기</a>-->
+<!--            </div>-->
+<!--            <div class="cert">-->
+<!--                <h4>토익</h4>-->
+<!--                <a class="certLink" href="/">더보기</a>-->
+<!--            </div>-->
+<!--            <div class="cert">-->
+<!--                <h4>토익</h4>-->
+<!--                <a class="certLink" href="/">더보기</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <div class="container">
-    <div class="empty"></div>
-    <div class="chatCon">
-        <h3> QA 챗봇을 이용하여 전공과 관련하여 자격증을 검색하세요</h3>
-        <div class="chatButton">
-            <a href="/chatbot">자격증 검색 챗봇</a>
-        </div>
-    </div>
-
-
 </div>
 
-<div class="topCert">
-    <h2>TOP 20 자격증</h2>
-    <div class="certCon">
-        <h4>자격증 정보</h4>
-        <p>가장 많이 응시하는 자격증 Top 20입니다. 상세 정보를 원하신다면 더보기를 클릭하세요.</p>
-        <div class="certRow">
-            <div class="cert">
-                <h4>토익</h4>
-                <a class="certLink" href="/certinfo">더보기</a>
-            </div>
-            <div class="cert">
-                <h4>토익</h4>
-                <a class="certLink" href="/">더보기</a>
-            </div>
-            <div class="cert">
-                <h4>토익</h4>
-                <a class="certLink" href="/">더보기</a>
-            </div>
-            <div class="cert">
-                <h4>토익</h4>
-                <a class="certLink" href="/">더보기</a>
-            </div>
-            <div class="cert">
-                <h4>토익</h4>
-                <a class="certLink" href="/">더보기</a>
-            </div>
-        </div>
+<div class="carousel mt-3">
+    <h2 style="width: 500px;">올해 가장 많이 응시한 자격증</h2>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+<!--        <ul class="carousel-indicators">-->
+<!--            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+<!--            <li data-target="#myCarousel" data-slide-to="1"></li>-->
+<!--            <li data-target="#myCarousel" data-slide-to="2"></li>-->
+<!--        </ul>-->
+        <!-- The slideshow -->
+<!--        <div class="carousel-inner">-->
+<!--            <div class="carousel-item active"></div>-->
+<!--            <div class="carousel-item"></div>-->
+<!--            <div class="carousel-item"></div>-->
+<!--        </div>-->
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
 </div>
+
 
 </body>
-
 <div th:replace="layout/footer :: footer"></div>
 
 </html>

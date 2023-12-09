@@ -27,27 +27,45 @@
     flex-direction: column-reverse;
 }
 
-.ChatSave p{
+.chatSave p{
     margin: 0;
 }
 
-.aiChatSave{
-    padding: 10px;
+.aiChat{
+    padding: 15px;
     margin: 5px;
-    width: 800px;
-    border-radius: 5px;
+    min-height: 20px;
+    border-radius: 50px;
     background-color: white;
     align-self: flex-start;
 }
 
-.memChatSave{
-    padding: 10px;
+.aiChat p{
+    height: 20px;
+    padding: 3px;
+    opacity: 0;
+}
+
+.aiChat p.show,
+.memChat p.show{
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.memChat{
+    padding: 15px;
     margin: 5px;
-    width: 800px;
-    border-radius: 5px;
+    min-height: 20px;
+    border-radius: 50px;
     background-color: white;
     align-self: flex-end;
 }
+
+.memChat p{
+    height: 20px;
+    padding: 3px;
+}
+
 
 .chatInput{
     display: flex;
@@ -57,14 +75,20 @@
 .chatInput input{
     width: 92%;
     height: 20px;
-    font-size: 15px;
     padding: 12px;
+    margin: 0 0 0 10px;
+    font-size: 15px;
+}
+
+.chatInput:focus {
+    outline: none;
 }
 
 .chatInput button{
+    width: 50px;
+    height: 50px;
+    margin: 0 5px 0 0;
     background-color: rgba(255, 255, 255, 0);
-    /*border: none;*/
-    width: 30px;
-    height: 30px;
+    border: none;
 }
 

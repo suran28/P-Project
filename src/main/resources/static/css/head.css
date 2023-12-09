@@ -7,7 +7,8 @@ body {
 
 .container{
     width: 1250px;
-    min-height: 680px;
+    /*min-height: 680px;*/
+    margin: 0 auto;
 }
 
 .empty{
@@ -27,6 +28,12 @@ body {
     padding: 10px;
     margin: 0 20px;
     white-space: nowrap;
+    font-size: 24px;
+}
+
+.mainPage{
+    text-decoration: none;
+    color: black;
 }
 
 .navbar_list{
@@ -50,11 +57,11 @@ body {
     white-space: nowrap;
 }
 
-.nav-item.dropdown {
+.dropdown {
     position: relative;
 }
 
-.nav-item.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu {
     display: block;
 }
 
@@ -84,15 +91,25 @@ body {
     border-radius: 5px;
 }
 
-.user-actions{
+.userStatus{
     margin-left: auto;
 }
 
-.user-actions a{
+.userStatus a{
     color: black;
     text-decoration: none;
     padding: 5px 10px;
     white-space: nowrap;
+}
+
+.userStatus button{
+    font-size: 16px;
+    border: none;
+    background-color: white;
+}
+
+.userStatus button:hover{
+    background-color: #2980b9;
 }
 
 /*footer*/
