@@ -5,6 +5,7 @@ import com.certcare.pproject.domain.Board;
 import com.certcare.pproject.domain.Comment;
 import com.certcare.pproject.domain.Member;
 import com.certcare.pproject.dto.ArticleDto;
+import com.certcare.pproject.dto.CommentDto;
 import com.certcare.pproject.repository.ArticleRepository;
 import com.certcare.pproject.repository.BoardRepository;
 import com.certcare.pproject.repository.CommentRepository;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -33,12 +35,41 @@ public class BoardService {
     }
 
     // 게시판에 등록된 모든 글 가져오기
-//    @Transactional
-//    public List<ArticleDto> getArticleListsByBoardCode(int code) {
-//        List<Article> articles = articleRepository.findAllByBoardCode(code);
-//
-//        return articles;
-//    }
+    @Transactional
+    public List<ArticleDto> getArticleListsByBoardCode(int code) {
+        List<Article> articles = articleRepository.findAllByBoardCode(code);
+        Boolean detail = false;
+        List<ArticleDto> dtos = articles.stream()
+                .map(article -> article.toArticleDto(detail))
+                .collect(Collectors.toList());
+
+        return dtos;
+    }
+
+    // 게시글 페이지 상세 조회
+    @Transactional
+    public ArticleDto getArticle(Long articleId) {
+        Optional<Article> optionalArticle = articleRepository.findById(articleId);
+        if (optionalArticle.isPresent()) {
+            Article article = optionalArticle.get();
+            Boolean detail = true;
+            return article.toArticleDto(detail);
+        } else {
+            throw new RuntimeException("게시물이 존재하지 않습니다");
+        }
+    }
+
+    // 게시글 별 댓글 조회
+    @Transactional
+    public List<CommentDto> getComments(Long articleId) {
+        List<Comment> comments = commentRepository.findAllByArticleId(articleId);
+        List<CommentDto> dtos = comments.stream()
+                .map(comment -> comment.toCommentDto())
+                .collect(Collectors.toList());
+
+        return dtos;
+    }
+
 
     // 게시물 등록
     @Transactional

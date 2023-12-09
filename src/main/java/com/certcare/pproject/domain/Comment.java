@@ -1,5 +1,6 @@
 package com.certcare.pproject.domain;
 
+import com.certcare.pproject.dto.CommentDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,5 +35,15 @@ public class Comment {
         this.member = member;
         this.article = article;
         this.body = body;
+    }
+
+    public CommentDto toCommentDto() {
+        CommentDto commentDto = new CommentDto();
+
+        commentDto.setBody(this.body);
+        commentDto.setWriter(this.member.getUsername());
+        commentDto.setRegDate(this.regDate);
+
+        return commentDto;
     }
 }

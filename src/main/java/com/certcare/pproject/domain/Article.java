@@ -53,6 +53,21 @@ public class Article {
         }
     }
 
-//    public ArticleDto toArticleDto() {
-//    }
+
+    // detail이 true면 상세 게시물 조회로, dto에 게시물 본문까지 담아서 전송
+    // false면 목록 조회로 게시물 본문은 담지 않음
+    public ArticleDto toArticleDto(Boolean detail) {
+        ArticleDto articleDto = new ArticleDto();
+
+        articleDto.setWriter(this.member.getUsername());
+        articleDto.setTitle(this.title);
+        articleDto.setRegDate(this.regDate);
+        articleDto.setUrl("/board/"+this.board.getId()+"/article/"+this.id);
+
+        if (detail == true) {
+            articleDto.setBody(this.body);
+        }
+
+        return articleDto;
+    }
 }
