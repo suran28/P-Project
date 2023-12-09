@@ -39,10 +39,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
         } else {
             let userQuestion = chatInput.value;
 
-            if (userQuestion === "") {
-                userQuestion = "질문을 입력해주세요";
-                addAiChatToMemory(userQuestion, "chatSave");
-            } else {
+            if (userQuestion !== "") {
                 addMemChatToMemory(userQuestion, "chatSave");
                 requestAi(userQuestion)
             }
