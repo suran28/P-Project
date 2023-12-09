@@ -14,7 +14,8 @@ public class ChatBotController {
 
     @PostMapping("/ask")
     public ResponseEntity<String> askOpenAI(@RequestBody String userRequest) {
-        String response = chatBotService.askChatBot(userRequest);
+//        String response = chatBotService.askChatBot(userRequest);
+        String response = "test용 채팅입니다";
         return ResponseEntity.ok(response);
     }
 }
