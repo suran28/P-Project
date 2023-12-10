@@ -145,16 +145,25 @@ function requestAi(message) {
         .then(res => {
             console.log(res)
 
-            let assistantResponse;
+            const contentString = res.choices[0].message.content;
+            const parsedContent = JSON.parse(contentString);
 
-            if (res.choices[0].message.content.includes('"message"')) {
-                assistantResponse = JSON.parse(res.choices[0].message.content).message.text;
-            } else {
-                assistantResponse = JSON.parse(res.choices[0].message.content).botResponse;
-            }
-            console.log(res.choices[0].message.content)
-            console.log(JSON.parse(res.choices[0].message.content))
-            console.log(assistantResponse)
+            const messageText = parsedContent.message;
+
+            console.log(contentString)
+            console.log(parsedContent)
+            console.log(messageText);
+
+            // let assistantResponse;
+            //
+            // if (res.choices[0].message.content.includes('"message"')) {
+            //     assistantResponse = JSON.parse(res.choices[0].message.content).message.text;
+            // } else {
+            //     assistantResponse = JSON.parse(res.choices[0].message.content).botResponse;
+            // }
+            // console.log(res.choices[0].message.content)
+            // console.log(JSON.parse(res.choices[0].message.content))
+            // console.log(assistantResponse)
 
             addAiChatToMemory(assistantResponse, "chatSave")
         })
