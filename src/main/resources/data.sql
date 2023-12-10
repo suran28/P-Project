@@ -64,3 +64,13 @@ VALUES (1,'사업관리'),
        (24,'농림어업'),
        (25,'안전관리'),
        (26,'환경.에너지');
+
+INSERT INTO article(body, reg_date, title, board_id, member_id)
+VALUES ('test용입니다', '20231210', '제목123', 1, 2),
+       ('test용입니다123ㄱㄹㅈG', '20231210', 'adghrha', 1, 2),
+       ('test용입니다adfhgasdfhareha', '20231210', 'afdhaerhah', 1, 2);
+
+INSERT INTO comment(body, reg_date, article_id, member_id)
+VALUES ('어쩔저쩔', '20231210', 1, 2),
+       ('test용입니다123ㄱㄹㅈG', '20231210', 1, 2),
+       ('test용입니다adfhgasdfhareha', '20231210', 1, 2);

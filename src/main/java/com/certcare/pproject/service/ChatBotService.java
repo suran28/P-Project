@@ -1,75 +1,56 @@
 package com.certcare.pproject.service;
 
-import com.certcare.pproject.dto.ChatRequest;
-import com.certcare.pproject.dto.Message;
-
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.client.reactive.ClientHttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
+@AllArgsConstructor
 public class ChatBotService {
-    private final WebClient webClient;
     @Value("${openai.apiKey}")
     private String apiKey;
-
-    public ChatBotService() {
-        this.webClient = WebClient.builder()
-                .baseUrl("https://api.openai.com/v1/engines/davinci-codex/completions")
-                .defaultHeader("Authorization", "Bearer " + apiKey)
-                .build();
-    }
-
     // https://platform.openai.com/docs/api-reference/chat/create
     // 위 사이트 가이드라인대로 요청 보내기
     public String askChatBot(String userRequest) {
 
+        WebClient webClient = WebClient.create();
 
-        ChatRequest chatRequest = new ChatRequest();
+        List<Map<String, String>> messages = new ArrayList<>();
+        Map<String, String> userMessage = new HashMap<>();
+        userMessage.put("role", "user");
+        userMessage.put("content", userRequest);
+        messages.add(userMessage);
 
-        // 수정 필요
-        chatRequest.setModel("ft:gpt-3.5-turbo-0613:personal::8E1So7jh");
-        chatRequest.setTop_p(0.5F);
+        Map<String, String> systemMessage = new HashMap<>();
+        systemMessage.put("role", "system");
+        systemMessage.put("content", "당신은 존댓말로 공손하게 대답하는 챗봇입니다. 당신은 자격증 정보에 관한 질문에만 정확하고 간결하게 답변합니다. 자격증 이외의 질문에 대해서는 답변할 수 없다고 대답합니다.");
+        messages.add(systemMessage);
 
-        // message 추가
-        List<Message> message = new ArrayList<>();
-        message.add(createSystemMessage());
-        message.add(createUserMessage(userRequest));
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("messages", messages);
+        requestBody.put("model", "ft:gpt-3.5-turbo-0613:personal::8UAKgbnD");
+        requestBody.put("temperature", 0.5);
+        requestBody.put("top_p", 0.5);
 
-        // url 확인하기
         String apiUrl = "https://api.openai.com/v1/chat/completions";
 
-        // Header 설정 필요
-        // POST 요청 보내기
         String response = webClient.post()
                 .uri(apiUrl)
                 .header("Content-Type", "application/json")
-                .body((BodyInserter<?, ? super ClientHttpRequest>) chatRequest)
+                .header("Authorization", "Bearer " + apiKey)
+                .body(BodyInserters.fromValue(requestBody))
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
 
         return response;
     }
-
-    public Message createUserMessage(String request) {
-        Message message = new Message();
-        message.setRole("user");
-        message.setContent(request);
-        return message;
-    }
-    public Message createSystemMessage() {
-        Message message = new Message();
-        message.setRole("system");
-        message.setContent("당신은 써트케어 서비스의 어쩌고 저쩌고 일 똑바로 해라");
-        return message;
-    }
-
 }
