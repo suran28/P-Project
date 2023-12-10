@@ -131,18 +131,23 @@ function requestAi(message) {
             }
         )
     })
-        .then(res => res.text()) // .json() 대신 .text() 사용
-        .then(data => {
-            console.log(data);
-            addAiChatToMemory(data, "chatSave")
+        // .then(res => res.text())
+        // .then(data => {
+        //     console.log(data);
+
+        //     addAiChatToMemory(data, "chatSave")
+        // })
+        // .catch(error => {
+        //     console.error('Error:', error);
+        // });
+
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+
+            addAiChatToMemory(res, "chatSave")
         })
         .catch(error => {
-            console.error('Error:', error);
-        });
-
-        // .then(res => res.json())
-        // .then(res => {
-
-            // console.log(res)
-        // })
+                console.error('Error:', error);
+            });
 }
