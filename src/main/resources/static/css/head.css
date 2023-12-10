@@ -7,7 +7,7 @@ body {
 
 .container{
     width: 1250px;
-    /*min-height: 680px;*/
+    min-height: 650px;
     margin: 0 auto;
 }
 

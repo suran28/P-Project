@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const itemName = document.createElement("h2")
         itemName.className="item-name"
-        itemName.textContent="자격증명"
+        itemName.textContent="자격증명" + j
         itemDesDiv.appendChild(itemName)
 
         const itemDescription = document.createElement("p")

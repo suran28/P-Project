@@ -4,13 +4,24 @@
 }
 
 .container h4{
-    margin: 8px;
+    margin: 10px;
     text-align: center;
+    font-size: 18px;
 }
 
-.container p{
-    margin: 8px;
-    text-align: center;
+.write {
+    /*margin: 5px;*/
+    padding: 7px 10px;
+    text-decoration: none;
+    float: right;
+    background-color: #0028ff;
+    border-radius: 5px;
+    color: white;
+}
+
+.write:hover{
+    background-color: #cee8ff;
+    color: black;
 }
 
 .boardCon{
@@ -24,16 +35,38 @@
 .boardBar{
     background-color: #9EE2FF;
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     /*justify-content: space-around;*/
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
 }
 
-.board{
+.title{
+    width: 600px;
+}
+
+.writer,
+.date{
+    width: 300px;
+}
+
+.board {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-around;
+}
+
+.board::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1%; /* 바닥 전체의 5%만큼 여백을 두고 그립니다. */
+    width: 98%; /* 바닥 전체의 90%만을 차지합니다. */
     border-bottom: 1px solid;
+}
+
+.board p{
+    text-align: center;
 }
 
 .boardContent a{
@@ -45,22 +78,34 @@
     text-decoration: none;
 }
 
-.title{
-    width: 50%;
+/*.title{*/
+/*    width: 50%;*/
+/*}*/
+
+/*.writer{*/
+/*    width: 20%;*/
+/*}*/
+
+/*.date{*/
+/*    width: 30%;*/
+/*}*/
+
+.paging {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-.writer{
-    width: 20%;
+.paging li {
+    margin: 20px 5px;
 }
 
-.date{
-    width: 30%;
-}
-
-.wirte {
-    margin: 5px;
-    padding: 5px;
-    color: black;
+.paging a {
     text-decoration: none;
-    float: right;
+    padding: 5px 10px;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 5px;*/
+    /*background-color: #f5f5f5;*/
+    color: #333;
 }
