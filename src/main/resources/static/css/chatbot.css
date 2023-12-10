@@ -16,20 +16,46 @@
     height: 500px;
     padding: 10px;
     border-radius: 5px;
-    background-color: #F2F0FB;
+    /*background-color: #F2F0FB;*/
+    background-color: #ccc1ff;
     box-shadow: 0 0 5px 0;
 }
 
 .chatSave{
     height: 430px;
+    max-height: 430px;
     padding: 10px;
     display: flex;
     flex-direction: column-reverse;
+    overflow-y: auto;
 }
 
 .chatSave p{
     margin: 0;
+    max-width: 700px;
 }
+
+.chatSave::-webkit-scrollbar {
+    width: 10px;
+}
+
+.chatSave::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.chatSave::-webkit-scrollbar-track {
+    background-color: #ca96ff;
+    border-radius: 5px;
+}
+
+/*.chatSave:hover::-webkit-scrollbar-thumb {*/
+/*    background-color: #555; !* 마우스 호버 시 스크롤바 색상 변경 *!*/
+/*}*/
+
+/*.chatSave:hover::-webkit-scrollbar-track {*/
+/*    background-color: #ccc; !* 마우스 호버 시 스크롤바 트랙 색상 변경 *!*/
+/*}*/
 
 .aiChat{
     padding: 15px;
@@ -46,16 +72,16 @@
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     display: block;
+    /*background-color: #D4CAFF;*/
+    background-color: #F2F0FB;
 }
 
 .aiChat p{
-    height: 20px;
     padding: 3px;
     opacity: 0;
 }
 
-.aiChat p.show,
-.memChat p.show{
+.aiChat p.show{
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
 }
@@ -63,17 +89,17 @@
 .memChat{
     padding: 15px;
     margin: 5px;
-    min-height: 20px;
-    border-radius: 50px;
-    background-color: white;
+    /*min-height: 20px;*/
+    border-radius: 35px;
+    /*background-color: #ccc1ff;*/
+    background-color: #F2F0FB;
     align-self: flex-end;
 }
 
 .memChat p{
-    height: 20px;
+    /*height: 20px;*/
     padding: 3px;
 }
-
 
 .chatInput{
     display: flex;

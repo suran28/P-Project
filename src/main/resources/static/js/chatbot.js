@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () =>  {
         if (index < message.length) {
             setTimeout(function () {
                 showInitText(index + 1);
-            }, 50);
+            }, 30);
         }
     }
 
     setTimeout(function () {
         showInitText(0);
-    }, 500);
+    }, 100);
 });
 
 
@@ -44,9 +44,19 @@ document.addEventListener("DOMContentLoaded", () =>  {
                 requestAi(userQuestion)
             }
         }
+
         chatInput.value = "";
     });
-});
+
+    chatInput.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            sendBtn.click();
+        }
+    })
+})
+
+
 
 function addAiChatToMemory(message, chatSaveClass) {
     const chatSave = document.querySelector(`.${chatSaveClass}`);
@@ -71,7 +81,7 @@ function addAiChatToMemory(message, chatSaveClass) {
             if (index < message.length) {
                 setTimeout(function () {
                     showAiText(index + 1).then(resolve);
-                }, 50);
+                }, 30);
             } else {
                 resolve();
             }
@@ -87,7 +97,7 @@ function addAiChatToMemory(message, chatSaveClass) {
             if (idx < askMessage.length) {
                 setTimeout(function () {
                     requestUserFeedback(idx + 1).then(resolve);
-                }, 50);
+                }, 30);
             } else {
                 resolve();
             }
@@ -134,7 +144,6 @@ function requestAi(message) {
         // .then(res => res.text())
         // .then(data => {
         //     console.log(data);
-        //
         //     addAiChatToMemory(data, "chatSave")
         // })
         // .catch(error => {
@@ -159,4 +168,24 @@ function requestAi(message) {
         .catch(error => {
                 console.error('Error:', error);
             });
+}
+
+function handleUserInput() {
+    var storedAccessToken = localStorage.getItem('accessToken');
+
+    if (storedAccessToken === null || storedAccessToken === undefined) {
+        alert("로그인이 필요한 서비스입니다.");
+        return;
+    }
+
+    let userQuestion = chatInput.value.trim();
+
+    if (userQuestion !== "") {
+        addMemChatToMemory(userQuestion, "chatSave");
+        requestAi(userQuestion);
+
+        memChatSave.scrollTop = memChatSave.scrollHeight;
+    }
+
+    chatInput.value = "";
 }
