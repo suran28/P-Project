@@ -13,11 +13,11 @@
 }
 
 .certNum {
-    width: 30%;
+    width: 32%;
     margin: 5px;
     padding: 18px;
     background-color: #FFF9E9;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .memberInfo{
@@ -25,7 +25,7 @@
     margin: 5px;
     padding: 18px;
     background-color: #F2F0FB;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .certInfo{
@@ -33,7 +33,7 @@
     /*margin: 5px;*/
     /*padding: 18px 8px 18px 18px;*/
     background-color: #DEF8FF;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .certInfoCon{

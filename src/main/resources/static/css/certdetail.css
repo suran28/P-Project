@@ -34,18 +34,18 @@
 }
 
 .leftCon{
-    width: 27%;
+    width: 28%;
     padding: 8px;
     margin: 15px 0;
     border-radius: 5px;
-    background-color: #9EE2FF;
+    background-color: #b0e7ff;
 }
 
 .date{
     padding: 8px;
     margin: 10px;
-    border-radius: 5px;
-    background-color: white;
+    border-radius: 15px;
+    background-color: #dff5ff;
 }
 
 .session{
@@ -63,18 +63,19 @@
 .rightCon div{
     padding: 8px;
     margin: 15px 0;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
-.overview{
-    background-color: #EBF9FF;
+.overview,
+.outlook{
+    background-color: #dff5ff;
 }
 
-.eligibility{
+.duty{
     background-color: #F2F0FB;
 }
 
-.method{
+.info{
     background-color: #FFF9E9;
 }
 
