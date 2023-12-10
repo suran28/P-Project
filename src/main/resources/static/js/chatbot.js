@@ -145,14 +145,14 @@ function requestAi(message) {
         .then(res => {
             console.log(res)
 
-            let assistantResponse;
 
             // if (res.choices[0].message.content.includes('"message"')) {
-                assistantResponse = JSON.parse(res.choices[0].message.content)
+                let assistantResponse = res.choices[0].message.content
             // } else {
             //     assistantResponse = JSON.parse(res.choices[0].message.content).botResponse;
             // }
             console.log(assistantResponse)
+
 
             addAiChatToMemory(assistantResponse, "chatSave")
         })
