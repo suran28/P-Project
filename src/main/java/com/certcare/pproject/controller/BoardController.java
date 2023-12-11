@@ -35,10 +35,13 @@ public class BoardController {
 
     // 게시물 상세 페이지
     @GetMapping("/board/{board_id}/article/{article_id}")
-    public String showArticlePage(@PathVariable String article_id, Model model) {
+    public String showArticlePage(@PathVariable String article_id, @PathVariable String board_id, Model model) {
         ArticleDto articleDto = boardService.getArticle(Long.valueOf(article_id));
         List<CommentDto> commentDtos = boardService.getComments(Long.valueOf(article_id));
 
+        // 본인 확인 여부를 보내줘야 함, 자격증 넘버
+        String boardName = boardService.getBoardName(Integer.parseInt(board_id));
+        model.addAttribute("boardName", boardName);
         model.addAttribute("article", articleDto);
         model.addAttribute("commentList", commentDtos);
 
