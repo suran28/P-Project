@@ -1,3 +1,24 @@
+// HTTP 요청을 보내는 함수
+function sendRequest(url, method, body = null) {
+    const accessToken = localStorage.getItem('accessToken');
+
+    fetch(url, {
+        method: method,
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: body ? JSON.stringify(body) : null,
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+}
+
+// 사용 예시
+sendRequest('/api/data', 'GET');
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const commentBtn = document.querySelector(".commentBtn");
     const commentAdd = document.querySelector(".commentAdd");
@@ -94,3 +115,4 @@ function commentSend(comment, accessToken) {
     //         console.error('Error:', error);
     //     });
 }
+

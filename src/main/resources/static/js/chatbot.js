@@ -141,10 +141,16 @@ function requestAi(message) {
             }
         )
     })
-        .then(res => res.text())
-        .then(data => {
-            console.log(data);
-            addAiChatToMemory(data, "chatSave")
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            if (res.status === 500) {
+                let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
+                addAiChatToMemory(assistantResponse, "chatSave")
+            }else {
+                addAiChatToMemory(res, "chatSave")
+            }
+
         })
         .catch(error => {
             console.error('Error:', error);

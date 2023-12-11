@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () =>  {
-
-    console.log(articleList[0]);
-
     const postsPerPage = 10;
 
     const currentPageNumber = parseInt(window.location.pathname.split('/').pop(), 10);
@@ -20,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
         const titleLink = document.createElement('a');
         titleLink.href = post.url;
-        titleLink.classList.add('title');
+        titleLink.classList.add('articleTitle');
         titleLink.innerHTML = `<p>${post.title}</p>`;
 
         const writerElement = document.createElement('p');
@@ -41,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split('/');
     const boardtype = urlParts[4];
-    console.log(boardtype);
 
     const container = document.querySelector('.container');
 
@@ -49,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
     pageItem.classList.add('paging');
 
     const paging = articleList.length % postsPerPage
-    console.log(paging)
 
     for (let i =0; i < paging; i++){
         const pageItemList = document.createElement('li')
@@ -62,12 +57,40 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
         pageItem.appendChild(pageItemList);
     }
-    container.appendChild(pageItem);
+    container.appendChild(pageItem)
 
-
-    const emptyDiv = document.createElement('div');
-
-    emptyDiv.classList.add('empty');
-    container.appendChild(emptyDiv);
+    secondEventListener()
 })
+
+function secondEventListener() {
+    const accessToken = sessionStorage.getItem("accessToken");
+
+    const articleTitle = document.querySelectorAll(".articleTitle")
+
+    articleTitle.forEach(article => {
+        article.addEventListener("click", (event) => {
+            event.preventDefault();
+            const articleUrl = event.target.closest(".articleTitle")
+
+            const url = articleUrl.getAttribute("href");
+
+            fetch(`${url}`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`,
+                },
+            })
+                .then(res => {
+                    console.log(res)
+                    if(res.status === 200)
+                        window.location.href = `${res.url}`;
+                    else
+                        alert("로그인이 필요한 서비스입니다.")
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        });
+    });
+}
 
