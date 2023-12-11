@@ -25,15 +25,15 @@ function loginForm() {
             const accessToken = res.accessToken;
             console.log(res)
 
-            // if (res.accessToken === undefined) {
-            //     alert("아이디 및 비밀번호를 다시 확인해주세요.");
-            //     return null;
-            // } else {
-            //     localStorage.setItem('accessToken', accessToken);
-            //
-            //     console.log("로컬스토리지에 토큰 저장: ", accessToken);
-            //     localStorage.setItem("uname", res.uname);
-            //     window.location.href = '/main';
-            // }
+            if (res.accessToken === undefined) {
+                alert("아이디 및 비밀번호를 다시 확인해주세요.");
+                return null;
+            } else {
+                localStorage.setItem('accessToken', accessToken);
+
+                console.log("로컬스토리지에 토큰 저장: ", accessToken);
+                localStorage.setItem("uname", res.uname);
+                window.location.href = '/main';
+            }
         })
 }
