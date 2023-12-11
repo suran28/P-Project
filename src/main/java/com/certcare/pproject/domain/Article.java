@@ -59,6 +59,7 @@ public class Article {
     public ArticleDto toArticleDto(Boolean detail) {
         ArticleDto articleDto = new ArticleDto();
 
+        articleDto.setId(this.id);
         articleDto.setWriter(this.member.getUsername());
         articleDto.setTitle(this.title);
         articleDto.setRegDate(this.regDate);

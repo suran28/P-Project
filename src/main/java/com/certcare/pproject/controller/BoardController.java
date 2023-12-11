@@ -4,6 +4,8 @@ import com.certcare.pproject.dto.ArticleDto;
 import com.certcare.pproject.dto.CommentDto;
 import com.certcare.pproject.service.BoardService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,16 +20,19 @@ public class BoardController {
     private final BoardService boardService;
 
     // 카테고리 별 게시판 목록 전체 조회
-    @GetMapping("/board/{board_code}")
-    public String showBoardPage(@PathVariable String board_code, Model model) {
+    @GetMapping("/board/{board_code}/{page}")
+    @ResponseBody
+    public ResponseEntity<List<ArticleDto>> showBoardPage(@PathVariable String board_code, Model model) {
         String boardName = boardService.getBoardName(Integer.parseInt(board_code));
         model.addAttribute("boardName", boardName);
 
         // 게시판에 등록된 전체 게시물 불러오기
         List<ArticleDto> dtos = boardService.getArticleListsByBoardCode(Integer.parseInt(board_code));
         model.addAttribute("articleList", dtos);
-        return "board";
+
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
+
 
     // 게시물 상세 페이지
     @GetMapping("/board/{board_id}/article/{article_id}")
