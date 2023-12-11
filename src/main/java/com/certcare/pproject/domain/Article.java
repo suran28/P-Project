@@ -4,6 +4,7 @@ import com.certcare.pproject.dto.ArticleDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Slf4j
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,7 +65,8 @@ public class Article {
         articleDto.setWriter(this.member.getUsername());
         articleDto.setTitle(this.title);
         articleDto.setRegDate(this.regDate);
-        articleDto.setUrl("/board/"+this.board.getId()+"/article/"+this.id);
+
+        articleDto.setUrl("/board/"+this.board.getId().toString()+"/article/"+this.id);
 //        articleDto.setWriter(isWriter);
 
         if (detail == true) {

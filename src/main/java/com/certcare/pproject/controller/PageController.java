@@ -1,11 +1,13 @@
 package com.certcare.pproject.controller;
 
+import com.certcare.pproject.dto.BannerDto;
 import com.certcare.pproject.service.BannerService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -18,9 +20,11 @@ public class PageController {
     public String showHome() {
         return "home";
     }
+
     @GetMapping("/main")
     public String showMainPage(Model model) {
-
+        List<BannerDto> dtos = bannerService.getBannerInfo();
+        model.addAttribute("bannerInfo", dtos);
         return "main";
     }
 
@@ -54,6 +58,5 @@ public class PageController {
     public String showChatbotPage() {
         return "chatbot";
     }
-
 }
 

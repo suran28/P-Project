@@ -2,7 +2,7 @@ package com.certcare.pproject.service;
 
 import com.certcare.pproject.domain.Member;
 import com.certcare.pproject.domain.MyCert;
-import com.certcare.pproject.dto.CertInfoDto;
+import com.certcare.pproject.dto.MyCertInfoDto;
 import com.certcare.pproject.dto.MemberRequestDto;
 import com.certcare.pproject.dto.MemberResponseDto;
 import com.certcare.pproject.dto.TokenDto;
@@ -98,13 +98,13 @@ public class MemberService {
     // 회원 정보 삭제
 
     // 마이페이지 나의 자격증 목록 조회
-    public List<CertInfoDto> showMyCertInfo(Long id) {
+    public List<MyCertInfoDto> showMyCertInfo(Long id) {
         List<MyCert> myCerts = myCertRepository.findAllByMemberId(id);
 
-        List<CertInfoDto> dtos = new ArrayList<>();
+        List<MyCertInfoDto> dtos = new ArrayList<>();
 
         for (MyCert myCert : myCerts) {
-            CertInfoDto dto = myCert.toCertInfoDto();
+            MyCertInfoDto dto = myCert.toCertInfoDto();
             dtos.add(dto);
         }
 
@@ -112,12 +112,12 @@ public class MemberService {
     }
 
     // 마이페이지 나의 자격증 단일 조회
-    public CertInfoDto showOneMyCert(Long id) {
+    public MyCertInfoDto showOneMyCert(Long id) {
         Optional<MyCert> optionalMyCert = myCertRepository.findById(id);
 
         if (optionalMyCert.isPresent()) {
             MyCert myCert = optionalMyCert.get();
-            CertInfoDto dto = myCert.toCertInfoDto();
+            MyCertInfoDto dto = myCert.toCertInfoDto();
             return dto;
         } else {
             throw new RuntimeException("해당 나의 자격증 정보가 존재하지 않습니다.");

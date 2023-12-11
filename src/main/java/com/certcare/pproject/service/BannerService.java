@@ -8,15 +8,18 @@ import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
 public class BannerService {
     private final BannerRepository bannerRepository;
 
-//    public List<Banner> getBannerInfo() {
-//        List<Banner> banners = bannerRepository.findAll();
-//        List<BannerDto> b
-//        return
-//    }
+    public List<BannerDto> getBannerInfo() {
+        List<Banner> banners = bannerRepository.findAll();
+        List<BannerDto> dtos = banners.stream()
+                .map(banner -> banner.toBannerDto())
+                .collect(Collectors.toList());
+        return dtos;
+    }
 }

@@ -24,7 +24,7 @@ public class Banner {
         dto.setCertName(this.certName);
         dto.setMajorCodeName(this.majorCodeName);
         dto.setOverview(this.overview);
-//        dto.setUrl();
+        dto.setUrl("/certdetail/"+this.certInfoId);
         return dto;
     }
 }

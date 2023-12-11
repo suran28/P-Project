@@ -1,6 +1,6 @@
 package com.certcare.pproject.domain;
 
-import com.certcare.pproject.dto.CertInfoDto;
+import com.certcare.pproject.dto.MyCertInfoDto;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -21,15 +21,15 @@ public class MyCert {
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    public CertInfoDto toCertInfoDto() {
-        CertInfoDto certInfoDto = new CertInfoDto();
+    public MyCertInfoDto toCertInfoDto() {
+        MyCertInfoDto myCertInfoDto = new MyCertInfoDto();
 
-        certInfoDto.setId(this.id);
-        certInfoDto.setCert_name(this.certName);
-        certInfoDto.setHost(this.host);
-        certInfoDto.setAcq_date(this.acqDate);
+        myCertInfoDto.setId(this.id);
+        myCertInfoDto.setCert_name(this.certName);
+        myCertInfoDto.setHost(this.host);
+        myCertInfoDto.setAcq_date(this.acqDate);
 
-        return certInfoDto;
+        return myCertInfoDto;
     }
 
     public MyCert(String certName, String host, LocalDateTime acqDate, Member member) {

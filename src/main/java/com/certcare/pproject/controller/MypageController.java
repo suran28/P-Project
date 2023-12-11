@@ -1,6 +1,6 @@
 package com.certcare.pproject.controller;
 
-import com.certcare.pproject.dto.CertInfoDto;
+import com.certcare.pproject.dto.MyCertInfoDto;
 import com.certcare.pproject.dto.MemberResponseDto;
 import com.certcare.pproject.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -35,9 +35,9 @@ public class MypageController {
 
     // 나의 자격증 조회
     @GetMapping("/mypage/cert")
-    public ResponseEntity<List<CertInfoDto>> showMyCert(Authentication authentication) {
+    public ResponseEntity<List<MyCertInfoDto>> showMyCert(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        List<CertInfoDto> dtos = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
+        List<MyCertInfoDto> dtos = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
         return ResponseEntity.ok(dtos);
     }
 

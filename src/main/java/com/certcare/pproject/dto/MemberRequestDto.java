@@ -11,7 +11,6 @@ public class MemberRequestDto {
     private String userId;
     private String password;
 
-
     public UsernamePasswordAuthenticationToken toAuthentication() {
         return new UsernamePasswordAuthenticationToken(username, password);
     }
