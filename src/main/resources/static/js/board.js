@@ -70,7 +70,9 @@ function secondEventListener() {
         article.addEventListener("click", (event) => {
             event.preventDefault();
             const articleUrl = event.target.closest(".articleTitle")
-            const url = articleUrl.getAttribute("href");
+            console.log(articleUrl)
+            const url = articleUrl.href
+            console.log(url)
 
             var accessToken = localStorage.getItem("accessToken");
 
@@ -78,19 +80,24 @@ function secondEventListener() {
             fetch(url, {
                 method: 'GET',
                 headers: {
+                    "Content-Type": "application/json",
                     'Authorization': `Bearer ${accessToken}`,
                 },
             })
-                .then(res => {
-                    console.log(res)
-                    if(res.status === 200)
-                        window.location.href = res.url;
-                    else
-                        alert("로그인이 필요한 서비스입니다.")
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('로그인이 필요한 서비스입니다.');
+                    }
+                })
+                .then(html => {
+                    document.body.innerHTML = html;
+                    window.history.pushState({}, '', url);
                 })
                 .catch(err => {
-                    console.log(err);
-                })
+                    console.error(err);
+                });
         });
     });
 }
