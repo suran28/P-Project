@@ -112,6 +112,12 @@
     padding: 12px;
     margin: 0 0 0 10px;
     font-size: 15px;
+    border: 2px solid #8c73ff;
+    border-radius: 9px;
+}
+
+.chatInput input:focus {
+    outline: none;
 }
 
 .chatInput:focus {

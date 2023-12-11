@@ -1,8 +1,96 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var commentBtn = document.querySelector(".commentBtn");
-    var commentAdd = document.querySelector(".commentAdd");
+document.addEventListener("DOMContentLoaded", () => {
+    const commentBtn = document.querySelector(".commentBtn");
+    const commentAdd = document.querySelector(".commentAdd");
 
-    commentBtn.addEventListener("click", function () {
+    commentBtn.addEventListener("click", () => {
         commentAdd.style.display = (commentAdd.style.display === "none") ? "block" : "none";
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const commentValue = document.getElementById("commentAdd")
+    const commentAddBtn = document.querySelector(".commentAddBtn")
+
+    const commentList = document.querySelector(".commentList")
+
+    commentAddBtn.addEventListener("click", () => {
+        var storedAccessToken = localStorage.getItem('accessToken');
+
+        if (storedAccessToken === undefined) {
+            alert("로그인이 필요한 서비스입니다.");
+            return null;
+        } else {
+            let userComment = commentValue.value;
+
+            if (userComment !== "") {
+                const comment = document.createElement("p")
+                comment.textContent = "댓글 | " + userComment
+                commentList.append(comment)
+
+                const commentAdd = document.querySelector(".commentAdd")
+                commentAdd.style.display = "none"
+                commentSend(userComment, storedAccessToken)
+            }
+        }
+
+        commentValue.value = "";
+
+    })
+
+    commentValue.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            commentAddBtn.click();
+        }
+    })
+})
+
+
+function commentSend(comment, accessToken) {
+    const currentUrl = window.location.href;
+    const urlParts = currentUrl.split('/');
+    const articleId = urlParts[4];
+    console.log(articleId);
+
+    console.log(comment)
+    fetch(`/${articleId}/comment/new`, {
+        method: 'POST',
+        headers: {
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(
+            {
+                body: comment,
+            }
+        )
+    })
+        .then(res => res.text())
+        .then(data => {
+            console.log(data);
+            addAiChatToMemory(data, "chatSave")
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        })
+
+    // .then(res => res.json())
+    // .then(res => {
+    //     console.log(res)
+    //
+    //     if (res.status === 500) {
+    //         console.log("챗봇 응답:", res);
+    //         let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
+    //         addAiChatToMemory(assistantResponse, "chatSave")
+    //     } else {
+    //         console.log("챗봇 응답:", res);
+    //         console.log("챗봇 응답:", res.choices[0].message.content);
+    //         let assistantResponse = res.choices[0].message.content
+    //         addAiChatToMemory(assistantResponse, "chatSave")
+    //     }
+    // })
+    // .catch(error => {
+    //         console.error('Error:', error);
+    //     });
+}

@@ -5,8 +5,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="/css/head.css">
   <link rel="stylesheet" type="text/css" href="/css/board.css">
+
   <script src="/js/head.js"></script>
+  <script th:inline="javascript">
+    var articleList = [[${articleList}]];
+    console.log(articleList);
+  </script>
   <script src="/js/board.js"></script>
+
 </head>
 
 <body>
@@ -14,7 +20,6 @@
 
 <div class="container">
   <div class="empty"></div>
-
 
   <h1 th:text="${boardName} + '&nbsp' + 커뮤니티">게시판 명</h1>
   <div class="empty"></div>
@@ -36,6 +41,15 @@
 <!--      <p class="writer">작성자</p>-->
 <!--      <p class="date">작성일</p>-->
 <!--    </div>-->
+
+<!--    <div class="board" th:each="post : ${articleList}">-->
+<!--      <a th:href="${post.url}" class="title">-->
+<!--        <p th:text="${post.title}"></p>-->
+<!--      </a>-->
+<!--      <p class="writer" th:text="${post.writer}"></p>-->
+<!--      <p class="date" th:text="${#dates.format(post.regDate, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
+<!--    </div>-->
+
   </div>
 
 </div>

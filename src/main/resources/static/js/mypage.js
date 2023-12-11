@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     var addButton = document.querySelector(".addBtn button");
     var certAddWindow = document.querySelector(".certAddWindow");
 

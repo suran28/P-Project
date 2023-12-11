@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 document.addEventListener("DOMContentLoaded", () =>  {
     const chatInput = document.getElementById("chatInput");
     const sendBtn = document.querySelector(".sendBtn");
-    const memChatSave = document.querySelector(".ChatSave");
+    // const memChatSave = document.querySelector(".ChatSave");
 
     sendBtn.addEventListener("click", function () {
         var storedAccessToken = localStorage.getItem('accessToken');
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
         chatInput.value = "";
     });
 
-    chatInput.addEventListener("keypress", function (event) {
+    chatInput.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
             event.preventDefault();
             sendBtn.click();
@@ -141,33 +141,33 @@ function requestAi(message) {
             }
         )
     })
-        // .then(res => res.text())
-        // .then(data => {
-        //     console.log(data);
-        //     addAiChatToMemory(data, "chatSave")
-        // })
-        // .catch(error => {
-        //     console.error('Error:', error);
-        // })
-
-        .then(res => res.json())
-        .then(res => {
-            console.log(res)
-
-            if (res.status === 500) {
-                console.log("챗봇 응답:", res);
-                let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
-                addAiChatToMemory(assistantResponse, "chatSave")
-            } else {
-                console.log("챗봇 응답:", res);
-                console.log("챗봇 응답:", res.choices[0].message.content);
-                let assistantResponse = res.choices[0].message.content
-                addAiChatToMemory(assistantResponse, "chatSave")
-            }
+        .then(res => res.text())
+        .then(data => {
+            console.log(data);
+            addAiChatToMemory(data, "chatSave")
         })
         .catch(error => {
-                console.error('Error:', error);
-            });
+            console.error('Error:', error);
+        })
+
+        // .then(res => res.json())
+        // .then(res => {
+        //     console.log(res)
+        //
+        //     if (res.status === 500) {
+        //         console.log("챗봇 응답:", res);
+        //         let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
+        //         addAiChatToMemory(assistantResponse, "chatSave")
+        //     } else {
+        //         console.log("챗봇 응답:", res);
+        //         console.log("챗봇 응답:", res.choices[0].message.content);
+        //         let assistantResponse = res.choices[0].message.content
+        //         addAiChatToMemory(assistantResponse, "chatSave")
+        //     }
+        // })
+        // .catch(error => {
+        //         console.error('Error:', error);
+        //     });
 }
 
 function handleUserInput() {

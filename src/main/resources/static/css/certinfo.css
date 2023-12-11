@@ -40,7 +40,7 @@
 }
 
 .field h4{
-    margin: 0 5px;
+    margin: 5px;
     padding: 5px;
     text-align: center;
 }
@@ -50,39 +50,48 @@
 }
 
 .fieldCertRow{
-    padding: 10px;
     display: flex;
-    background-color: #d7bff8;
-    border-radius: 10px;
 }
 
 .cert{
-    width: 220px;
-    background-color: white;
-    padding: 10px;
-    margin: 5px;
+    width: 235px;
+    min-height: 80px;
+    margin-right: 10px;
+    background-color: #a09eff;
     border-radius: 5px;
-}
-
-.cert h4{
-    margin: 0;
-    padding: 3px;
-}
-
-.cert p{
-    margin: 0;
-    padding: 3px;
-}
-
-.moveDetail{
-    padding: 5px;
-    margin: 5px;
     text-align: center;
-    border-top: 1px solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.moveDetail a{
+.cert a{
+    margin: 5px;
     padding: 5px;
-    text-decoration: none;
     color: black;
+    text-decoration: none;
+    display: none;
+    /*visibility: hidden;*/
 }
+
+.cert:hover a {
+    display: block;
+    /*visibility: visible;*/
+}
+
+/*.moveDetail{*/
+/*    padding: 5px;*/
+/*    margin: 5px;*/
+/*    text-align: center;*/
+/*    border-top: 1px solid;*/
+/*}*/
+
+/*.moveDetail a{*/
+/*    padding: 5px;*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*}*/
+
+
+
+

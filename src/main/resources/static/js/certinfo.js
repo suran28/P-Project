@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
     var fieldSumButton = document.querySelector(".fieldSum button");
     var fieldCert = document.querySelector(".fieldCert");
 
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //     }
     // }
 
-    fieldSumButton.addEventListener("click", function () {
+    fieldSumButton.addEventListener("click", () => {
         fieldCert.style.display = (fieldCert.style.display === "none") ? "block" : "none";
     });
 });

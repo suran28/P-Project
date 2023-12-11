@@ -14,38 +14,35 @@
 
 <div class="container">
     <div class="empty"></div>
-    <form action="/login" method="post">
-        <div class="form">
-            <div class="boardTitle">
-                <h1>| 어느 게시판</h1>
-                <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
-                <input type="text" id="writer" name="writer" placeholder="작성자명" disabled>
-            </div>
-
-            <div class="boardContent">
-                <textarea id="content" name="content" placeholder="본문을 입력하세요"></textarea>
-            </div>
-
-            <div class="btnCon">
-                <button type="submit">수정</button>
-                <button type="button" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };
-				location.href='/board';">삭제</button>
-                <button type="button">목록</button>
-                <button type="button" class="commentBtn">댓글쓰기</button>
-            </div>
-
-            <div class="boardComment">
-                <p class="comment">댓글</p>
-                <div class="commentAdd">
-                    <input type="text" id="commentAdd" name="commentAdd" placeholder="댓글">
-                    <button class="commentAddBtn" type="submit">등록</button>
-                </div>
-            </div>
-
-
-
+    <div class="form">
+        <div class="boardTitle">
+            <h4 th:text="${boardName}">| 어느 게시판</h4>
+            <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요">
+            <input th:value="'작성자 |' + '&nbsp' + ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명" disabled>
         </div>
-    </form>
+
+        <div class="boardContent">
+            <textarea th:text="${article.body}" id="content" name="content" placeholder="본문을 입력하세요"></textarea>
+        </div>
+
+        <div class="btnCon">
+            <button type="submit">수정</button>
+            <button type="button" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };
+            location.href='/board';">삭제</button>
+            <button type="button">목록</button>
+            <button type="button" class="commentBtn">댓글쓰기</button>
+        </div>
+
+        <div class="boardComment">
+            <p class="comment">댓글 목록</p>
+            <div class="commentAdd">
+                <input type="text" id="commentAdd" name="commentAdd" placeholder="댓글을 작성해주세요">
+                <button class="commentAddBtn" type="submit">등록</button>
+            </div>
+            <div class="commentList">
+            </div>
+        </div>
+    </div>
 </div> <!-- /container -->
 </body>
 
