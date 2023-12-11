@@ -21,8 +21,7 @@ public class BoardController {
 
     // 카테고리 별 게시판 목록 전체 조회
     @GetMapping("/board/{board_code}/{page}")
-    @ResponseBody
-    public ResponseEntity<List<ArticleDto>> showBoardPage(@PathVariable String board_code, Model model) {
+    public String showBoardPage(@PathVariable String board_code, Model model) {
         String boardName = boardService.getBoardName(Integer.parseInt(board_code));
         model.addAttribute("boardName", boardName);
 
@@ -30,7 +29,7 @@ public class BoardController {
         List<ArticleDto> dtos = boardService.getArticleListsByBoardCode(Integer.parseInt(board_code));
         model.addAttribute("articleList", dtos);
 
-        return new ResponseEntity<>(dtos, HttpStatus.OK);
+        return "board";
     }
 
 
