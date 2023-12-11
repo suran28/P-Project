@@ -1,14 +1,18 @@
 package com.certcare.pproject.controller;
 
+import com.certcare.pproject.service.BannerService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
+@AllArgsConstructor
 public class PageController {
     // 페이지 요청
     // 등록, 수정, 삭제는 이 클래스에서 다루지 않음
+    private final BannerService bannerService;
 
     @GetMapping("/")
     public String showHome() {
@@ -34,15 +38,14 @@ public class PageController {
         return "mypage";
     }
 
-
-
-    // 게시물 상세 조회
-    @GetMapping("/certtype")
+    // 국가 기술 자격증 페이지
+    @GetMapping("/certinfo")
     public String showCerttypePage() {
-        return "certtype";
+        return "certinfo";
     }
 
-    @GetMapping("/certdetail")
+    // 국가 기술 자격증 상세 페이지
+    @GetMapping("/certdetail/{cert-id}")
     public String showCertdetailPage() {
         return "certdetail";
     }
