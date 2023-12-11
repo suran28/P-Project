@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
 })
 
 function secondEventListener() {
-    const accessToken = sessionStorage.getItem("accessToken");
 
     const articleTitle = document.querySelectorAll(".articleTitle")
 
@@ -71,10 +70,12 @@ function secondEventListener() {
         article.addEventListener("click", (event) => {
             event.preventDefault();
             const articleUrl = event.target.closest(".articleTitle")
-
             const url = articleUrl.getAttribute("href");
 
-            fetch(`${url}`, {
+            var accessToken = localStorage.getItem("accessToken");
+
+            console.log(accessToken)
+            fetch(url, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
@@ -83,7 +84,7 @@ function secondEventListener() {
                 .then(res => {
                     console.log(res)
                     if(res.status === 200)
-                        window.location.href = `${res.url}`;
+                        window.location.href = res.url;
                     else
                         alert("로그인이 필요한 서비스입니다.")
                 })
