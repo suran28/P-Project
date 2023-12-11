@@ -64,7 +64,7 @@ public class Article {
         articleDto.setTitle(this.title);
         articleDto.setRegDate(this.regDate);
         articleDto.setUrl("/board/"+this.board.getId()+"/article/"+this.id);
-        articleDto.setWriter(isWriter);
+//        articleDto.setWriter(isWriter);
 
         if (detail == true) {
             articleDto.setBody(this.body);
