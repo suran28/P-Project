@@ -39,8 +39,9 @@ public class BoardService {
     public List<ArticleDto> getArticleListsByBoardCode(int code) {
         List<Article> articles = articleRepository.findAllByBoardCode(code);
         Boolean detail = false;
+        Boolean isWriter = false;
         List<ArticleDto> dtos = articles.stream()
-                .map(article -> article.toArticleDto(detail))
+                .map(article -> article.toArticleDto(detail, isWriter))
                 .collect(Collectors.toList());
 
         return dtos;
@@ -48,12 +49,17 @@ public class BoardService {
 
     // 게시글 페이지 상세 조회
     @Transactional
-    public ArticleDto getArticle(Long articleId) {
+    public ArticleDto getArticle(Long articleId, Long memberId) {
         Optional<Article> optionalArticle = articleRepository.findById(articleId);
         if (optionalArticle.isPresent()) {
             Article article = optionalArticle.get();
-            Boolean detail = true;
-            return article.toArticleDto(detail);
+            Boolean detail = true;  // 상세페이지는 true, dto에 게시물 본문 내용 담아서 보내주기
+
+            Boolean isWriter = false;
+            if (memberId.equals(article.getMember().getId())) {
+                isWriter = true;
+            }
+            return article.toArticleDto(detail, isWriter);
         } else {
             throw new RuntimeException("게시물이 존재하지 않습니다");
         }

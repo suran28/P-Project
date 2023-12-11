@@ -14,4 +14,5 @@ public class ArticleDto {
     private LocalDateTime regDate;
     private String url;
     private String body;
+    private boolean isWriter;
 }

@@ -15,7 +15,8 @@ public class PageController {
         return "home";
     }
     @GetMapping("/main")
-    public String showMainPage() {
+    public String showMainPage(Model model) {
+
         return "main";
     }
 

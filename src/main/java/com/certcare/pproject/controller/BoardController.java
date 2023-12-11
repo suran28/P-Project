@@ -4,8 +4,6 @@ import com.certcare.pproject.dto.ArticleDto;
 import com.certcare.pproject.dto.CommentDto;
 import com.certcare.pproject.service.BoardService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -32,14 +30,16 @@ public class BoardController {
         return "board";
     }
 
-
     // 게시물 상세 페이지
     @GetMapping("/board/{board_id}/article/{article_id}")
-    public String showArticlePage(@PathVariable String article_id, @PathVariable String board_id, Model model) {
-        ArticleDto articleDto = boardService.getArticle(Long.valueOf(article_id));
+    public String showArticlePage(@PathVariable String article_id, @PathVariable String board_id, Model model, Authentication authentication) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Long memberId = Long.valueOf(userDetails.getUsername());
+
+        ArticleDto articleDto = boardService.getArticle(Long.valueOf(article_id), memberId);
         List<CommentDto> commentDtos = boardService.getComments(Long.valueOf(article_id));
 
-        // 본인 확인 여부를 보내줘야 함, 자격증 넘버
+        // 본인 확인 여부를 보내줘야 함,
         String boardName = boardService.getBoardName(Integer.parseInt(board_id));
         model.addAttribute("boardName", boardName);
         model.addAttribute("article", articleDto);
@@ -83,14 +83,14 @@ public class BoardController {
     // 댓글 등록 요청
     @PostMapping("/{article_id}/comment/new")
     public String commentCreateRequest(@PathVariable String article_id,
-                                       @RequestParam String body,
+                                       @RequestBody String body,
                                        Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
 
         boardService.createComment(body, memeberId, Long.valueOf(article_id));
 
-        return "";
+        return "댓글 등록 성공했습니다";
     }
 
     // 댓글 삭제 요청
