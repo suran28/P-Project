@@ -38,14 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const itemDesDiv = document.createElement("div")
         itemDesDiv.className = "itemDesDiv"
 
-        const itemName = document.createElement("h2")
+        const itemName = document.createElement("h1")
         itemName.className="itemName"
         itemName.textContent = bannerInfo[j].certName;
         itemDesDiv.appendChild(itemName)
 
         const itemHost = document.createElement("h3")
         itemHost.className="itemAuthName"
-        itemHost.textContent = bannerInfo[j].host;
+        itemHost.textContent = bannerInfo[j].host + " | " + bannerInfo[j].majorJobName;
         itemDesDiv.appendChild(itemHost)
 
         const itemDescription = document.createElement("p")
@@ -68,8 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const itemImg = document.createElement("img")
         itemImg.className = "itemImg"
-        itemImg.src = `images/1.jpg`
+        itemImg.src = `images/${bannerInfo[j].majorJobCode}.jpg`
         itemImgDiv.appendChild(itemImg)
+
+        const overlay = document.createElement("div")
+        overlay.className = "overlay"
+        itemImgDiv.appendChild(overlay)
 
         itemContent.appendChild(itemDesDiv)
         itemContent.appendChild(itemImgDiv)
