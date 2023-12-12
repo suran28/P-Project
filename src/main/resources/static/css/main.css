@@ -74,13 +74,11 @@
 
 .cert:hover a {
     display: block;
-    /*visibility: visible;*/
 }
 
 /*캐러셀*/
 .carousel {
     position: relative;
-    /*min-height: 760px;*/
 }
 
 .carousel h2{
@@ -291,7 +289,7 @@
 }
 
 .description1{
-    width: 650px;
+    width: 95%;
     display: flex;
     align-items: center;
     margin: 20px;
@@ -340,9 +338,8 @@
 
 .description2{
     padding: 10px;
-    margin: 30px auto;
     background-color: #D4CAFF;
-    align-items: center;
+    border-radius: 10px;
 }
 
 .description2 h2{
@@ -362,7 +359,7 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .description3 .feature{

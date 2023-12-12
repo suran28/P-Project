@@ -18,3 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fieldCert.style.display = (fieldCert.style.display === "none") ? "block" : "none";
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+}

@@ -6,6 +6,10 @@
   <link rel="stylesheet" type="text/css" href="/css/head.css">
   <link rel="stylesheet" type="text/css" href="/css/certinfo.css">
   <script src="/js/head.js"></script>
+  <script th:inline="javascript">
+    var bannerInfo = [[${bannerInfo}]];
+    console.log(bannerInfo);
+  </script>
   <script src="/js/certinfo.js"></script>
 
 </head>
