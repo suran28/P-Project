@@ -2,6 +2,7 @@ package com.certcare.pproject.controller;
 
 import com.certcare.pproject.dto.ArticleDto;
 import com.certcare.pproject.dto.CommentDto;
+import com.certcare.pproject.jwt.TokenProvider;
 import com.certcare.pproject.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import java.util.List;
 @Slf4j
 public class BoardController {
     private final BoardService boardService;
+    private final TokenProvider tokenProvider;
 
     // 카테고리 별 게시판 목록 전체 조회
     @GetMapping("/board/{board_code}/{page}")
@@ -38,7 +40,8 @@ public class BoardController {
     public String showArticlePage(@PathVariable String article_id,
                                           @PathVariable String board_code,
                                           Model model,
-                                          Authentication authentication) {
+                                  @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
+        Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 

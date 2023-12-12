@@ -62,59 +62,46 @@ document.addEventListener("DOMContentLoaded", () =>  {
     secondEventListener()
 })
 
-function secondEventListener() {
-    const articleTitle = document.querySelectorAll(".articleTitle")
-
-    articleTitle.forEach(article => {
-        article.addEventListener("click", (event) => {
-            event.preventDefault();
-            const articleUrl = event.target.closest(".articleTitle")
-            console.log(articleUrl)
-            const url = articleUrl.href
-            console.log(url)
-
-            var accessToken = sessionStorage.getItem("accessToken");
-
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    "Content-Type": "application/json",
-                    'Authorization': `Bearer ${accessToken}`,
-                },
-            })
-                // .then(res => res.text())
-                // .then(res => {
-                //     console.log(res)
-                //
-                //     if (res.accessToken === undefined) {
-                //         alert("아이디 및 비밀번호를 다시 확인해주세요.");
-                //         return null;
-                //     } else {
-                //         console.log("로컬스토리지에 토큰 저장: ", accessToken);
-                //         alert("로그인이 완료되었습니다.")
-                //         window.location.href = html;
-                //     }
-                // })
-
-                .then(response => {
-                    if (response.ok) {
-                        return response.text();
-                    } else {
-                        alert('로그인이 필요한 서비스입니다.');
-                        return Promise.reject('로그인 필요로 인한 중단');
-                    }
-                })
-                .then(html => {
-                    // document.body.innerHTML = html;
-                    window.location.href = url;
-                    // window.history.pushState({}, '', url);
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        });
-    });
-}
+// function secondEventListener() {
+//     const articleTitle = document.querySelectorAll(".articleTitle")
+//
+//     articleTitle.forEach(article => {
+//         article.addEventListener("click", (event) => {
+//             // event.preventDefault();
+//             const articleUrl = event.target.closest(".articleTitle")
+//             console.log(articleUrl)
+//             const url = articleUrl.href
+//             console.log(url)
+//
+//             var accessToken = sessionStorage.getItem("accessToken");
+//
+//             fetch(url, {
+//                 method: 'GET',
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                     'Authorization': `Bearer ${accessToken}`,
+//                 },
+//             })
+//                 .then(response => {
+//                     if (response.ok) {
+//                         return response.text();
+//                     } else {
+//                         alert('로그인이 필요한 서비스입니다.');
+//                         return Promise.reject('로그인 필요로 인한 중단');
+//                     }
+//                 })
+//                 .then(html => {
+//                     // document.body.innerHTML = html;
+//
+//                     // window.history.pushState({}, '', url);
+//                     // window.location.href = url;
+//                 })
+//                 .catch(err => {
+//                     console.error(err);
+//                 });
+//         });
+//     });
+// }
 
 
 
