@@ -17,11 +17,6 @@ public class PageController {
     private final BannerService bannerService;
 
     @GetMapping("/")
-    public String showHome() {
-        return "home";
-    }
-
-    @GetMapping("/main")
     public String showMainPage(Model model) {
         List<BannerDto> dtos = bannerService.getBannerInfo();
         model.addAttribute("bannerInfo", dtos);
