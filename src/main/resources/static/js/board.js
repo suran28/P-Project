@@ -88,7 +88,8 @@ function secondEventListener() {
                     if (response.ok) {
                         return response.text();
                     } else {
-                        throw new Error('로그인이 필요한 서비스입니다.');
+                        alert('로그인이 필요한 서비스입니다.');
+                        return Promise.reject('로그인 필요로 인한 중단');
                     }
                 })
                 .then(html => {
