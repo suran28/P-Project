@@ -6,7 +6,7 @@ body {
 }
 
 .container{
-    width: 1250px;
+    width: 1200px;
     min-height: 730px;
     margin: 0 auto;
 }
@@ -45,6 +45,10 @@ body {
     margin-right: 10px;
 }
 
+.navbar_list a{
+    padding: 10px;
+}
+
 .nav-item {
     list-style: none;
     display: inline-block;
@@ -59,6 +63,11 @@ body {
 
 .dropdown {
     position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    padding: 10px;
 }
 
 .dropdown:hover .dropdown-menu {

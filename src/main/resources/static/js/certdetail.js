@@ -1,71 +1,98 @@
 document.addEventListener("DOMContentLoaded", () =>  {
-    const sections = [
-        { applicationdate: "2023-10-12", examinationdate: "2023-10-12"},
-        { applicationdate: "2023-10-12", examinationdate: "2023-10-12"},
-        { overview: '개요', content: '해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다. 해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다. 해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다.' },
-        { duty: '수행직무', content: '해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다' },
-        { info: '시험 정보', content: '해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다' },
-        { outlook: '진로 및 전망', content: '해당 시험은 무슨 무슨 시험이다 이게 뭘까 뭔가 시험에 대한 설명을 담고 있으면 좋겠다' }
-    ];
 
-    const schedules = sections.slice(0, 2);
-    const certifications = sections.slice(2);
+    const certTitle = document.querySelector(".certTitle")
+
+    const certTitleText = document.createElement("h2")
+    certTitleText.textContent = certDetail.certName
+    certTitle.appendChild(certTitleText)
+
+    const rightCon = document.querySelector(".rightCon")
+
+    const overview = document.createElement("div")
+    overview.className = "overview"
+    rightCon.appendChild(overview)
+
+    const overviewText = document.createElement("h4")
+    overviewText.textContent = "개요"
+    overview.appendChild(overviewText)
+
+    const overviewInfo = document.createElement("div")
+    overviewInfo.className = "certInfo"
+    overview.appendChild(overviewInfo)
+
+    const overviewInfoText = document.createElement("p")
+    overviewInfoText.textContent = certDetail.overview
+    overviewInfo.appendChild(overviewInfoText)
+
+
+    const duty = document.createElement("div")
+    duty.className = "duty"
+    rightCon.appendChild(duty)
+
+    const dutyText = document.createElement("h4")
+    dutyText.textContent = "수행직무"
+    duty.appendChild(dutyText)
+
+    const dutyInfo = document.createElement("div")
+    dutyInfo.className = "certInfo"
+    duty.appendChild(dutyInfo)
+
+    const dutyInfoText = document.createElement("p")
+    dutyInfoText.textContent = certDetail.jobInfo
+    dutyInfo.appendChild(dutyInfoText)
+
+
+    const test = document.createElement("div")
+    test.className = "test"
+    rightCon.appendChild(test)
+
+    const testText = document.createElement("h4")
+    testText.textContent = "시험 정보"
+    test.appendChild(testText)
+
+    const testInfo = document.createElement("div")
+    testInfo.className = "certInfo"
+    test.appendChild(testInfo)
+
+    const w_subject = document.createElement("p")
+    w_subject.textContent = certDetail.w_subject
+    testInfo.appendChild(w_subject)
+    const w_testInfo = document.createElement("p")
+    w_testInfo.textContent = certDetail.w_testInfo
+    testInfo.appendChild(w_testInfo)
+    const w_criteria = document.createElement("p")
+    w_criteria.textContent = certDetail.w_criteria
+    testInfo.appendChild(w_criteria)
+
+    const p_subject = document.createElement("p")
+    p_subject.textContent = certDetail.p_subject
+    testInfo.appendChild(p_subject)
+    const p_testInfo = document.createElement("p")
+    p_testInfo.textContent = certDetail.p_testInfo
+    testInfo.appendChild(p_testInfo)
+    const p_criteria = document.createElement("p")
+    p_criteria.textContent = certDetail.p_criteria
+    testInfo.appendChild(p_criteria)
+
+
+    const outlook = document.createElement("div")
+    outlook.className = "outlook"
+    rightCon.appendChild(outlook)
+
+    const outlookText = document.createElement("h4")
+    outlookText.textContent = "진로 및 전망"
+    outlook.appendChild(outlookText)
+
+    const outlookInfo = document.createElement("div")
+    outlookInfo.className = "certInfo"
+    outlook.appendChild(outlookInfo)
+
+    const outlookInfoText = document.createElement("p")
+    outlookInfoText.textContent = certDetail.prospect
+    outlookInfo.appendChild(outlookInfoText)
 
     const leftCon = document.querySelector('.leftCon');
 
-    schedules.forEach(schedule => {
-        const newDate = document.createElement('div');
-        newDate.classList.add('date');
 
-        const sessionElement = document.createElement('div');
-        sessionElement.classList.add('session');
-
-        const sessionTitle = document.createElement('h4');
-        sessionTitle.textContent = 'N 회 시험일정';
-
-        const sessionDate = document.createElement('div');
-        sessionDate.classList.add('sessionDate');
-
-        const applicationDate = document.createElement('p');
-        applicationDate.textContent = `접수일 | ${schedule.applicationdate}`;
-
-        const examinationDate = document.createElement('p');
-        examinationDate.textContent = `응시일 | ${schedule.examinationdate}`;
-
-        sessionElement.appendChild(sessionTitle);
-        sessionDate.appendChild(applicationDate);
-        sessionDate.appendChild(examinationDate);
-
-        newDate.appendChild(sessionElement);
-        newDate.appendChild(sessionDate);
-
-        leftCon.appendChild(newDate);
-    });
-
-    const rightCon = document.querySelector('.rightCon');
-
-    certifications.forEach(section => {
-        // section 객체의 키를 활용하여 동적으로 클래스명 생성
-        const sectionKey = Object.keys(section)[0]; // 키 추출
-        const sectionClass = sectionKey.toLowerCase(); // 소문자로 변환
-
-        const newSection = document.createElement('div');
-        newSection.classList.add(sectionClass);
-
-        const titleElement = document.createElement('h4');
-        titleElement.textContent = section[sectionKey]; // 키에 해당하는 값 사용
-
-        const certInfoElement = document.createElement('div');
-        certInfoElement.classList.add('certInfo');
-
-        const contentElement = document.createElement('p');
-        contentElement.textContent = section.content;
-
-        certInfoElement.appendChild(contentElement);
-        newSection.appendChild(titleElement);
-        newSection.appendChild(certInfoElement);
-
-        rightCon.appendChild(newSection);
-    });
 })
 

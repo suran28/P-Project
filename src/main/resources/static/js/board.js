@@ -74,7 +74,7 @@ function secondEventListener() {
             const url = articleUrl.href
             console.log(url)
 
-            var accessToken = localStorage.getItem("accessToken");
+            var accessToken = sessionStorage.getItem("accessToken");
 
             console.log(accessToken)
             fetch(url, {

@@ -1,6 +1,6 @@
 // HTTP 요청을 보내는 함수
 function sendRequest(url, method, body = null) {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = sessionStorage.getItem('accessToken');
 
     fetch(url, {
         method: method,
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const commentList = document.querySelector(".commentList")
 
     commentAddBtn.addEventListener("click", () => {
-        var storedAccessToken = localStorage.getItem('accessToken');
+        var storedAccessToken = sessionStorage.getItem('accessToken');
 
         if (storedAccessToken === undefined) {
             alert("로그인이 필요한 서비스입니다.");

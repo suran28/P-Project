@@ -1,5 +1,5 @@
 function loginForm() {
-    // const accessToken = localStorage.getItem("accessToken");
+    // const accessToken = sessionStorage.getItem("accessToken");
     var formData = {
         userId: document.getElementById('userId').value,
         password: document.getElementById('password').value
@@ -29,10 +29,10 @@ function loginForm() {
                 alert("아이디 및 비밀번호를 다시 확인해주세요.");
                 return null;
             } else {
-                localStorage.setItem('accessToken', accessToken);
+                sessionStorage.setItem('accessToken', accessToken);
 
                 console.log("로컬스토리지에 토큰 저장: ", accessToken);
-                localStorage.setItem("uname", res.uname);
+                sessionStorage.setItem("uname", res.uname);
                 alert("로그인이 완료되었습니다.")
                 window.location.href = '/';
             }

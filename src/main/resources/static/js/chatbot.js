@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
     // const memChatSave = document.querySelector(".ChatSave");
 
     sendBtn.addEventListener("click", function () {
-        var storedAccessToken = localStorage.getItem('accessToken');
+        var storedAccessToken = sessionStorage.getItem('accessToken');
 
         if (storedAccessToken === undefined) {
             alert("로그인이 필요한 서비스입니다.");
@@ -177,7 +177,7 @@ function requestAi(message) {
 }
 
 function handleUserInput() {
-    var storedAccessToken = localStorage.getItem('accessToken');
+    var storedAccessToken = sessionStorage.getItem('accessToken');
 
     if (storedAccessToken === null || storedAccessToken === undefined) {
         alert("로그인이 필요한 서비스입니다.");
