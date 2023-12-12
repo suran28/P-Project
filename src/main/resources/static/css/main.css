@@ -189,7 +189,7 @@
     transition: transform .6s ease-in-out, -webkit-transform .6s ease-in-out;
     height: 400px;
     min-width: 1250px;
-    background-color: #5576ff5c;
+    background-color: #c2cdff;;
 }
 
 .carousel-item .itemContent{
