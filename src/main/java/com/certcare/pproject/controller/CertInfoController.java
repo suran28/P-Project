@@ -22,7 +22,7 @@ public class CertInfoController {
     public String showCertInfoPage(Model model) {
         List<CertInfoDto> dtos = certService.getCertListsByJobCode();
         model.addAttribute("certInfo", dtos);
-        return "certinfo";
+        return "certInfo";
     }
 
     // 국가 기술 자격증 상세 페이지
