@@ -34,7 +34,7 @@ public class BoardService {
 
     // 게시판에 등록된 모든 글 가져오기
     @Transactional
-    public List<ArticleDto> getArticleListsByBoardCode(int code) {
+    public List<ArticleDto> getArticleListsByBoardCode(String code) {
         List<Article> articles = articleRepository.findAllByBoardCode(code);
         Boolean detail = false;
         Boolean isWriter = false;

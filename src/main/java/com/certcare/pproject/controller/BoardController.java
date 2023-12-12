@@ -26,7 +26,7 @@ public class BoardController {
         model.addAttribute("boardName", boardName);
 
         // 게시판에 등록된 전체 게시물 불러오기
-        List<ArticleDto> dtos = boardService.getArticleListsByBoardCode(Integer.parseInt(board_code));
+        List<ArticleDto> dtos = boardService.getArticleListsByBoardCode(board_code);
         model.addAttribute("articleList", dtos);
 
         return "board";
