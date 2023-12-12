@@ -14,7 +14,8 @@ public class Banner {
     private Long id;
     private String host;
     private String certName;
-    private String majorCodeName;
+    private String majorJobName;
+    private String majorJobCode;
     private String overview;
     private String certInfoId;
 
@@ -22,8 +23,9 @@ public class Banner {
         BannerDto dto = new BannerDto();
         dto.setHost(this.host);
         dto.setCertName(this.certName);
-        dto.setMajorCodeName(this.majorCodeName);
+        dto.setMajorJobName(this.majorJobName);
         dto.setOverview(this.overview);
+        dto.setMajorJobCode(this.majorJobCode);
         dto.setUrl("/certdetail/"+this.certInfoId);
         return dto;
     }

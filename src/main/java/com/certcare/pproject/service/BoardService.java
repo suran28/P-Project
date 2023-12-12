@@ -27,7 +27,7 @@ public class BoardService {
 
     // 게시판 명 가져오기
     @Transactional
-    public String getBoardName(int code) {
+    public String getBoardName(String code) {
         Board board = boardRepository.findByCode(code);
         return board.getBoardName();
     }
@@ -74,10 +74,9 @@ public class BoardService {
         return dtos;
     }
 
-
     // 게시물 등록
     @Transactional
-    public void createArticle(String title, String body, Long memberId, int boardId) {
+    public void createArticle(String title, String body, Long memberId, String boardId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         if (optionalMember.isPresent()) {
             Member member = optionalMember.get();

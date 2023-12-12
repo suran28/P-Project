@@ -13,7 +13,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String boardName;
-    private int code;
+    private String code;
     @OneToOne
     private MajorJobCode majorJobCode;
 }

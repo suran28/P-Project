@@ -8,7 +8,8 @@ public class BannerDto {
     private String url;
     private String certName;
     private String host;
-    private String majorCodeName;
+    private String majorJobName;
+    private String majorJobCode;
     private String overview;
     private String certInfoId;
 }

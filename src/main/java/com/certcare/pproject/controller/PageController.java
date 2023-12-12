@@ -42,18 +42,6 @@ public class PageController {
         return "mypage";
     }
 
-    // 국가 기술 자격증 페이지
-    @GetMapping("/certinfo")
-    public String showCerttypePage() {
-        return "certinfo";
-    }
-
-    // 국가 기술 자격증 상세 페이지
-    @GetMapping("/certdetail/{cert-id}")
-    public String showCertdetailPage() {
-        return "certdetail";
-    }
-
     @GetMapping("/chatbot")
     public String showChatbotPage() {
         return "chatbot";
