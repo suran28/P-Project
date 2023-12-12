@@ -63,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () =>  {
 })
 
 function secondEventListener() {
-
     const articleTitle = document.querySelectorAll(".articleTitle")
 
     articleTitle.forEach(article => {
@@ -76,7 +75,6 @@ function secondEventListener() {
 
             var accessToken = sessionStorage.getItem("accessToken");
 
-            console.log(accessToken)
             fetch(url, {
                 method: 'GET',
                 headers: {
@@ -84,6 +82,20 @@ function secondEventListener() {
                     'Authorization': `Bearer ${accessToken}`,
                 },
             })
+                // .then(res => res.text())
+                // .then(res => {
+                //     console.log(res)
+                //
+                //     if (res.accessToken === undefined) {
+                //         alert("아이디 및 비밀번호를 다시 확인해주세요.");
+                //         return null;
+                //     } else {
+                //         console.log("로컬스토리지에 토큰 저장: ", accessToken);
+                //         alert("로그인이 완료되었습니다.")
+                //         window.location.href = html;
+                //     }
+                // })
+
                 .then(response => {
                     if (response.ok) {
                         return response.text();
@@ -93,8 +105,9 @@ function secondEventListener() {
                     }
                 })
                 .then(html => {
-                    document.body.innerHTML = html;
-                    window.history.pushState({}, '', url);
+                    // document.body.innerHTML = html;
+                    window.location.href = url;
+                    // window.history.pushState({}, '', url);
                 })
                 .catch(err => {
                     console.error(err);
@@ -102,4 +115,6 @@ function secondEventListener() {
         });
     });
 }
+
+
 

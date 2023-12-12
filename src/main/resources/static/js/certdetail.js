@@ -54,6 +54,9 @@ document.addEventListener("DOMContentLoaded", () =>  {
     testInfo.className = "certInfo"
     test.appendChild(testInfo)
 
+    const writtenExam = document.createElement("h4")
+    writtenExam.textContent = "| 필기"
+    testInfo.appendChild(writtenExam)
     const w_subject = document.createElement("p")
     w_subject.textContent = certDetail.w_subject
     testInfo.appendChild(w_subject)
@@ -64,6 +67,9 @@ document.addEventListener("DOMContentLoaded", () =>  {
     w_criteria.textContent = certDetail.w_criteria
     testInfo.appendChild(w_criteria)
 
+    const practicalExam = document.createElement("h4")
+    practicalExam.textContent = "| 실기"
+    testInfo.appendChild(practicalExam)
     const p_subject = document.createElement("p")
     p_subject.textContent = certDetail.p_subject
     testInfo.appendChild(p_subject)

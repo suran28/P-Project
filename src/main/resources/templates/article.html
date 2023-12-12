@@ -8,6 +8,16 @@
     <script src="/js/head.js"></script>
     <script src="/js/board.js"></script>
     <script src="/js/article.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const commentBtn = document.querySelector(".commentBtn");
+            const commentAdd = document.querySelector(".commentAdd");
+
+            commentBtn.addEventListener("click", () => {
+                commentAdd.style.display = (commentAdd.style.display === "none") ? "block" : "none";
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -45,6 +55,7 @@
         </div>
     </div>
 </div> <!-- /container -->
+
 </body>
 
 <div th:replace="layout/footer :: footer"></div>
