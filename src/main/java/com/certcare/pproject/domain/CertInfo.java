@@ -40,7 +40,7 @@ public class CertInfo {
             dto.setW_testInfo(this.w_testInfo);
             dto.setP_testInfo(this.p_testInfo);
             dto.setW_criteria(this.w_criteria);
-            dto.setW_criteria(this.w_criteria);
+            dto.setP_criteria(this.p_criteria);
             dto.setOverview(this.overview);
             dto.setJobInfo(this.jobInfo);
             dto.setProspect(this.prospect);
