@@ -33,6 +33,7 @@ function loginForm() {
 
                 console.log("로컬스토리지에 토큰 저장: ", accessToken);
                 localStorage.setItem("uname", res.uname);
+                alert("로그인이 완료되었습니다.")
                 window.location.href = '/';
             }
         })

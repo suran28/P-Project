@@ -2,9 +2,11 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const numSlides = numSlides.length
+    const numCertInfo = certInfo.length
 
-    const majorJobList = document.createElement("div")
+    for (var i = 0; i < numCertInfo; i++){
+        const majorJobList = document.createElement("div")
+    }
 })
 
 document.addEventListener("DOMContentLoaded", () => {
