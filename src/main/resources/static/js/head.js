@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutBtn.addEventListener("click", () => {
             console.log("로그아웃");
             localStorage.removeItem('accessToken');
-            window.location.href = '/main';
+            window.location.href = '/';
         });
     }
 })
