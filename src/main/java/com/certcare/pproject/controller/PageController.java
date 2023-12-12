@@ -32,11 +32,6 @@ public class PageController {
         return "login";
     }
 
-    @GetMapping("/mypage")
-    public String showMyPage() {
-        return "mypage";
-    }
-
     @GetMapping("/chatbot")
     public String showChatbotPage() {
         return "chatbot";

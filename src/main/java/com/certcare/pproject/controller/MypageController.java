@@ -19,27 +19,34 @@ import java.util.List;
 @AllArgsConstructor
 public class MypageController {
     private final MemberService memberService;
-    // 나의 보유자격증 개수..
 
-    // 나의 정보 조회
-    @GetMapping("/mypage/user-info")
-    public ModelAndView showUserInfo(Authentication authentication,
-                                     Model model) {
+    @GetMapping("/mypage")
+    public String showMyPage(Authentication authentication, Model model) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 
+        // 나의 정보 (닉네임, 아이디)
         MemberResponseDto memberResponseDto = memberService.showMemberInfo(memberId);
         model.addAttribute("userInfo", memberResponseDto);
-        return new ModelAndView("mypage", "model", model);
+
+        // 나의 보유 자격증
+        List<MyCertInfoDto> dtos = memberService.showMyCertInfo(memberId);
+        model.addAttribute("myCerts", dtos);
+
+        // 나의 보유자격증 개수..
+        int myCertNum = dtos.size();
+        model.addAttribute("myCertNum", myCertNum);
+
+        return "mypage";
     }
 
-    // 나의 자격증 조회
-    @GetMapping("/mypage/cert")
-    public ResponseEntity<List<MyCertInfoDto>> showMyCert(Authentication authentication) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        List<MyCertInfoDto> dtos = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
-        return ResponseEntity.ok(dtos);
-    }
+    // 나의 자격증 조회 (삭제 예정)
+//    @GetMapping("/mypage/cert")
+//    public ResponseEntity<List<MyCertInfoDto>> showMyCert(Authentication authentication) {
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        List<MyCertInfoDto> dtos = memberService.showMyCertInfo(Long.valueOf(userDetails.getUsername()));
+//        return ResponseEntity.ok(dtos);
+//    }
 
     // 나의 자격증 등록
     @PostMapping("/mypage/cert/new")

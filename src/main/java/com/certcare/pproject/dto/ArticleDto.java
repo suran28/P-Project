@@ -11,8 +11,8 @@ public class ArticleDto {
     private Long id;
     private String title;
     private String writer;
-    private LocalDateTime regDate;
+    private String regDate;
     private String url;
     private String body;
-    private boolean isWriter;
+    private boolean writerChk;
 }

@@ -5,6 +5,7 @@ import com.certcare.pproject.dto.CommentDto;
 import com.certcare.pproject.service.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -35,14 +36,14 @@ public class BoardController {
     // 게시물 상세 페이지
     @GetMapping("/board/{board_code}/article/{article_id}")
     public String showArticlePage(@PathVariable String article_id,
-                                  @PathVariable String board_code,
-                                  Model model,
-                                  Authentication authentication) {
+                                          @PathVariable String board_code,
+                                          Model model,
+                                          Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 
         ArticleDto articleDto = boardService.getArticle(Long.valueOf(article_id), memberId);
-        List<CommentDto> commentDtos = boardService.getComments(Long.valueOf(article_id));
+        List<CommentDto> commentDtos = boardService.getComments(Long.valueOf(article_id), memberId);
 
         // 본인 확인 여부를 보내줘야 함,
         String boardName = boardService.getBoardName(board_code);
@@ -55,34 +56,39 @@ public class BoardController {
 
     // 게시물 등록 요청
     @PostMapping("/board/{board_code}/article/new")
-    public String articleCreateRequest(@RequestParam String title,
+    @ResponseBody
+    public ResponseEntity<String> articleCreateRequest(@RequestParam String title,
                                        @RequestParam String body,
                                        @PathVariable String board_code,
                                        Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
-        boardService.createArticle(title, body, memeberId, board_code);
+        Long id = boardService.createArticle(title, body, memeberId, board_code);
 
-        return "";
+        return ResponseEntity.ok("/board/"+ board_code + "/article/" + id);
     }
 
 
     // 게시물 수정 요청
-    @PatchMapping("/board/{board_code}/{article_id}")
-    public String articleUpdateRequest(@RequestParam String title,
+    @PatchMapping("/board/{board_code}/article/{article_id}")
+    @ResponseBody
+    public ResponseEntity<String> articleUpdateRequest(@RequestParam String title,
                                        @RequestParam String body,
+                                       @PathVariable String board_code,
                                        @PathVariable String article_id) {
 
-        boardService.updateArticle(title, body, Long.valueOf(article_id));
+        Long id = boardService.updateArticle(title, body, Long.valueOf(article_id));
 
-        return "";
+        return ResponseEntity.ok("/board/"+ board_code + "/article/" + id);
     }
 
     // 게시물 삭제 요청
-    @DeleteMapping("/{article_id}")
-    public String ArticleDeleteRequest(@PathVariable String article_id) {
+    @DeleteMapping("/board/{board_code}/article/{article_id}")
+    @ResponseBody
+    public ResponseEntity<String> ArticleDeleteRequest(@PathVariable String article_id,
+                                       @PathVariable String board_code) {
         boardService.deleteArticle(Long.valueOf(article_id));
-        return "";
+        return ResponseEntity.ok("/board/"+ board_code + "1");
     }
 
     // 댓글 등록 요청
@@ -102,6 +108,6 @@ public class BoardController {
     @DeleteMapping("/{comment_id}")
     public String commentDeleteRequest(@PathVariable String comment_id) {
         boardService.deleteComment(Long.valueOf(comment_id));
-        return "";
+        return "댓글 삭제했습니다.";
     }
 }

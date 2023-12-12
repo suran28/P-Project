@@ -9,5 +9,6 @@ import java.time.LocalDateTime;
 public class CommentDto {
     private String writer;
     private String body;
-    private LocalDateTime regDate;
+    private String regDate;
+    private Boolean writerChk;
 }

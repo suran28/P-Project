@@ -58,16 +58,24 @@ public class Article {
 
     // detail이 true면 상세 게시물 조회로, dto에 게시물 본문까지 담아서 전송
     // false면 목록 조회로 게시물 본문은 담지 않음
-    public ArticleDto toArticleDto(Boolean detail, Boolean isWriter) {
+    public ArticleDto toArticleDto(Boolean detail, Boolean writerChk) {
         ArticleDto articleDto = new ArticleDto();
 
         articleDto.setId(this.id);
         articleDto.setWriter(this.member.getUsername());
         articleDto.setTitle(this.title);
-        articleDto.setRegDate(this.regDate);
+
+        // 등록일자 저장 형식: 2023-12-10T00:00:00
+        // 날짜 데이터만 보내기
+        int indexOfT = this.regDate.toString().indexOf('T');
+        if (indexOfT != -1) { // "T"를 찾은 경우
+            articleDto.setRegDate(this.regDate.toString().substring(0, indexOfT));
+        } else { // "T"를 찾지 못한 경우, 전체 문자열 반환 또는 예외 처리 등을 수행할 수 있음
+            articleDto.setRegDate(this.regDate.toString());
+        }
 
         articleDto.setUrl("/board/"+this.board.getId().toString()+"/article/"+this.id);
-//        articleDto.setWriter(isWriter);
+        articleDto.setWriterChk(writerChk);
 
         if (detail == true) {
             articleDto.setBody(this.body);
