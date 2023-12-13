@@ -116,10 +116,31 @@ textarea:focus {
     margin: 5px;
 }
 
-.commentList p{
+.commentBar {
     padding: 5px;
+    display: flex;
+    border-bottom: 2px solid #0275FF;
+}
+
+.commentAdd {
+    margin: 5px;
+}
+
+.comment {
+    display: flex;
     border-bottom: 1px solid #0275FF;
 }
+
+.comment .body{
+    width : 1000px;
+}
+
+.comment .writer,
+.comment .regDate {
+    width : 150px;
+}
+
+
 
 
 /*.p{*/

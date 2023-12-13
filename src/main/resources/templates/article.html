@@ -6,17 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/css/head.css">
     <link rel="stylesheet" type="text/css" href="/css/article.css">
     <script src="/js/head.js"></script>
-    <script src="/js/article.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const commentBtn = document.querySelector(".commentBtn");
-            const commentAdd = document.querySelector(".commentAdd");
-
-            commentBtn.addEventListener("click", () => {
-                commentAdd.style.display = (commentAdd.style.display === "none") ? "block" : "none";
-            });
-        });
+    <script th:inlin="javascript">
+        var commentList = [[${commentList}]]
+        console.log(commentList)
     </script>
+    <script src="/js/article.js"></script>
 </head>
 
 <body>
@@ -28,7 +22,7 @@
         <div class="boardTitle">
             <h4 th:text="${boardName}">| 어느 게시판</h4>
             <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요" disabled>
-            <input th:value="'작성자 |' + '&nbsp' + ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명" disabled>
+            <input th:value="'작성자 | '+ ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명" disabled>
         </div>
 
         <div class="boardContent">
@@ -36,23 +30,34 @@
         </div>
 
         <div class="btnCon">
-            <button type="submit">수정</button>
-            <button type="button" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };
+
+            <!--            <button type="button" class="updateBtn">수정</button>-->
+<!--            <button type="button" class="deleteBtn" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };-->
+<!--            location.href='/board';">삭제</button>-->
+
+            <button type="button" class="updateBtn" th:if="${article.writerChk}">수정</button>
+            <button type="button" class="deleteBtn" th:if="${article.writerChk}" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };
             location.href='/board';">삭제</button>
-            <button type="button">목록</button>
+            <button type="button" class="redirBtn">목록</button>
             <button type="button" class="commentBtn">댓글쓰기</button>
         </div>
 
         <div class="boardComment">
-            <p class="comment">댓글 목록</p>
+            <p class="commentBar">댓글 목록</p>
             <div class="commentAdd">
                 <input type="text" id="commentAdd" name="commentAdd" placeholder="댓글을 작성해주세요">
                 <button class="commentAddBtn" type="submit">등록</button>
             </div>
             <div class="commentList">
+                <div th:each="comment : ${commentList}" class="comment">
+                    <p th:text="${comment.writer} + ' | ' + ${comment.body}" class="body"></p>
+                    <p th:text="${comment.regDate}" class="regDate"></p>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="empty"></div>
 </div> <!-- /container -->
 
 </body>

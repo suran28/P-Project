@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
     }
     container.appendChild(pageItem)
 
-    secondEventListener()
+    // secondEventListener()
 })
 
 // function secondEventListener() {
@@ -103,5 +103,11 @@ document.addEventListener("DOMContentLoaded", () =>  {
 //     });
 // }
 
+document.addEventListener("DOMContentLoaded", () =>{
+    const currentUrl = window.location.href;
+    const urlParts = currentUrl.split('/');
+    const boardId = urlParts[3];
 
-
+    const write = document.querySelector(".write")
+    write.href = `/board/${boardId}/article/new`
+})
