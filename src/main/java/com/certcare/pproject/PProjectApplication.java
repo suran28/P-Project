@@ -24,26 +24,26 @@ public class PProjectApplication implements CommandLineRunner {
 		File currentDirectory = new File(System.getProperty("user.dir"));
 
 		// 배포용
-		File parentDirectory = currentDirectory.getParentFile();
-		if (parentDirectory != null) {
-			parentDirectory = parentDirectory.getParentFile();
-			if (parentDirectory != null) {
-				String target = "data&AI" + File.separator + "data" + File.separator + "cert-info.xlsx";
-				File targetDirectory = new File(parentDirectory, target);
-				String filePath = String.valueOf(targetDirectory);
-				excelService.readExcelFileAndToEntity(filePath);
-			} else {
-				log.info("상위 디렉토리가 없습니다.");
-			}
-		} else {
-			log.info("상위 디렉토리가 없습니다.");
-		}
+//		File parentDirectory = currentDirectory.getParentFile();
+//		if (parentDirectory != null) {
+//			parentDirectory = parentDirectory.getParentFile();
+//			if (parentDirectory != null) {
+//				String target = "data&AI" + File.separator + "data" + File.separator + "cert-info.xlsx";
+//				File targetDirectory = new File(parentDirectory, target);
+//				String filePath = String.valueOf(targetDirectory);
+//				excelService.readExcelFileAndToEntity(filePath);
+//			} else {
+//				log.info("상위 디렉토리가 없습니다.");
+//			}
+//		} else {
+//			log.info("상위 디렉토리가 없습니다.");
+//		}
 
 		// 로컬용
-//		String target = "data&AI" + File.separator + "data" + File.separator + "cert-info.xlsx";
-//		File targetDirectory = new File(currentDirectory, target);
-//		String filePath = String.valueOf(targetDirectory);
-//		excelService.readExcelFileAndToEntity(filePath);
+		String target = "data&AI" + File.separator + "data" + File.separator + "cert-info.xlsx";
+		File targetDirectory = new File(currentDirectory, target);
+		String filePath = String.valueOf(targetDirectory);
+		excelService.readExcelFileAndToEntity(filePath);
 
 	}
 }
