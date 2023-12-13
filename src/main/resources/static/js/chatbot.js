@@ -31,22 +31,22 @@ document.addEventListener("DOMContentLoaded", () =>  {
     // const memChatSave = document.querySelector(".ChatSave");
 
     sendBtn.addEventListener("click", function () {
-        var storedAccessToken = sessionStorage.getItem('accessToken');
+        // var storedAccessToken = sessionStorage.getItem('accessToken');
 
-        if (storedAccessToken === undefined) {
-            alert("로그인이 필요한 서비스입니다.");
-            return null;
-        } else {
+        // if (storedAccessToken === undefined) {
+        //     alert("로그인이 필요한 서비스입니다.");
+        //     return null;
+        // } else {
             let userQuestion = chatInput.value;
 
             if (userQuestion !== "") {
                 addMemChatToMemory(userQuestion, "chatSave");
                 requestAi(userQuestion)
             }
-        }
+        // }
 
         chatInput.value = "";
-    });
+    })
 
     chatInput.addEventListener("keypress", (event) => {
         if (event.key === "Enter") {
