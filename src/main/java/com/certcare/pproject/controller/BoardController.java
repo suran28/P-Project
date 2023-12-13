@@ -63,7 +63,8 @@ public class BoardController {
     public ResponseEntity<String> articleCreateRequest(@RequestParam String title,
                                        @RequestParam String body,
                                        @PathVariable String board_code,
-                                       Authentication authentication) {
+                                       @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
+        Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
         Long id = boardService.createArticle(title, body, memeberId, board_code);
@@ -98,7 +99,8 @@ public class BoardController {
     @PostMapping("/{article_id}/comment/new")
     public String commentCreateRequest(@PathVariable String article_id,
                                        @RequestBody String body,
-                                       Authentication authentication) {
+                                       @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
+        Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
 
