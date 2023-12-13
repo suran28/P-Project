@@ -38,8 +38,8 @@ public class BoardController {
     // 게시물 상세 페이지
     @GetMapping("/board/{board_code}/article/{article_id}")
     public String showArticlePage(@PathVariable String article_id,
-                                          @PathVariable String board_code,
-                                          Model model,
+                                  @PathVariable String board_code,
+                                  Model model,
                                   @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -54,6 +54,15 @@ public class BoardController {
         model.addAttribute("article", articleDto);
         model.addAttribute("commentList", commentDtos);
 
+        return "article";
+    }
+
+    // 게시물 등록 페이지로 이동
+    @GetMapping("/board/{board_code}/article/new")
+    public String showArticleCreatePage(Model model,
+                                        @PathVariable String board_code) {
+        String boardName = boardService.getBoardName(board_code);
+        model.addAttribute("boardName", boardName);
         return "article";
     }
 

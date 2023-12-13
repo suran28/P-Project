@@ -1,6 +1,8 @@
 package com.certcare.pproject.jwt;
 
+import com.certcare.pproject.domain.Member;
 import com.certcare.pproject.dto.TokenDto;
+import com.certcare.pproject.repository.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -29,10 +31,11 @@ public class TokenProvider {
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
 
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
-
+    private final MemberRepository memberRepository;
     private final Key key;
 
-    public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+    public TokenProvider(@Value("${jwt.secret}") String secretKey, MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
@@ -61,13 +64,18 @@ public class TokenProvider {
                     .signWith(key, SignatureAlgorithm.HS512)
                     .compact();
 
+            // username 꺼내기
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            Long memberId = Long.valueOf(userDetails.getUsername());
+            Member member = memberRepository.findById(memberId).get();
+
             return TokenDto.builder()
+                    .username(member.getUsername())
                     .grantType(BEARER_TYPE)
                     .accessToken(accessToken)
                     .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                     .refreshToken(refreshToken)
                     .build();
-
 
     }
 

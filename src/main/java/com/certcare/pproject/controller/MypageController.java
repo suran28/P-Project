@@ -2,6 +2,7 @@ package com.certcare.pproject.controller;
 
 import com.certcare.pproject.dto.MyCertInfoDto;
 import com.certcare.pproject.dto.MemberResponseDto;
+import com.certcare.pproject.jwt.TokenProvider;
 import com.certcare.pproject.service.MemberService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,12 @@ import java.util.List;
 @AllArgsConstructor
 public class MypageController {
     private final MemberService memberService;
+    private final TokenProvider tokenProvider;
 
     @GetMapping("/mypage")
-    public String showMyPage(Authentication authentication, Model model) {
+    public String showMyPage(Model model,
+                             @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
+        Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 
@@ -53,7 +57,8 @@ public class MypageController {
     public String createMyCertRequest(@RequestParam String certName,
                                       @RequestParam String host,
                                       @RequestParam String acqDate,
-                                      Authentication authentication) {
+                                      @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
+        Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 

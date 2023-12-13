@@ -11,6 +11,7 @@ import com.certcare.pproject.repository.BoardRepository;
 import com.certcare.pproject.repository.CommentRepository;
 import com.certcare.pproject.repository.MemberRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class BoardService {
     private final ArticleRepository articleRepository;
     private final MemberRepository memberRepository;
@@ -131,12 +133,17 @@ public class BoardService {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Optional<Article> optionalArticle = articleRepository.findById(ArticleId);
         if (optionalMember.isPresent() && optionalArticle.isPresent()) {
+            log.info("여긴가");
             Member member = optionalMember.get();
             Article article = optionalArticle.get();
 
             Comment comment = new Comment(member, article, body);
+            log.info("comment={}",comment.toString());
+            log.info("여긴가1111111111");
             commentRepository.save(comment);
+            log.info("여긴가2222222222222222222");
         }
+        log.info("여기는?");
     }
 
     // 댓글 삭제
