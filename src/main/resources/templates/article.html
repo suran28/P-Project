@@ -6,7 +6,11 @@
     <link rel="stylesheet" type="text/css" href="/css/head.css">
     <link rel="stylesheet" type="text/css" href="/css/article.css">
     <script src="/js/head.js"></script>
-    <script th:inlin="javascript">
+    <script th:inline="javascript">
+        var article = [[${article}]]
+        console.log(article)
+    </script>
+    <script th:inline="javascript">
         var commentList = [[${commentList}]]
         console.log(commentList)
     </script>
@@ -20,24 +24,27 @@
     <div class="empty"></div>
     <div class="form">
         <div class="boardTitle">
-            <h4 th:text="${boardName}">| 어느 게시판</h4>
-            <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요" disabled>
-            <input th:value="'작성자 | '+ ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명" disabled>
+            <h4 th:text="${boardName}">| 어느 커뮤니티 게시판</h4>
+            <input type="text" id="title" name="title" placeholder="제목을 입력하세요">
+            <input type="text" id="writer" name="writer" placeholder="작성자명">
+<!--            <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요">-->
+<!--            <input th:value="'작성자 | '+ ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명">-->
         </div>
 
         <div class="boardContent">
-            <textarea th:text="${article.body}" id="content" name="content" placeholder="본문을 입력하세요" disabled></textarea>
+            <textarea id="content" name="content" placeholder="본문을 입력하세요"></textarea>
+<!--            <textarea th:text="${article.body}" id="content" name="content" placeholder="본문을 입력하세요" disabled></textarea>-->
         </div>
 
         <div class="btnCon">
 
-            <!--            <button type="button" class="updateBtn">수정</button>-->
-<!--            <button type="button" class="deleteBtn" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };-->
-<!--            location.href='/board';">삭제</button>-->
+            <button type="button" class="update" onclick="updateBtnClick()">수정</button>
+            <button type="button" class="updateSend" onclick="updateSendBtnClick()" style="display: none">수정완료</button>
+            <button type="button" class="delete" onclick="deleteBtnClick()">삭제</button>
 
-            <button type="button" class="updateBtn" th:if="${article.writerChk}">수정</button>
-            <button type="button" class="deleteBtn" th:if="${article.writerChk}" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };
-            location.href='/board';">삭제</button>
+<!--            <button type="button" class="updateBtn" th:if="${article.writerChk}">수정</button>-->
+<!--            <button type="button" class="deleteBtn" th:if="${article.writerChk}" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };-->
+<!--            location.href='/board';">삭제</button>-->
             <button type="button" class="redirBtn">목록</button>
             <button type="button" class="commentBtn">댓글쓰기</button>
         </div>
@@ -49,14 +56,15 @@
                 <button class="commentAddBtn" type="submit">등록</button>
             </div>
             <div class="commentList">
-                <div th:each="comment : ${commentList}" class="comment">
-                    <p th:text="${comment.writer} + ' | ' + ${comment.body}" class="body"></p>
-                    <p th:text="${comment.regDate}" class="regDate"></p>
+<!--                <div th:each="comment : ${commentList}" class="comment">-->
+<!--                    <p th:text="${comment.writer} + ' | ' + ${comment.body}" class="body"></p>-->
+<!--                    <p th:text="${comment.regDate}" class="regDate"></p>-->
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="empty"></div>
     <div class="empty"></div>
 </div> <!-- /container -->
 

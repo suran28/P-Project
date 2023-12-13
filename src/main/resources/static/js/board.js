@@ -59,24 +59,24 @@ document.addEventListener("DOMContentLoaded", () =>  {
     }
     container.appendChild(pageItem)
 
-    alertEventListener()
+    // alertEventListener()
 })
 
-function alertEventListener() {
-    const articleTitle = document.querySelectorAll(".articleTitle")
-
-    articleTitle.forEach(article => {
-        article.addEventListener("click", (event) => {
-            const cookies = document.cookie.split(';');
-            for (const cookie of cookies) {
-                const [cookieName, cookieValue] = cookie.trim().split('=');
-                if (cookieName === 'accessToken') {
-                    return cookieValue;
-                }
-            }
-        });
-    });
-}
+// function alertEventListener() {
+//     const articleTitle = document.querySelectorAll(".articleTitle")
+//
+//     articleTitle.forEach(article => {
+//         article.addEventListener("click", (event) => {
+//             const cookies = document.cookie.split(';');
+//             for (const cookie of cookies) {
+//                 const [cookieName, cookieValue] = cookie.trim().split('=');
+//                 if (cookieName === 'accessToken') {
+//                     return cookieValue;
+//                 }
+//             }
+//         });
+//     });
+// }
 
 document.addEventListener("DOMContentLoaded", () =>{
     const currentUrl = window.location.href;

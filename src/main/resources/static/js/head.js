@@ -34,9 +34,10 @@
 // })
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
     const storedAccessToken = getCookie('accessToken');
+    // const storedAccessToken = sessionStorage.getItem('accessToken')
+
 
     const notAccessedContainer = document.querySelector(".notAccessed");
     const accessedContainer = document.querySelector(".accessed");
@@ -51,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         logoutBtn.addEventListener("click", () => {
             deleteCookie('accessToken');
+            // sessionStorage.removeItem('accessToken');
             window.location.href ="/"
         });
     }
