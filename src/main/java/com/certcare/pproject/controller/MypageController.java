@@ -54,33 +54,36 @@ public class MypageController {
 
     // 나의 자격증 등록
     @PostMapping("/mypage/cert/new")
-    public String createMyCertRequest(@RequestParam String certName,
-                                      @RequestParam String host,
-                                      @RequestParam String acqDate,
+    @ResponseBody
+    public ResponseEntity<String> createMyCertRequest(@RequestBody String certName,
+                                      @RequestBody String host,
+                                      @RequestBody String acqDate,
                                       @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 
         memberService.createMyCert(certName, host, LocalDateTime.parse(acqDate), memberId);
-        return "";
+        return ResponseEntity.ok("나의 자격증 등록 성공");
     }
 
     // 나의 자격증 수정
     @PatchMapping("/mypage/cert/{mycert_id}")
-    public String updateMyCertRequest(@PathVariable String mycert_id,
-                                      @RequestParam String certName,
-                                      @RequestParam String host,
-                                      @RequestParam String acqDate) {
+    @ResponseBody
+    public ResponseEntity<String> updateMyCertRequest(@PathVariable String mycert_id,
+                                      @RequestBody String certName,
+                                      @RequestBody String host,
+                                      @RequestBody String acqDate) {
         memberService.updateMyCert(Long.valueOf(mycert_id), certName, host, LocalDateTime.parse(acqDate));
 
-        return "";
+        return ResponseEntity.ok("나의 자격증 수정 성공");
     }
 
     // 나의 자격증 삭제
     @DeleteMapping("/mypage/cert/{mycert_id}")
-    public String deleteMyCertRequest(@PathVariable String mycert_id) {
+    @ResponseBody
+    public ResponseEntity<String> deleteMyCertRequest(@PathVariable String mycert_id) {
         memberService.deleteMyCert(Long.valueOf(mycert_id));
-        return "";
+        return ResponseEntity.ok("나의 자격증 삭제 성공");
     }
 }
