@@ -3,6 +3,7 @@ package com.certcare.pproject.controller;
 import com.certcare.pproject.dto.ArticleDto;
 import com.certcare.pproject.dto.ArticleRequestDto;
 import com.certcare.pproject.dto.CommentDto;
+import com.certcare.pproject.dto.CommentRequestDto;
 import com.certcare.pproject.jwt.TokenProvider;
 import com.certcare.pproject.service.BoardService;
 import lombok.AllArgsConstructor;
@@ -107,13 +108,13 @@ public class BoardController {
     @PostMapping("/{article_id}/comment/new")
     @ResponseBody
     public ResponseEntity<String> commentCreateRequest(@PathVariable String article_id,
-                                       @RequestBody String body,
+                                       @RequestBody CommentRequestDto dto,
                                        @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
 
-        boardService.createComment(body, memeberId, Long.valueOf(article_id));
+        boardService.createComment(dto.getBody(), memeberId, Long.valueOf(article_id));
 
         return ResponseEntity.ok("댓글 등록 성공");
     }
