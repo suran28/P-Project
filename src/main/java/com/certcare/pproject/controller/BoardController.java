@@ -97,7 +97,8 @@ public class BoardController {
 
     // 댓글 등록 요청
     @PostMapping("/{article_id}/comment/new")
-    public String commentCreateRequest(@PathVariable String article_id,
+    @ResponseBody
+    public ResponseEntity<String> commentCreateRequest(@PathVariable String article_id,
                                        @RequestBody String body,
                                        @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
@@ -106,13 +107,14 @@ public class BoardController {
 
         boardService.createComment(body, memeberId, Long.valueOf(article_id));
 
-        return "댓글 등록 성공했습니다";
+        return ResponseEntity.ok("댓글 등록 성공");
     }
 
     // 댓글 삭제 요청
     @DeleteMapping("/{comment_id}")
-    public String commentDeleteRequest(@PathVariable String comment_id) {
+    @ResponseBody
+    public ResponseEntity<String> commentDeleteRequest(@PathVariable String comment_id) {
         boardService.deleteComment(Long.valueOf(comment_id));
-        return "댓글 삭제했습니다.";
+        return ResponseEntity.ok("댓글 삭제 성공");
     }
 }
