@@ -1,21 +1,20 @@
 // HTTP 요청을 보내는 함수
-function sendRequest(url, method, body = null) {
-    const accessToken = sessionStorage.getItem('accessToken');
-
-    fetch(url, {
-        method: method,
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-        },
-        body: body ? JSON.stringify(body) : null,
-    })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
-}
-
-// 사용 예시
-sendRequest('/api/data', 'GET');
+// function sendRequest(url, method, body = null) {
+//     const accessToken = sessionStorage.getItem('accessToken');
+//
+//     fetch(url, {
+//         method: method,
+//         headers: {
+//             'Authorization': `Bearer ${accessToken}`,
+//         },
+//         body: body ? JSON.stringify(body) : null,
+//     })
+//         .then(response => response.json())
+//         .then(data => console.log(data))
+//         .catch(error => console.error('Error:', error));
+// }
+//
+// sendRequest('/api/data', 'GET');
 
 
 
@@ -78,7 +77,7 @@ function commentSend(comment, accessToken) {
     fetch(`/${articleId}/comment/new`, {
         method: 'POST',
         headers: {
-            // 'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
             'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify(
@@ -87,33 +86,6 @@ function commentSend(comment, accessToken) {
             }
         )
     })
-        .then(res => res.text())
-        .then(data => {
-            console.log(data);
-            addAiChatToMemory(data, "chatSave")
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        })
-
-    // .then(res => res.json())
-    // .then(res => {
-    //     console.log(res)
-    //
-    //     if (res.status === 500) {
-    //         console.log("챗봇 응답:", res);
-    //         let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
-    //         addAiChatToMemory(assistantResponse, "chatSave")
-    //     } else {
-    //         console.log("챗봇 응답:", res);
-    //         console.log("챗봇 응답:", res.choices[0].message.content);
-    //         let assistantResponse = res.choices[0].message.content
-    //         addAiChatToMemory(assistantResponse, "chatSave")
-    //     }
-    // })
-    // .catch(error => {
-    //         console.error('Error:', error);
-    //     });
 }
 
 

@@ -1,5 +1,4 @@
 
-
 //처음에 질문하는 챗 생성
 document.addEventListener("DOMContentLoaded", () =>  {
     const aiChat = document.querySelector(".aiChat");
@@ -174,24 +173,4 @@ function requestAi(message) {
         .catch(error => {
                 console.error('Error:', error);
             });
-}
-
-function handleUserInput() {
-    var storedAccessToken = sessionStorage.getItem('accessToken');
-
-    if (storedAccessToken === null || storedAccessToken === undefined) {
-        alert("로그인이 필요한 서비스입니다.");
-        return;
-    }
-
-    let userQuestion = chatInput.value.trim();
-
-    if (userQuestion !== "") {
-        addMemChatToMemory(userQuestion, "chatSave");
-        requestAi(userQuestion);
-
-        memChatSave.scrollTop = memChatSave.scrollHeight;
-    }
-
-    chatInput.value = "";
 }

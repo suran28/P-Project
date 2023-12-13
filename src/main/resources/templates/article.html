@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="/css/head.css">
     <link rel="stylesheet" type="text/css" href="/css/article.css">
     <script src="/js/head.js"></script>
-    <script src="/js/board.js"></script>
     <script src="/js/article.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -28,12 +27,12 @@
     <div class="form">
         <div class="boardTitle">
             <h4 th:text="${boardName}">| 어느 게시판</h4>
-            <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요">
+            <input th:value="${article.title}" type="text" id="title" name="title" placeholder="제목을 입력하세요" disabled>
             <input th:value="'작성자 |' + '&nbsp' + ${article.writer}" type="text" id="writer" name="writer" placeholder="작성자명" disabled>
         </div>
 
         <div class="boardContent">
-            <textarea th:text="${article.body}" id="content" name="content" placeholder="본문을 입력하세요"></textarea>
+            <textarea th:text="${article.body}" id="content" name="content" placeholder="본문을 입력하세요" disabled></textarea>
         </div>
 
         <div class="btnCon">
