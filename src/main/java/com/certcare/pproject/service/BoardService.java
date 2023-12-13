@@ -132,18 +132,17 @@ public class BoardService {
     public void createComment(String body, Long memberId, Long ArticleId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         Optional<Article> optionalArticle = articleRepository.findById(ArticleId);
-        if (optionalMember.isPresent() && optionalArticle.isPresent()) {
-            log.info("여긴가");
-            Member member = optionalMember.get();
-            Article article = optionalArticle.get();
-
-            Comment comment = new Comment(member, article, body);
-            log.info("comment={}",comment.toString());
-            log.info("여긴가1111111111");
-            commentRepository.save(comment);
-            log.info("여긴가2222222222222222222");
+        if (!optionalMember.isPresent() || !optionalArticle.isPresent()) {
+            throw new RuntimeException("댓글 등록 실패");
         }
-        log.info("여기는?");
+        Member member = optionalMember.get();
+        Article article = optionalArticle.get();
+
+        Comment comment = new Comment(member, article, body);
+//        log.info("comment={}",comment.toString());
+
+        commentRepository.save(comment);
+
     }
 
     // 댓글 삭제
