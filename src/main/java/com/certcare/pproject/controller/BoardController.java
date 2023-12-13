@@ -85,7 +85,7 @@ public class BoardController {
     // 게시물 수정 요청
     @PatchMapping("/board/{board_code}/article/{article_id}")
     @ResponseBody
-    public ResponseEntity<String> articleUpdateRequest(@RequestParam String title,
+    public ResponseEntity<String> articleUpdateRequest(@RequestBody String title,
                                        @RequestBody String body,
                                        @PathVariable String board_code,
                                        @PathVariable String article_id) {
