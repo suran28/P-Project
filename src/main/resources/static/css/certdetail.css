@@ -31,21 +31,22 @@
 .contentCon p{
     margin: 0;
     padding: 5px;
+    line-height: 20px;
 }
 
 .leftCon{
     width: 28%;
     padding: 8px;
     margin: 15px 0;
-    border-radius: 5px;
-    background-color: #b0e7ff;
+    border-radius: 15px;
+    background-color: #c8eeff;
 }
 
 .date{
     padding: 8px;
     margin: 10px;
     border-radius: 15px;
-    background-color: #dff5ff;
+    background-color: #ecf9ff;;
 }
 
 .session{
@@ -61,7 +62,7 @@
 }
 
 .rightCon div{
-    padding: 8px;
+    padding: 8px 12px;
     margin: 15px 0;
     border-radius: 15px;
 }
@@ -76,7 +77,7 @@
 }
 
 .test{
-    background-color: #FFF9E9;
+    background-color: #fff5d9;
 }
 
 .certInfo{
@@ -84,4 +85,3 @@
     padding: 8px;
     background-color: white;
 }
-

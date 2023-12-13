@@ -58,26 +58,26 @@ document.addEventListener("DOMContentLoaded", () =>  {
     writtenExam.textContent = "| 필기"
     testInfo.appendChild(writtenExam)
     const w_subject = document.createElement("p")
-    w_subject.textContent = certDetail.w_subject
+    w_subject.textContent = "시험 과목 | " + certDetail.w_subject
     testInfo.appendChild(w_subject)
     const w_testInfo = document.createElement("p")
-    w_testInfo.textContent = certDetail.w_testInfo
+    w_testInfo.textContent = "시험 유형 | " + certDetail.w_testInfo
     testInfo.appendChild(w_testInfo)
     const w_criteria = document.createElement("p")
-    w_criteria.textContent = certDetail.w_criteria
+    w_criteria.textContent = "합격 기준 | " + certDetail.w_criteria
     testInfo.appendChild(w_criteria)
 
     const practicalExam = document.createElement("h4")
     practicalExam.textContent = "| 실기"
     testInfo.appendChild(practicalExam)
     const p_subject = document.createElement("p")
-    p_subject.textContent = certDetail.p_subject
+    p_subject.textContent = "시험 과목 | " + certDetail.p_subject
     testInfo.appendChild(p_subject)
     const p_testInfo = document.createElement("p")
-    p_testInfo.textContent = certDetail.p_testInfo
+    p_testInfo.textContent = "시험 유형 | " + certDetail.p_testInfo
     testInfo.appendChild(p_testInfo)
     const p_criteria = document.createElement("p")
-    p_criteria.textContent = certDetail.p_criteria
+    p_criteria.textContent = "합격 기준 | " + certDetail.p_criteria
     testInfo.appendChild(p_criteria)
 
 
@@ -101,4 +101,3 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
 
 })
-
