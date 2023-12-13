@@ -70,7 +70,7 @@ public class BoardController {
     @PostMapping("/board/{board_code}/article/new")
     @ResponseBody
     public ResponseEntity<String> articleCreateRequest(@RequestParam String title,
-                                       @RequestParam String body,
+                                       @RequestBody String body,
                                        @PathVariable String board_code,
                                        @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
@@ -86,7 +86,7 @@ public class BoardController {
     @PatchMapping("/board/{board_code}/article/{article_id}")
     @ResponseBody
     public ResponseEntity<String> articleUpdateRequest(@RequestParam String title,
-                                       @RequestParam String body,
+                                       @RequestBody String body,
                                        @PathVariable String board_code,
                                        @PathVariable String article_id) {
 
