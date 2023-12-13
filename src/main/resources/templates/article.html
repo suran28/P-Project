@@ -42,10 +42,8 @@
             <button type="button" class="updateSend" onclick="updateSendBtnClick()" style="display: none">수정완료</button>
             <button type="button" class="delete" onclick="deleteBtnClick()">삭제</button>
 
-<!--            <button type="button" class="updateBtn" th:if="${article.writerChk}">수정</button>-->
-<!--            <button type="button" class="deleteBtn" th:if="${article.writerChk}" onclick="if(confirm('정말로 삭제하시겠습니까?')==false){ return false };-->
-<!--            location.href='/board';">삭제</button>-->
             <button type="button" class="redirBtn">목록</button>
+            <button type="button" class="articleSend" onclick="articleSendBtnClick()" style="display: none">등록</button>
             <button type="button" class="commentBtn">댓글쓰기</button>
         </div>
 
@@ -56,10 +54,7 @@
                 <button class="commentAddBtn" type="submit">등록</button>
             </div>
             <div class="commentList">
-<!--                <div th:each="comment : ${commentList}" class="comment">-->
-<!--                    <p th:text="${comment.writer} + ' | ' + ${comment.body}" class="body"></p>-->
-<!--                    <p th:text="${comment.regDate}" class="regDate"></p>-->
-                </div>
+            </div>
             </div>
         </div>
     </div>

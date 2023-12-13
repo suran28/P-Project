@@ -33,15 +33,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     }else {
-        const boardComment = document.querySelector(".boardComment")
+        const articleSend = document.querySelector(".articleSend")
         const updateBtn = document.querySelector(".btnCon .update")
         const deleteBtn = document.querySelector(".btnCon .delete")
+        const boardComment = document.querySelector(".boardComment")
 
-        boardComment.style.display = "none"
+        articleSend.style.display = "block"
         updateBtn.style.display = "none"
         deleteBtn.style.display = "none"
+        boardComment.style.display = "none"
     }
 })
+
+function articleSendBtnClick() {
+
+}
 
 function updateBtnClick() {
     const title = document.getElementById("title")
@@ -68,20 +74,19 @@ function updateSendBtnClick() {
     const articleId = urlParts[6];
     console.log(boardCode, articleId)
 
-    var formData = new FormData();
-    formData.append('title', updatedTitle);
-    formData.append('body', updatedContent);
-
     fetch(`/board/${boardCode}/article/${articleId}`, {
         method: 'PATCH',
-        body: (
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
             {
                 title: updatedTitle,
-                content: updatedContent,
+                body: updatedContent,
             }
         )
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             console.log(data);
         })
