@@ -59,54 +59,29 @@ document.addEventListener("DOMContentLoaded", () =>  {
     }
     container.appendChild(pageItem)
 
-    // secondEventListener()
+    alertEventListener()
 })
 
-// function secondEventListener() {
-//     const articleTitle = document.querySelectorAll(".articleTitle")
-//
-//     articleTitle.forEach(article => {
-//         article.addEventListener("click", (event) => {
-//             // event.preventDefault();
-//             const articleUrl = event.target.closest(".articleTitle")
-//             console.log(articleUrl)
-//             const url = articleUrl.href
-//             console.log(url)
-//
-//             var accessToken = sessionStorage.getItem("accessToken");
-//
-//             fetch(url, {
-//                 method: 'GET',
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     'Authorization': `Bearer ${accessToken}`,
-//                 },
-//             })
-//                 .then(response => {
-//                     if (response.ok) {
-//                         return response.text();
-//                     } else {
-//                         alert('로그인이 필요한 서비스입니다.');
-//                         return Promise.reject('로그인 필요로 인한 중단');
-//                     }
-//                 })
-//                 .then(html => {
-//                     // document.body.innerHTML = html;
-//
-//                     // window.history.pushState({}, '', url);
-//                     // window.location.href = url;
-//                 })
-//                 .catch(err => {
-//                     console.error(err);
-//                 });
-//         });
-//     });
-// }
+function alertEventListener() {
+    const articleTitle = document.querySelectorAll(".articleTitle")
+
+    articleTitle.forEach(article => {
+        article.addEventListener("click", (event) => {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [cookieName, cookieValue] = cookie.trim().split('=');
+                if (cookieName === 'accessToken') {
+                    return cookieValue;
+                }
+            }
+        });
+    });
+}
 
 document.addEventListener("DOMContentLoaded", () =>{
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split('/');
-    const boardId = urlParts[3];
+    const boardId = urlParts[4];
 
     const write = document.querySelector(".write")
     write.href = `/board/${boardId}/article/new`

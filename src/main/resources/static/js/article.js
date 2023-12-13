@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentDate = new Date();
     const formattedDate = `${currentDate.getFullYear()}-${(currentDate.getMonth() + 1).toString().padStart(2, '0')}-${currentDate.getDate().toString().padStart(2, '0')}`;
 
-
     const commentValue = document.getElementById("commentAdd")
     const commentAddBtn = document.querySelector(".commentAddBtn")
 
@@ -77,12 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const commentAdd = document.querySelector(".commentAdd")
                 commentAdd.style.display = "none"
-                commentSend(userComment, storedAccessToken)
+                commentSend(userComment)
             }
         }
 
         commentValue.value = "";
-
     })
 
     commentValue.addEventListener("keypress", (event) => {
@@ -94,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
-function commentSend(comment, accessToken) {
+function commentSend(comment) {
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split('/');
     const articleId = urlParts[4];
@@ -104,15 +102,19 @@ function commentSend(comment, accessToken) {
     fetch(`/${articleId}/comment/new`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(
             {
-                body: comment,
+                body: comment
             }
         )
     })
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => console.error('Error:', error));
 
 }
 
