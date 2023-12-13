@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         logoutBtn.addEventListener("click", () => {
             deleteCookie('accessToken');
+            deleteCookie('username');
             // sessionStorage.removeItem('accessToken');
             window.location.href ="/"
         });

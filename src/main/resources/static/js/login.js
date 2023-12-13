@@ -23,6 +23,7 @@ function loginForm() {
         .then(res => res.json())
         .then(res => {
             const accessToken = res.accessToken;
+            const username =res.username
             console.log(res)
 
             if (res.accessToken === undefined) {
@@ -34,6 +35,7 @@ function loginForm() {
                 // sessionStorage.setItem("uname", res.uname);
 
                 setCookie('accessToken', accessToken, 7);
+                setCookie('username', username, 7)
 
                 alert("로그인이 완료되었습니다.")
                 window.location.href = '/';

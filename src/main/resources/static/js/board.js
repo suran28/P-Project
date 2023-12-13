@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
     pageItem.classList.add('paging');
 
     const paging = articleList.length % postsPerPage
+    console.log(paging)
 
     for (let i =0; i < paging; i++){
         const pageItemList = document.createElement('li')
@@ -59,24 +60,27 @@ document.addEventListener("DOMContentLoaded", () =>  {
     }
     container.appendChild(pageItem)
 
-    // alertEventListener()
 })
 
-// function alertEventListener() {
-//     const articleTitle = document.querySelectorAll(".articleTitle")
-//
-//     articleTitle.forEach(article => {
-//         article.addEventListener("click", (event) => {
-//             const cookies = document.cookie.split(';');
-//             for (const cookie of cookies) {
-//                 const [cookieName, cookieValue] = cookie.trim().split('=');
-//                 if (cookieName === 'accessToken') {
-//                     return cookieValue;
-//                 }
-//             }
-//         });
-//     });
-// }
+document.addEventListener("DOMContentLoaded", () =>{
+    const storedAccessToken = getCookie('accessToken');
+    if (storedAccessToken === undefined) {
+        alert("로그인이 필요한 서비스입니다.");
+        return null;
+    }
+})
+
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.trim().split('=');
+        if (cookieName === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+}
 
 document.addEventListener("DOMContentLoaded", () =>{
     const currentUrl = window.location.href;

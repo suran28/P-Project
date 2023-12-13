@@ -1,11 +1,9 @@
 function signUpForm() {
-    var formData = {
-        username: document.getElementById('username').value,
-        userId: document.getElementById('userId').value,
-        password: document.getElementById('password').value
-    };
 
-    console.log(formData)
+    const username = document.getElementById('username').value
+    const userId = document.getElementById('userId').value
+    const password = document.getElementById('password').value
+
 
     fetch('/signup', {
         method: 'post',
@@ -14,9 +12,9 @@ function signUpForm() {
         },
         body: JSON.stringify(
             {
-                userId: formData.userId,
-                userName: formData.userName,
-                password: formData.password,
+                userId: userId,
+                username: username,
+                password: password,
             }
         )
     })
