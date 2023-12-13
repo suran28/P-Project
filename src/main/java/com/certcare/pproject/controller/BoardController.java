@@ -1,6 +1,7 @@
 package com.certcare.pproject.controller;
 
 import com.certcare.pproject.dto.ArticleDto;
+import com.certcare.pproject.dto.ArticleRequestDto;
 import com.certcare.pproject.dto.CommentDto;
 import com.certcare.pproject.jwt.TokenProvider;
 import com.certcare.pproject.service.BoardService;
@@ -69,14 +70,13 @@ public class BoardController {
     // 게시물 등록 요청
     @PostMapping("/board/{board_code}/article/new")
     @ResponseBody
-    public ResponseEntity<String> articleCreateRequest(@RequestParam String title,
-                                       @RequestBody String body,
+    public ResponseEntity<String> articleCreateRequest(@RequestBody ArticleRequestDto dto,
                                        @PathVariable String board_code,
                                        @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memeberId = Long.valueOf(userDetails.getUsername());
-        Long id = boardService.createArticle(title, body, memeberId, board_code);
+        Long id = boardService.createArticle(dto.getTitle(), dto.getBody(), memeberId, board_code);
 
         return ResponseEntity.ok("/board/"+ board_code + "/article/" + id);
     }
@@ -85,12 +85,11 @@ public class BoardController {
     // 게시물 수정 요청
     @PatchMapping("/board/{board_code}/article/{article_id}")
     @ResponseBody
-    public ResponseEntity<String> articleUpdateRequest(@RequestBody String title,
-                                       @RequestBody String body,
+    public ResponseEntity<String> articleUpdateRequest(@RequestBody ArticleRequestDto dto,
                                        @PathVariable String board_code,
                                        @PathVariable String article_id) {
 
-        Long id = boardService.updateArticle(title, body, Long.valueOf(article_id));
+        Long id = boardService.updateArticle(dto.getTitle(), dto.getBody(), Long.valueOf(article_id));
 
         return ResponseEntity.ok("/board/"+ board_code + "/article/" + id);
     }
