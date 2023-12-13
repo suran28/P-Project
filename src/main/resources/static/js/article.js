@@ -15,6 +15,13 @@ document.addEventListener("DOMContentLoaded", () => {
         content.setAttribute("disabled", "true");
         content.textContent = article.body
 
+        const updateBtn = document.querySelector(".update")
+        const deleteBtn = document.querySelector(".delete")
+        if(article.writerChk === true) {
+            updateBtn.style.display = "block"
+            deleteBtn.style.display = "block"
+        }
+
         const commentCon = document.querySelector(".commentList")
 
         for(let i = 0; i < commentList.length; i++){
@@ -55,6 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 })
 
+//게시글 작성
 function articleSendBtnClick() {
 
     var title = document.getElementById("title").value;
@@ -74,9 +82,10 @@ function articleSendBtnClick() {
             body: content,
         })
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
             console.log(data);
+            window.location.href = data
         })
         .catch(error => {
             console.error('Error:', error);
@@ -85,12 +94,13 @@ function articleSendBtnClick() {
 
 //게시글 수정 버튼
 function updateBtnClick() {
+
     const title = document.getElementById("title")
     title.removeAttribute("disabled");
-    title.value = article.title
-
     const content = document.getElementById("content")
     content.removeAttribute("disabled");
+
+    title.value = article.title
     content.textContent = article.body
 
     const update = document.querySelector(".update")
@@ -101,6 +111,7 @@ function updateBtnClick() {
 
 //게시글 수정 내용 전송
 function updateSendBtnClick() {
+
     var updatedTitle = document.getElementById("title").value;
     var updatedContent = document.getElementById("content").value;
 
@@ -130,6 +141,12 @@ function updateSendBtnClick() {
             console.error('Error:', error);
         });
 
+    const title = document.getElementById("title")
+    title.setAttribute("disabled", "true");
+
+    const content = document.getElementById("content")
+    content.setAttribute("disabled", "true");
+
     const update = document.querySelector(".update")
     update.style.display = "block";
     const updateSend = document.querySelector(".updateSend")
@@ -144,6 +161,14 @@ function deleteBtnClick() {
     } else {
 
     }
+}
+
+function windowHistoryBack() {
+    const currentUrl = window.location.href;
+    const urlParts = currentUrl.split('/');
+    const boardId = urlParts[4];
+
+    window.location.href = `/board/${boardId}/1`
 }
 
 //댓글 쓰기창

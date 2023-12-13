@@ -2,9 +2,8 @@ document.addEventListener("DOMContentLoaded", () =>  {
     const postsPerPage = 10;
 
     const currentPageNumber = parseInt(window.location.pathname.split('/').pop(), 10);
-    const parsedValue = currentPageNumber
 
-    const startIndex = (parsedValue - 1) * postsPerPage;
+    const startIndex = (currentPageNumber - 1) * postsPerPage;
     const endIndex = startIndex + postsPerPage - 1;
 
     const boardCon = document.querySelector('.boardCon');
@@ -43,9 +42,9 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
     const pageItem = document.createElement("div")
     pageItem.classList.add('paging');
+    const paging = articleList.length / postsPerPage
 
-    const paging = articleList.length % postsPerPage
-    console.log(paging)
+    console.log(articleList.length, paging)
 
     for (let i =0; i < paging; i++){
         const pageItemList = document.createElement('li')
