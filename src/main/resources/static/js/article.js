@@ -74,9 +74,14 @@ function updateSendBtnClick() {
 
     fetch(`/board/${boardCode}/article/${articleId}`, {
         method: 'PATCH',
-        body: formData
+        body: (
+            {
+                title: updatedTitle,
+                content: updatedContent,
+            }
+        )
     })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
             console.log(data);
         })
