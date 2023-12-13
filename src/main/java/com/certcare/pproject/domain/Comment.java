@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@Slf4j
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +44,7 @@ public class Comment {
         CommentDto commentDto = new CommentDto();
 
         commentDto.setBody(this.body);
+        log.info(this.member.getUsername());
         commentDto.setWriter(this.member.getUsername());
         commentDto.setWriterChk(writerChk);
 

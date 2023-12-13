@@ -55,15 +55,13 @@ public class MypageController {
     // 나의 자격증 등록
     @PostMapping("/mypage/cert/new")
     @ResponseBody
-    public ResponseEntity<String> createMyCertRequest(@RequestBody String certName,
-                                      @RequestBody String host,
-                                      @RequestBody String acqDate,
+    public ResponseEntity<String> createMyCertRequest(@RequestBody MyCertInfoDto dto,
                                       @CookieValue(name = "accessToken", defaultValue = "default") String accessToken) {
         Authentication authentication = tokenProvider.getAuthentication(accessToken);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Long memberId = Long.valueOf(userDetails.getUsername());
 
-        memberService.createMyCert(certName, host, LocalDateTime.parse(acqDate), memberId);
+        memberService.createMyCert(dto.getCert_name(), dto.getHost(), dto.getAcq_date(), memberId);
         return ResponseEntity.ok("나의 자격증 등록 성공");
     }
 
@@ -71,10 +69,8 @@ public class MypageController {
     @PatchMapping("/mypage/cert/{mycert_id}")
     @ResponseBody
     public ResponseEntity<String> updateMyCertRequest(@PathVariable String mycert_id,
-                                      @RequestBody String certName,
-                                      @RequestBody String host,
-                                      @RequestBody String acqDate) {
-        memberService.updateMyCert(Long.valueOf(mycert_id), certName, host, LocalDateTime.parse(acqDate));
+                                                      @RequestBody MyCertInfoDto dto) {
+        memberService.updateMyCert(Long.valueOf(mycert_id),dto.getCert_name(), dto.getHost(), dto.getAcq_date());
 
         return ResponseEntity.ok("나의 자격증 수정 성공");
     }
