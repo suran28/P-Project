@@ -65,11 +65,14 @@
 
 
 .cert{
-    width: 235px;
-    margin-right: 10px;
+    width: 203px;
+    margin: 5px 5px;
     background-color: white;
     border-radius: 5px;
-    text-align: center;
+    /*text-align: center;*/
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
 }
 
 .cert p{
@@ -142,10 +145,22 @@
     margin: 0 5px;
 }
 
+.windowCertInfo input{
+    margin: 0 10px 0 3px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+}
+
 .windowCertInfo>.certTitle,
 .windowCertInfo>.certAuth,
 .windowCertInfo>.certDate{
-    width: 26.6%;
+    width: 25.4%;
+}
+
+.windowCertInfo .certUD{
+    display: flex;
 }
 
 .windowCertInfo button{
@@ -154,6 +169,7 @@
     background-color: #F1F1F3;
     border-radius: 5px;
     border: none;
+    margin: 2px;
 }
 
 .windowCertAdd{
