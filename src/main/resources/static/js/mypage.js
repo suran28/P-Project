@@ -241,8 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const certAuth = certAuthInput.value
 
             const certDateInput = windowCertInfo.querySelector(".certDate");
-            const certDate = certDateInput.value
-
+            const certDate = certDateInput.value.replace(/-/g, '')
 
             fetch(`/mypage/cert/${certId}`, {
                 method: 'PATCH',
@@ -257,7 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 )
             })
-                .then(res => res.text())
+                .then(res => res.json())
                 .then(res => {
                     console.log(res)
 
