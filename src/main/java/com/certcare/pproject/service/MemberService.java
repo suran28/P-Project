@@ -125,22 +125,22 @@ public class MemberService {
     }
 
     // 마이페이지 나의 자격증 등록
-    public void createMyCert(String certName, String host, LocalDateTime acqDate, Long memberId) {
+    public void createMyCert(String certName, String host, String acqDate, Long memberId) {
         Optional<Member> optionalMember = memberRepository.findById(memberId);
         if (optionalMember.isPresent()) {
             Member member = optionalMember.get();
 
-            MyCert myCert = new MyCert(certName, host, acqDate, member);
+            MyCert myCert = new MyCert(certName, host, LocalDateTime.parse(acqDate), member);
             myCertRepository.save(myCert);
         }
     }
 
     // 마이페이지 나의 자격증 수정
-    public void updateMyCert(Long myCertId, String certName, String host, LocalDateTime acqDate) {
+    public void updateMyCert(Long myCertId, String certName, String host, String acqDate) {
         Optional<MyCert> optionalMyCert = myCertRepository.findById(myCertId);
         if (optionalMyCert.isPresent()) {
             MyCert updatedMyCert = optionalMyCert.get();
-            updatedMyCert.update(certName, host, acqDate);
+            updatedMyCert.update(certName, host, LocalDateTime.parse(acqDate));
             myCertRepository.save(updatedMyCert);
         }
     }

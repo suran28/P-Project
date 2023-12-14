@@ -34,7 +34,13 @@ public class MyCert {
         myCertInfoDto.setId(this.id);
         myCertInfoDto.setCert_name(this.certName);
         myCertInfoDto.setHost(this.host);
-        myCertInfoDto.setAcq_date(this.acqDate);
+
+        int indexOfT = this.acqDate.toString().indexOf('T');
+        if (indexOfT != -1) { // "T"를 찾은 경우
+            myCertInfoDto.setAcq_date(this.acqDate.toString().substring(0, indexOfT));
+        } else { // "T"를 찾지 못한 경우, 전체 문자열 반환 또는 예외 처리 등을 수행할 수 있음
+            myCertInfoDto.setAcq_date(this.acqDate.toString());
+        }
 
         return myCertInfoDto;
     }

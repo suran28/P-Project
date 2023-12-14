@@ -9,6 +9,6 @@ import java.time.LocalDateTime;
 public class MyCertInfoDto {
     private Long id;
     private String cert_name;
-    private LocalDateTime acq_date;
+    private String acq_date;
     private String host;
 }
