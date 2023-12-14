@@ -7,6 +7,10 @@
     <link rel="stylesheet" type="text/css" href="/css/mypage.css">
     <script src="/js/head.js"></script>
     <script src="/js/mypage.js"></script>
+    <script th:inline="javascript">
+        var myCerts = [[${myCerts}]];
+        console.log(myCerts);
+    </script>
 </head>
 
 <body>
@@ -18,13 +22,13 @@
 
     <div class="summary">
         <div class="certNum">
-            <h4>나의 자격증</h4>
-            <p>보유 자격증 : n 개</p>
+            <h4 th:text="${userInfo.username} + ' 님 자격증'">나의 자격증</h4>
+            <p th:text="'보유 자격증 | ' + ${myCertNum} + '개'">보유 자격증 | 개</p>
         </div>
         <div class="memberInfo">
             <h4>나의 정보</h4>
-            <p>닉네임</p>
-            <p>아이디</p>
+            <p th:text="'닉네임 | ' + ${userInfo.username}">닉네임</p>
+            <p th:text="'아이디 | ' + ${userInfo.userId}">아이디</p>
         </div>
     </div>
 
@@ -41,33 +45,38 @@
                     <button>자격증 추가</button>
                 </div>
             </div>
-            <div class="certRow">
-                <div class="cert">
-                    <p class="certName">| 자격증명 : 토익</p>
-                    <p class="certAuth">| 시험기관 : 미국</p>
-                    <p class="certDate">| 취득일 : 2023-12-31</p>
-                </div>
-                <div class="cert">
-                    <p class="certName">| 자격증명 : 토익</p>
-                    <p class="certAuth">| 시험기관 : 미국</p>
-                    <p class="certDate">| 취득일 : 2023-12-31</p>
-                </div>
-                <div class="cert">
-                    <p class="certName">| 자격증명 : 토익</p>
-                    <p class="certAuth">| 시험기관 : 미국</p>
-                    <p class="certDate">| 취득일 : 2023-12-31</p>
-                </div>
-                <div class="cert">
-                    <p class="certName">| 자격증명 : 토익</p>
-                    <p class="certAuth">| 시험기관 : 미국</p>
-                    <p class="certDate">| 취득일 : 2023-12-31</p>
-                </div>
-                <div class="cert">
-                    <p class="certName">| 자격증명 : 토익</p>
-                    <p class="certAuth">| 시험기관 : 미국</p>
-                    <p class="certDate">| 취득일 : 2023-12-31</p>
-                </div>
-            </div>
+<!--            <div class="certRow">-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--                <div class="cert">-->
+<!--                    <p class="certName">| 자격증명 : 토익</p>-->
+<!--                    <p class="certAuth">| 시험기관 : 미국</p>-->
+<!--                    <p class="certDate">| 취득일 : 2023-12-31</p>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 
