@@ -256,7 +256,7 @@ function commentSend(comment) {
 
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split('/');
-    const articleId = urlParts[4];
+    const articleId = urlParts[6];
     console.log(articleId);
 
     console.log(comment)
