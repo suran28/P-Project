@@ -25,42 +25,13 @@ public class MemberController {
         return ResponseEntity.ok("회원 가입이 완료되었습니다");
     }
 
-    // 회원가입
-//    @PostMapping("/signup")
-//    public String signup(@RequestParam String username,
-//                         @RequestParam String userId,
-//                         @RequestParam String password) {
-//        MemberRequestDto memberRequestDto = new MemberRequestDto();
-//        memberRequestDto.setUsername(username);
-//        memberRequestDto.setUserId(userId);
-//        memberRequestDto.setPassword(password);
-//
-//        memberService.signup(memberRequestDto);
-//        return "redirect:/login";
-//    }
-
     // 로그인 api (삭제 예정)
     @PostMapping("/login")
     public ResponseEntity<TokenDto> login(@RequestBody MemberRequestDto memberRequestDto) {
         TokenDto tokenDto = memberService.login(memberRequestDto);
         return ResponseEntity.ok(tokenDto);
     }
-    // 로그인
-//    @PostMapping("/login")
-//    public ModelAndView login(@RequestParam String userId,
-//                              @RequestParam String password) {
-//
-//        // 로그인 로직
-//        TokenDto tokenDto = memberService.login(userId, password);
-//
-//        // 반환할 modelAndView 세팅
-//        ModelAndView modelAndView = new ModelAndView("main");
-//        modelAndView.addObject("grantType", tokenDto.getGrantType());
-//        modelAndView.addObject("accessToken", tokenDto.getAccessToken());
-//
-//
-//        return modelAndView;
-//    }
+
 
     // 로그아웃
 

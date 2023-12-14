@@ -1,15 +1,19 @@
 package com.certcare.pproject.service;
 
+import com.certcare.pproject.config.OpenAiConfig;
+import com.certcare.pproject.domain.ChatBot;
+import com.certcare.pproject.domain.Member;
+import com.certcare.pproject.dto.ChatBadResponse;
+import com.certcare.pproject.repository.ChatBotRepository;
+import com.certcare.pproject.repository.MemberRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -18,7 +22,10 @@ public class ChatBotService {
     @Value("${openai.apiKey}")
     private String apiKey;
     // https://platform.openai.com/docs/api-reference/chat/create
+    private final MemberRepository memberRepository;
+    private final ChatBotRepository chatBotRepository;
     // 위 사이트 가이드라인대로 요청 보내기
+    @Transactional
     public String askChatBot(String userRequest) {
 
         WebClient webClient = WebClient.create();
@@ -53,4 +60,16 @@ public class ChatBotService {
 
         return response;
     }
+
+    @Transactional
+    public void saveBadResponseChat(ChatBadResponse chatBadResponse, Long id) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+        if (optionalMember.isPresent()) {
+            ChatBot chatBot = new ChatBot(chatBadResponse, optionalMember.get());
+            chatBotRepository.save(chatBot);
+        } else {
+            throw new RuntimeException("로그인 후 사용할 수 있습니다.");
+        }
+    }
+
 }

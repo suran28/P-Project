@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -130,7 +131,10 @@ public class MemberService {
         if (optionalMember.isPresent()) {
             Member member = optionalMember.get();
 
-            MyCert myCert = new MyCert(certName, host, LocalDateTime.parse(acqDate), member);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime parsedAcqDate = LocalDateTime.parse(acqDate, formatter);
+
+            MyCert myCert = new MyCert(certName, host, parsedAcqDate, member);
             myCertRepository.save(myCert);
         }
     }
@@ -140,7 +144,9 @@ public class MemberService {
         Optional<MyCert> optionalMyCert = myCertRepository.findById(myCertId);
         if (optionalMyCert.isPresent()) {
             MyCert updatedMyCert = optionalMyCert.get();
-            updatedMyCert.update(certName, host, LocalDateTime.parse(acqDate));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            LocalDateTime parsedAcqDate = LocalDateTime.parse(acqDate, formatter);
+            updatedMyCert.update(certName, host, parsedAcqDate);
             myCertRepository.save(updatedMyCert);
         }
     }
