@@ -14,13 +14,6 @@ public class MyCert {
     private Long id;
     private String certName;
     private String host;
-
-    @PrePersist
-    public void prePersist() {
-        if (this.acqDate == null) {
-            this.acqDate = LocalDateTime.now();
-        }
-    }
     private LocalDateTime acqDate;
 
     // 회원과 일대다 연관관계
