@@ -101,7 +101,7 @@ public class BoardController {
     public ResponseEntity<String> ArticleDeleteRequest(@PathVariable String article_id,
                                        @PathVariable String board_code) {
         boardService.deleteArticle(Long.valueOf(article_id));
-        return ResponseEntity.ok("/board/"+ board_code + "1");
+        return ResponseEntity.ok("/board/"+ board_code + "/1");
     }
 
     // 댓글 등록 요청
