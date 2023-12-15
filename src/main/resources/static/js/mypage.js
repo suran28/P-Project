@@ -192,6 +192,47 @@ document.addEventListener("DOMContentLoaded", () => {
             certD.textContent = "삭제"
             certUD.appendChild(certD)
 
+
+            //마이페이지 창 수정
+            const certInfoCon = document.querySelector(".certInfoCon")
+
+            const num = certInfoCon.childNodes.length
+
+            let certRow
+
+            if(Id+1 % 5 === 0) {
+                certRow = certInfoCon.createElement("div")
+                certRow.className = "certRow"
+            } else {
+                certRow = certInfoCon.childNodes[num-1]
+            }
+
+            const mypageCert = document.createElement("div")
+            mypageCert.className = "cert"
+            certRow.appendChild(mypageCert)
+
+            const mypageCertId = document.createElement("p")
+            mypageCertId.textContent = Id
+            mypageCertId.className = "certId"
+            mypageCertId.style.display = "none"
+            mypageCert.appendChild(mypageCertId)
+
+            const mypageCertName = document.createElement("p")
+            mypageCertName.textContent = "| 자격증명 : " + certTitleValue
+            mypageCertName.className = "certName"
+            mypageCert.appendChild(mypageCertName)
+
+            const mypageCertAuth = document.createElement("p")
+            mypageCertAuth.textContent = "| 시험기관 : " + certAuthValue
+            mypageCertAuth.className = "certAuth"
+            mypageCert.appendChild(mypageCertAuth)
+
+            const mypageCertDate = document.createElement("p")
+            mypageCertDate.textContent = "| 취득일 : " + certDateValue
+            mypageCertDate.className = "certDate"
+            mypageCert.appendChild(mypageCertDate)
+
+
             document.getElementById('certTitle').value = ""
             document.getElementById('certAuth').value = ""
             document.getElementById('certDate').value = ""
@@ -259,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (certIdElement.textContent === certId){
                     const mypageCertId = certIdElement.closest(".cert")
 
-
                     const mypageCertName = mypageCertId.querySelector(".certName")
                     console.log(mypageCertName)
                     mypageCertName.textContent = certTitle
@@ -317,12 +357,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const mypageCertIdList = certInfoCon.querySelectorAll(".certId")
 
+            //마이페이지 수정
             mypageCertIdList.forEach(certIdElement => {
                 if (certIdElement.textContent === certId) {
                     const cert = certIdElement.closest(".cert")
-                    const nextCertRow = cert.nextElementSibling;
 
-                    console.log(nextCertRow)
+                    console.log()
+                    // const nextCertRow = cert.nextElementSibling;
+                    //
+                    // console.log(nextCertRow)
 
                     // nextCertRow.prepend(cert);
 
