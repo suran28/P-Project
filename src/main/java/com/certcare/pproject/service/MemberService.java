@@ -144,7 +144,7 @@ public class MemberService {
         Optional<MyCert> optionalMyCert = myCertRepository.findById(myCertId);
         if (optionalMyCert.isPresent()) {
             MyCert updatedMyCert = optionalMyCert.get();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDateTime parsedAcqDate = LocalDateTime.parse(acqDate, formatter);
             updatedMyCert.update(certName, host, parsedAcqDate);
             myCertRepository.save(updatedMyCert);
