@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var closeButton = document.querySelector(".windowTitle button");
     closeButton.addEventListener("click", function () {
         certAddWindow.style.display = "none";
+        // window.location.href = "/mypage"
     });
 });
 
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const cert = document.createElement("div")
         cert.className = "cert"
         certRow.appendChild(cert)
+
+        const certId = document.createElement("p")
+        certId.textContent = myCerts[j].id
+        certId.className = "certId"
+        certId.style.display = "none"
+        cert.appendChild(certId)
 
         const certName = document.createElement("p")
         certName.textContent = "| 자격증명 : " + myCerts[j].cert_name
@@ -243,6 +250,28 @@ document.addEventListener("DOMContentLoaded", () => {
             const certDateInput = windowCertInfo.querySelector(".certDate");
             const certDate = certDateInput.value
 
+
+            const mypageCert = document.querySelector(".certInfoCon")
+            const certIdList = mypageCert.querySelectorAll(".certId")
+
+            certIdList.forEach(certIdElement => {
+
+                if (certIdElement.textContent === certId){
+                    const mypageCertId = certIdElement.closest(".cert")
+
+
+                    const mypageCertName = mypageCertId.querySelector(".certName")
+                    console.log(mypageCertName)
+                    mypageCertName.textContent = certTitle
+
+                    const mypageCertAuth = mypageCertId.querySelector(".certAuth")
+                    mypageCertAuth.textContent = certAuth
+
+                    const mypageCertDate = mypageCertId.querySelector(".certDate")
+                    mypageCertDate.textContent = certDate
+                }
+            })
+
             fetch(`/mypage/cert/${certId}`, {
                 method: 'PATCH',
                 headers: {
@@ -269,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
+
 //자격증 삭제
 document.addEventListener("DOMContentLoaded", () => {
     const certDList = document.querySelectorAll(".certD")
@@ -278,25 +308,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const windowCertInfo = certDElement.closest(".windowCertInfo")
 
-            const certIdInput = windowCertInfo.querySelector(".certId");
-            const certId = certIdInput.textContent
+            const WindowCertId = windowCertInfo.querySelector(".certId");
+            const certId = WindowCertId.textContent
 
             windowCertInfo.remove();
 
+            const certInfoCon = document.querySelector(".certInfoCon")
+
+            const mypageCertIdList = certInfoCon.querySelectorAll(".certId")
+
+            mypageCertIdList.forEach(certIdElement => {
+                if (certIdElement.textContent === certId) {
+                    const cert = certIdElement.closest(".cert")
+                    const nextCertRow = cert.nextElementSibling;
+
+                    console.log(nextCertRow)
+
+                    // nextCertRow.prepend(cert);
+
+                    cert.remove();
+
+                }
+            });
+
+            // const certInfoCon = document.querySelector(".certInfoCon")
+            // const certRowList = certInfoCon.querySelectorAll(".certRow")
+            //
+            // certRowList.forEach(certRowElement => {
+            //     certRowElement.remove()
+            // })
+
             fetch(`/mypage/cert/${certId}`, {
                 method: 'DELETE',
-                    headers: {
+                headers: {
                     'Content-Type': 'application/json',
                 },
             })
                 .then(res => res.text())
                 .then(res => {
                     console.log(res)
+                    // window.location.href = "/mypage"
 
                 })
                 .catch(error => {
                     console.error('Error:', error);
                 });
+
         });
     });
 })
+
+function mypageCertDelete() {
+
+}

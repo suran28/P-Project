@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
 
     console.log(article)
@@ -153,16 +152,32 @@ function updateSendBtnClick() {
     updateSend.style.display = "none";
 }
 
-
 //게시글 삭제 버튼
 function deleteBtnClick() {
     if (confirm('정말로 삭제하시겠습니까?')) {
-        location.href = '/board/ /1';
-    } else {
+        const currentUrl = window.location.href;
+        const urlParts = currentUrl.split('/');
+        const boardCode = urlParts[4];
+        const articleId = urlParts[6];
 
+        fetch(`/board/${boardCode}/article/${articleId}`, {
+            method: 'Delete',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                location.href = `/board/${boardCode}/1`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 }
 
+//목록 버튼
 function windowHistoryBack() {
     const currentUrl = window.location.href;
     const urlParts = currentUrl.split('/');
@@ -206,27 +221,27 @@ document.addEventListener("DOMContentLoaded", () => {
         //     alert("로그인이 필요한 서비스입니다.");
         //     return null;
         // } else {
-            let userComment = commentValue.value;
+        let userComment = commentValue.value;
 
-            if (userComment !== "") {
-                const comment =document.createElement("div")
-                comment.className = "comment"
-                commentList.appendChild(comment)
+        if (userComment !== "") {
+            const comment =document.createElement("div")
+            comment.className = "comment"
+            commentList.appendChild(comment)
 
-                const body = document.createElement("p")
-                body.className = "body"
-                body.textContent = storedUname + " | "+ userComment
-                comment.append(body)
+            const body = document.createElement("p")
+            body.className = "body"
+            body.textContent = storedUname + " | "+ userComment
+            comment.append(body)
 
-                const regDate = document.createElement("p")
-                regDate.className = "regDate"
-                regDate.textContent = formattedDate
-                comment.append(regDate)
+            const regDate = document.createElement("p")
+            regDate.className = "regDate"
+            regDate.textContent = formattedDate
+            comment.append(regDate)
 
-                const commentAdd = document.querySelector(".commentAdd")
-                commentAdd.style.display = "none"
-                commentSend(userComment)
-            }
+            const commentAdd = document.querySelector(".commentAdd")
+            commentAdd.style.display = "none"
+            commentSend(userComment)
+        }
         // }
         commentValue.value = "";
     })
@@ -278,5 +293,3 @@ function commentSend(comment) {
         .catch(error => console.error('Error:', error));
 
 }
-
-

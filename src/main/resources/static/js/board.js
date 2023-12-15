@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
     const pageItem = document.createElement("div")
     pageItem.classList.add('paging');
-    const paging = articleList.length / postsPerPage
+    const paging = Math.floor(articleList.length / postsPerPage);
 
     console.log(articleList.length, paging)
 
