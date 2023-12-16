@@ -1,6 +1,5 @@
 package com.certcare.pproject.controller;
 
-import com.certcare.pproject.domain.Member;
 import com.certcare.pproject.dto.ChatBadResponse;
 import com.certcare.pproject.dto.MemberRequestDto;
 import com.certcare.pproject.dto.MemberResponseDto;
@@ -36,24 +35,18 @@ public class AdminController {
 
     // 회원 목록 조회
     @GetMapping("/admin/members")
-    @ResponseBody
-    public ResponseEntity<List<MemberResponseDto>> requestAllMembers() {
+    public String requestAllMembers(Model model) {
         List<MemberResponseDto> dtos = adminService.getAllMembers();
-        return ResponseEntity.ok(dtos);
+        model.addAttribute("members", dtos);
+        return "members";
     }
-    // 회원 삭제
 
     // 미흡한 응답 채팅 모니터링
     @GetMapping("/admin/chat-monitoring")
     @ResponseBody
-    public ResponseEntity<List<ChatBadResponse>> showAllBadResponse() {
+    public String showAllBadResponse(Model model) {
         List<ChatBadResponse> dtos = adminService.getAllBadChats();
-        return ResponseEntity.ok(dtos);
+        model.addAttribute("chats", dtos);
+        return "chatmonitor";
     }
-
-    // 게시글 및 댓글 조회
-
-    // 게시글 삭제
-
-    // 댓글 삭제
 }
