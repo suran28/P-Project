@@ -4,7 +4,19 @@ VALUES ('admin', 'admin0000', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9
 
 -- 회원 테이블에 사용자 테스트 계정 2번으로
 INSERT INTO member (username, user_id, password, authority)
-VALUES ('test', 'test0000', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER');
+VALUES ('test0', 'test0000', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test1', 'test0001', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test2', 'test0002', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test3', 'test0003', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test4', 'test0004', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test5', 'test0005', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test6', 'test0006', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test7', 'test0007', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test8', 'test00008', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test9', 'test00009', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test10', 'test0010', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test11', 'test0011', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER'),
+       ('test12', 'test0012', '$2a$10$Naqxf0wgmdyA9Q4YHZaeM.Fwwp14ZlN3YOfwY92Gi9v9NQyEQ/yj.', 'ROLE_USER');
 
 -- 대직무분야코드 데이터 집어넣기
 -- 빠진거 1, 3, 5, 11
@@ -97,4 +109,22 @@ VALUES ('정보처리기사','산업인력공단','20231214', 2),
        ('SQLD','한국데이터산업진흥원','20231214', 2),
        ('test','산업인력공단','20231214', 2),
        ('test','모름','20231214', 2),
-       ('SQLD','한국데이터산업진흥원','20231214', 2)
+       ('SQLD','한국데이터산업진흥원','20231214', 2);
+
+INSERT INTO chat_bot(question, answer, member_id)
+values ('자격증 추천해줘','불가능합니다', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2),
+       ('안녕','글쎄요', 2);
