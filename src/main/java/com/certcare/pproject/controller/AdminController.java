@@ -43,7 +43,6 @@ public class AdminController {
 
     // 미흡한 응답 채팅 모니터링
     @GetMapping("/admin/chat-monitoring")
-    @ResponseBody
     public String showAllBadResponse(Model model) {
         List<ChatBadResponse> dtos = adminService.getAllBadChats();
         model.addAttribute("chats", dtos);
