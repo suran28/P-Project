@@ -4,6 +4,7 @@ import com.certcare.pproject.dto.MyCertInfoDto;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,7 +15,7 @@ public class MyCert {
     private Long id;
     private String certName;
     private String host;
-    private LocalDateTime acqDate;
+    private LocalDate acqDate;
 
     // 회원과 일대다 연관관계
     @ManyToOne
@@ -38,14 +39,14 @@ public class MyCert {
         return myCertInfoDto;
     }
 
-    public MyCert(String certName, String host, LocalDateTime acqDate, Member member) {
+    public MyCert(String certName, String host, LocalDate acqDate, Member member) {
         this.certName = certName;
         this.host = host;
         this.acqDate = acqDate;
         this.member = member;
     }
 
-    public void update(String certName, String host, LocalDateTime acqDate) {
+    public void update(String certName, String host, LocalDate acqDate) {
         if (certName != null) {
             this.certName = certName;
         }
