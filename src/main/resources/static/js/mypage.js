@@ -156,19 +156,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const certTitle = document.createElement("input")
             certTitle.className = "certTitle"
-            certTitle.value = certTitleValue
+            certTitle.value = "| 자격증명 : " + certTitleValue
             certTitle.disabled = true
             windowCertInfo.appendChild(certTitle)
 
             const certAuth = document.createElement("input")
             certAuth.className = "certAuth"
-            certAuth.value = certAuthValue
+            certAuth.value = "| 시험기관 : " + certAuthValue
             certAuth.disabled = true
             windowCertInfo.appendChild(certAuth)
 
             const certDate = document.createElement("input")
             certDate.className = "certDate"
-            certDate.value = certDateValue
+            certDate.value = "| 취득일 : " + certDateValue
             certDate.disabled = true
             windowCertInfo.appendChild(certDate)
 
@@ -236,16 +236,68 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById('certTitle').value = ""
             document.getElementById('certAuth').value = ""
             document.getElementById('certDate').value = ""
+
+            fetch(`/mypage/cert/new`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    {
+                        cert_name: certTitleValue,
+                        host: certAuthValue,
+                        acq_date: certDateValue,
+                    }
+                )
+            })
+                .then(res => res.text())
+                .then(res => {
+                    console.log(res)
+
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+            certUpdateBtn()
+            sendCertUBtn()
+
+            //자격증 수 추가
+            const certNum = document.querySelector(".certNum")
+            const childElements = certNum.children;
+
+            const secondChild = childElements[1];
+            const textContent = secondChild.textContent;
+            const matches = textContent.match(/\d+/);
+
+            if (matches) {
+                const originalNumber = parseInt(matches[0], 10);
+                const incrementedNumber = originalNumber + 1;
+
+                console.log("원래 숫자:", originalNumber);
+                console.log("증가된 숫자:", incrementedNumber);
+
+                secondChild.textContent = textContent.replace(/\d+/, incrementedNumber);
+            } else {
+                console.log("숫자를 찾을 수 없습니다.");
+            }
+
         }
     })
 })
 
 //자격증 수정 버튼
 document.addEventListener("DOMContentLoaded", () => {
+    certUpdateBtn()
+
+})
+
+function certUpdateBtn() {
     const certUList = document.querySelectorAll(".certU")
 
     certUList.forEach(function(certUElement) {
         certUElement.addEventListener('click', function() {
+            console.log("완료")
 
             const windowCertInfo = certUElement.closest(".windowCertInfo")
 
@@ -265,13 +317,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const sendCertU = windowCertInfo.querySelector(".sendCertU")
             sendCertU.style.display = "block"
 
-
         });
     });
-})
+}
 
 //자격증 수정 완료 - send
 document.addEventListener("DOMContentLoaded", () => {
+    sendCertUBtn()
+
+})
+
+function sendCertUBtn() {
     const sendCertUList = document.querySelectorAll(".sendCertU")
 
     sendCertUList.forEach(function(sendCertUElement) {
@@ -325,7 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 )
             })
-                .then(res => res.json())
+                .then(res => res.text())
                 .then(res => {
                     console.log(res)
 
@@ -335,8 +391,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
     });
-})
-
+}
 
 
 //자격증 삭제
