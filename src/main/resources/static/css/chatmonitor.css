@@ -1,0 +1,90 @@
+.container{
+    width: 1100px;
+}
+
+.container h1{
+    margin: 0;
+    text-align: center;
+}
+
+.container h4{
+    margin: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.chatCon{
+    width: 100%;
+    margin: 5px;
+    padding: 0 0 18px 0;
+    background-color: #DEF8FF;
+    border-radius: 5px;
+}
+
+.chatBar{
+    background-color: #9EE2FF;
+    display: flex;
+    /*align-items: center;*/
+    /*justify-content: space-around;*/
+    border-radius: 5px 5px 0 0;
+}
+
+.chat {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chatBar .question,
+.chatBar .answer,
+.chat .chatQuestion,
+.chat .chatAnswer{
+    width: 30%;
+}
+
+.chatBar .username,
+.chatBar .regDate,
+.chat .username,
+.chat .chatRegDate {
+    width: 20%;
+}
+
+
+.chat p{
+    /*width: 25%;*/
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.chat::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1%; /* 바닥 전체의 5%만큼 여백을 두고 그립니다. */
+    width: 98%; /* 바닥 전체의 90%만을 차지합니다. */
+    border-bottom: 1px solid;
+}
+
+.chat p{
+    text-align: center;
+}
+
+.paging {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.paging li {
+    margin: 20px 5px;
+}
+
+.paging a {
+    text-decoration: none;
+    padding: 5px 10px;
+    color: #333;
+}

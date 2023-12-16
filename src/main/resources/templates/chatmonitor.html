@@ -1,10 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Certcare</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/head.css">
+        <link rel="stylesheet" type="text/css" href="/css/chatmonitor.css">
+    <script src="/js/adminLogin.js"></script>
+        <script th:inline="javascript">
+            var chats = [[${chats}]]
+            console.log(chats)
+        </script>
+    <script src="/js/chatmonitor.js"></script>
+
 </head>
 <body>
+
+<div th:replace="layout/adminHead :: nav"></div>
+
+<div class="container">
+    <div class="empty"></div>
+
+    <h1>써트케어 챗봇 관리</h1>
+
+    <div class="empty"></div>
+
+    <div class="chatCon">
+        <div class="chatBar">
+            <h4 class="question">질문</h4>
+            <h4 class="answer">답변</h4>
+            <h4 class="username">사용자</h4>
+            <h4 class="regDate">날짜</h4>
+        </div>
+    </div>
+</div>
+<div class="empty"></div>
+
+<div th:replace="layout/footer :: footer"></div>
 
 </body>
 </html>

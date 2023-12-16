@@ -4,44 +4,32 @@
   <title>Certcare</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="/css/head.css">
-
+  <link rel="stylesheet" type="text/css" href="/css/members.css">
+  <script src="/js/adminLogin.js"></script>
+  <script th:inline="javascript">
+    var members = [[${members}]]
+    console.log(members)
+  </script>
+  <script src="/js/members.js"></script>
 </head>
 
 <body>
+<div th:replace="layout/adminHead :: nav"></div>
 
 <div class="container">
   <div class="empty"></div>
 
   <h1>써트케어 회원 관리</h1>
-  <div class="empty"></div>
-
-  <div class="articleC">
-    <a class="write">글쓰기</a>
-  </div>
 
   <div class="empty"></div>
-  <div class="boardCon">
-    <div class="boardBar">
-      <h4 class="title">사용자 ID</h4>
-      <h4 class="writer">사용자 아이디</h4>
-      <h4 class="regDate">사용자 닉네임</h4>
+
+  <div class="memberCon">
+    <div class="memberBar">
+      <h4 class="ID">사용자 ID</h4>
+      <h4 class="id">사용자 아이디</h4>
+      <h4 class="name">사용자 닉네임</h4>
     </div>
-
-        <div class="board">
-          <a href="/" class="title"><p>뭐라고 해야 좋을까</p></a>
-          <p class="writer">작성자</p>
-          <p class="date">작성일</p>
-        </div>
-
-<!--        <div class="board" th:each="post : ${articleList}">-->
-<!--          <a th:href="${post.url}" class="title">-->
-<!--            <p th:text="${post.title}"></p>-->
-<!--          </a>-->
-<!--          <p class="writer" th:text="${post.writer}"></p>-->
-<!--          <p class="date" th:text="${#dates.format(post.regDate, 'yyyy-MM-dd HH:mm:ss')}"></p>-->
-        </div>
   </div>
-  <!--생성되는 곳-->
 </div>
 <div class="empty"></div>
 <div class="empty"></div>
