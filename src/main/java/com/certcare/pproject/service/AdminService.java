@@ -21,9 +21,11 @@ public class AdminService {
 
     // 모든 회원 조회
     public List<MemberResponseDto> getAllMembers() {
-        List<MemberResponseDto> dtos = new ArrayList<>();
 
         List<Member> members = memberRepository.findAll();
+        List<MemberResponseDto> dtos = members.stream()
+                .map(member -> member.toMemberResponseDtoForAdmin())
+                .collect(Collectors.toList());
 
         return dtos;
     }

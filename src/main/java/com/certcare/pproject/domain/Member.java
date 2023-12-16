@@ -1,6 +1,7 @@
 package com.certcare.pproject.domain;
 
 import com.certcare.pproject.dto.MemberRequestDto;
+import com.certcare.pproject.dto.MemberResponseDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,6 +38,14 @@ public class Member {
 
         // Authority는 자동으로 ROLE_USER
         this.authority = Authority.ROLE_USER;
+    }
+
+    public MemberResponseDto toMemberResponseDtoForAdmin() {
+        MemberResponseDto memberResponseDto = new MemberResponseDto();
+        memberResponseDto.setId(this.id);
+        memberResponseDto.setUserId(this.userId);
+        memberResponseDto.setUsername(this.username);
+        return memberResponseDto;
     }
 }
 
