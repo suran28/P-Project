@@ -21,12 +21,17 @@ public class AdminController {
     private final AdminService adminService;
     private final MemberService memberService;
 
-    // 관리자 로그인
-    @GetMapping("/admin/login")
-    public String adminLogin(@RequestBody MemberRequestDto memberRequestDto, Model model) {
-        TokenDto tokenDto = memberService.login(memberRequestDto);
-        model.addAttribute("accessToken", tokenDto.getAccessToken());
+    @GetMapping("/admin")
+    public String showAdminLoginPage() {
         return "admin";
+    }
+
+    // 관리자 로그인
+    @PostMapping("/admin/login")
+    @ResponseBody
+    public ResponseEntity<TokenDto> adminLogin(@RequestBody MemberRequestDto memberRequestDto) {
+        TokenDto tokenDto = memberService.login(memberRequestDto);
+        return ResponseEntity.ok(tokenDto);
     }
 
     // 회원 목록 조회
