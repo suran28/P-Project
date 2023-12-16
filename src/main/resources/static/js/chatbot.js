@@ -27,22 +27,15 @@ document.addEventListener("DOMContentLoaded", () =>  {
 document.addEventListener("DOMContentLoaded", () =>  {
     const chatInput = document.getElementById("chatInput");
     const sendBtn = document.querySelector(".sendBtn");
-    // const memChatSave = document.querySelector(".ChatSave");
 
     sendBtn.addEventListener("click", function () {
-        // var storedAccessToken = sessionStorage.getItem('accessToken');
 
-        // if (storedAccessToken === undefined) {
-        //     alert("로그인이 필요한 서비스입니다.");
-        //     return null;
-        // } else {
-            let userQuestion = chatInput.value;
+        let userQuestion = chatInput.value;
 
-            if (userQuestion !== "") {
-                addMemChatToMemory(userQuestion, "chatSave");
-                requestAi(userQuestion)
-            }
-        // }
+        if (userQuestion !== "") {
+            addMemChatToMemory(userQuestion, "chatSave");
+            requestAi(userQuestion)
+        }
 
         chatInput.value = "";
     })
@@ -66,10 +59,17 @@ function addAiChatToMemory(message, chatSaveClass) {
 
     const aiAnswer = document.createElement("p");
     aiAnswer.textContent = message;
+    newChat.appendChild(aiAnswer);
 
     const askMessage = "답변 내용에 만족하셨나요? 또 어떤 내용을 도와드릴까요?";
     const askUser = document.createElement("p");
     askUser.textContent = askMessage;
+    reChat.appendChild(askUser);
+
+    const dissatisfactionBtn = document.createElement("button");
+    dissatisfactionBtn.textContent = "불만족";
+    dissatisfactionBtn.className = "dissatisfactionBtn"
+    reChat.appendChild(dissatisfactionBtn);
 
     function showAiText(index) {
         return new Promise(resolve => {
@@ -87,15 +87,35 @@ function addAiChatToMemory(message, chatSaveClass) {
         });
     }
 
+    // function requestUserFeedback(idx) {
+    //     askUser.textContent = askMessage.slice(0, idx);
+    //     askUser.classList.add("show")
+    //     reChat.classList.add("show")
+    //
+    //     return new Promise(resolve => {
+    //         if (idx < askMessage.length) {
+    //             setTimeout(function () {
+    //                 requestUserFeedback(idx + 1).then(resolve);
+    //             }, 30);
+    //         } else {
+    //             resolve();
+    //         }
+    //     });
+    // }
+
     function requestUserFeedback(idx) {
         askUser.textContent = askMessage.slice(0, idx);
         askUser.classList.add("show");
-        reChat.classList.add("show")
+        reChat.classList.add("show");
 
         return new Promise(resolve => {
             if (idx < askMessage.length) {
                 setTimeout(function () {
-                    requestUserFeedback(idx + 1).then(resolve);
+                    requestUserFeedback(idx + 1).then(() => {
+                        // resolve()가 호출된 후에 실행되는 로직
+                        dissatisfactionBtn.classList.add("show");
+                        resolve();
+                    });
                 }, 30);
             } else {
                 resolve();
@@ -103,17 +123,18 @@ function addAiChatToMemory(message, chatSaveClass) {
         });
     }
 
+
     showAiText(0).then(() => {
         return requestUserFeedback(0);
     })
 
-    newChat.appendChild(aiAnswer);
-    reChat.appendChild(askUser);
     chatSave.insertBefore(newChat, chatSave.firstChild);
     chatSave.insertBefore(reChat, chatSave.firstChild);
+
+    // dissatisfactionBtn.classList.add("show")
+
+    dissatiBtn()
 }
-
-
 
 function addMemChatToMemory(message, chatSaveClass) {
     const chatSave = document.querySelector(`.${chatSaveClass}`);
@@ -140,21 +161,6 @@ function requestAi(message) {
             }
         )
     })
-        // .then(res => res.json())
-        // .then(res => {
-        //     console.log(res);
-        //     if (res.status === 500) {
-        //         let assistantResponse = "죄송합니다. 챗봇 답변을 불러오는데 실패했습니다."
-        //         addAiChatToMemory(assistantResponse, "chatSave")
-        //     }else {
-        //         addAiChatToMemory(res, "chatSave")
-        //     }
-        //
-        // })
-        // .catch(error => {
-        //     console.error('Error:', error);
-        // })
-
         .then(res => res.json())
         .then(res => {
             console.log(res)
@@ -173,4 +179,47 @@ function requestAi(message) {
         .catch(error => {
                 console.error('Error:', error);
             });
+}
+
+//불만족 버튼
+function dissatiBtn() {
+    const dissatiBtnList = document.querySelectorAll(".dissatisfactionBtn");
+
+    dissatiBtnList.forEach(dissatiBtnElement => {
+        dissatiBtnElement.addEventListener("click", function() {
+            const aiChat = dissatiBtnElement.closest(".aiChat");
+            const chatSave = aiChat.parentNode;
+
+            const aiChatIndex = Array.from(chatSave.children).indexOf(aiChat);
+
+            const aiAnswerDiv = chatSave.children[aiChatIndex + 1];
+            const aiAnswer = aiAnswerDiv.querySelector("p").textContent;
+
+            const userQuestionDiv = chatSave.children[aiChatIndex + 2];
+            const userQuestion = userQuestionDiv.querySelector("p").textContent;
+
+            console.log(aiAnswer)
+            console.log(userQuestion);
+
+            fetch("/bad-answer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(
+                    {
+                        question: userQuestion,
+                        answer: aiAnswer,
+                    }
+                ),
+            })
+                .then(res => res.text())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        })
+    })
 }

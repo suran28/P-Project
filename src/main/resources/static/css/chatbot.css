@@ -74,6 +74,7 @@
     display: block;
     /*background-color: #D4CAFF;*/
     background-color: #F2F0FB;
+    display: flex;
 }
 
 .aiChat p{
@@ -82,6 +83,21 @@
 }
 
 .aiChat p.show{
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.aiChat button{
+    padding: 5px;
+    margin: 0 5px;
+    opacity: 0;
+    background-color: #e8cdff;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.aiChat button.show{
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
 }
