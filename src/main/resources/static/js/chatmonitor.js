@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
         const chatRegDate = document.createElement('p');
         chatRegDate.classList.add('chatRegDate')
-        chatRegDate.textContent = chat.username
+        const dateTime = new Date(chat.regDate);
+        const dateOnly = new Date(dateTime.getFullYear(), dateTime.getMonth(), dateTime.getDate());
+        const formattedDate = dateOnly.toISOString().split('T')[0];
+        chatRegDate.textContent = formattedDate
         chatDiv.appendChild(chatRegDate)
 
         chatsContainer.appendChild(chatDiv)

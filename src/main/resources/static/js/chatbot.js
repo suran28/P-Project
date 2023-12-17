@@ -213,9 +213,14 @@ function dissatiBtn() {
                     }
                 ),
             })
-                .then(res => res.text())
-                .then(data => {
-                    console.log(data);
+                .then(res => {
+                    console.log(res)
+                    if (res.status === 200){
+                        alert("반영이 완료되었습니다.");
+                    }
+                    else if(res.status === 500){
+                        alert("로그인하여 주시기 바랍니다.");
+                    }
                 })
                 .catch(error => {
                     console.error(error);
