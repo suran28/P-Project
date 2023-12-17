@@ -43,7 +43,7 @@ public class ChatBotService {
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("messages", messages);
-        requestBody.put("model", "ft:gpt-3.5-turbo-0613:personal::8UAKgbnD");
+        requestBody.put("model", "ft:gpt-3.5-turbo-0613:personal::8WJGgXOf");
         requestBody.put("temperature", 0.3);
 //        requestBody.put("top_p", 0.5);
 
