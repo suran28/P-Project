@@ -219,7 +219,7 @@ function dissatiBtn() {
                         alert("반영이 완료되었습니다.");
                     }
                     else if(res.status === 500){
-                        alert("로그인하여 주시기 바랍니다.");
+                        alert("반영이 되지 않았습니다 다시 한 번 눌러주시기 바랍니다.");
                     }
                 })
                 .catch(error => {
