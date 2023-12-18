@@ -66,6 +66,11 @@ function addAiChatToMemory(message, chatSaveClass) {
     askUser.textContent = askMessage;
     reChat.appendChild(askUser);
 
+    const satisfactionBtn = document.createElement("button");
+    satisfactionBtn.textContent = "만족";
+    satisfactionBtn.className = "satisfactionBtn"
+    reChat.appendChild(satisfactionBtn);
+
     const dissatisfactionBtn = document.createElement("button");
     dissatisfactionBtn.textContent = "불만족";
     dissatisfactionBtn.className = "dissatisfactionBtn"
@@ -113,6 +118,7 @@ function addAiChatToMemory(message, chatSaveClass) {
                 setTimeout(function () {
                     requestUserFeedback(idx + 1).then(() => {
                         // resolve()가 호출된 후에 실행되는 로직
+                        satisfactionBtn.classList.add("show");
                         dissatisfactionBtn.classList.add("show");
                         resolve();
                     });
@@ -133,6 +139,7 @@ function addAiChatToMemory(message, chatSaveClass) {
 
     // dissatisfactionBtn.classList.add("show")
 
+    satiBtn()
     dissatiBtn()
 }
 
@@ -179,6 +186,57 @@ function requestAi(message) {
         .catch(error => {
                 console.error('Error:', error);
             });
+}
+
+//만족 버튼
+function satiBtn() {
+    const satiBtnList = document.querySelectorAll(".satisfactionBtn");
+
+    satiBtnList.forEach(satiBtnElement => {
+        satiBtnElement.addEventListener("click", function() {
+
+            alert("반영이 완료되었습니다.");
+
+            const aiChat = satiBtnElement.closest(".aiChat");
+            const chatSave = aiChat.parentNode;
+
+            const aiChatIndex = Array.from(chatSave.children).indexOf(aiChat);
+
+            const aiAnswerDiv = chatSave.children[aiChatIndex + 1];
+            const aiAnswer = aiAnswerDiv.querySelector("p").textContent;
+
+            const userQuestionDiv = chatSave.children[aiChatIndex + 2];
+            const userQuestion = userQuestionDiv.querySelector("p").textContent;
+
+            console.log(aiAnswer)
+            console.log(userQuestion);
+
+            // fetch("/bad-answer", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify(
+            //         {
+            //             question: userQuestion,
+            //             answer: aiAnswer,
+            //         }
+            //     ),
+            // })
+            //     .then(res => {
+            //         console.log(res)
+            //         if (res.status === 200){
+            //             alert("반영이 완료되었습니다.");
+            //         }
+            //         else if(res.status === 500){
+            //             alert("로그인 후 이용해주시기 바랍니다.");
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error(error);
+            //     })
+        })
+    })
 }
 
 //불만족 버튼
